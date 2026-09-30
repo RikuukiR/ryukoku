@@ -1,0 +1,92 @@
+% ========================================
+% 共通プリアンブル（講義MODE・演習MODE）
+% パッケージ／解答切り替え／番号／空欄／定義・公式・定理の囲み
+% ========================================
+\usepackage{amsmath, amssymb, mathtools, bm}
+\usepackage{ascmac}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+
+\linespread{1.25}
+\everymath{\displaystyle}
+\setlength{\parindent}{0pt}
+\setlist[enumerate,1]{label=（\arabic*）, leftmargin=*, labelsep=0.5em}
+
+% ========================================
+% 解答表示の切り替え（生徒用：\showanswerfalse ／ 教師用：\showanswertrue）
+% ========================================
+\newif\ifshowanswer
+\showanswertrue
+
+% ========================================
+% 番号（「章.節.番号」形式，節ごとにリセット）
+% ========================================
+% jsarticle には章がないので，章番号は専用カウンタで持つ
+\newcounter{mathchapter}
+\newcounter{definition}[section]
+\newcounter{formula}[section]
+\newcounter{theorem}[section]
+\renewcommand{\thedefinition}{\arabic{mathchapter}.\arabic{section}.\arabic{definition}}
+\renewcommand{\theformula}{\arabic{mathchapter}.\arabic{section}.\arabic{formula}}
+\renewcommand{\thetheorem}{\arabic{mathchapter}.\arabic{section}.\arabic{theorem}}
+
+% ========================================
+% 書き込み用コマンド
+% ========================================
+% 空欄（答えの幅＋左右の余白で下線を引く）
+% 使い方: \fitblankbf[]{答え}  ※文字列は \text{...} で囲む
+\newsavebox{\fitblanksavebox}
+\newcommand{\fitblankbf}[2][]{%
+  \sbox{\fitblanksavebox}{\ensuremath{\bm{#2}}}%
+  \underline{\makebox[\dimexpr\wd\fitblanksavebox+3zw\relax][c]{%
+    \ifshowanswer\textcolor{blue}{\usebox{\fitblanksavebox}}%
+    \else\phantom{\usebox{\fitblanksavebox}}\fi}}%
+}
+
+% 数式中の計算欄（下線なし，答えの幅＋左右2em を確保）
+% 使い方: $= \answermath{3 - 1 = 2}$
+\newcommand{\answermath}[1]{%
+  \ifshowanswer{\color{blue}#1}%
+  \else\hspace{2em}\phantom{#1}\hspace{2em}\fi
+}
+
+% 記述・計算スペース（薄い枠で高さを確保）
+% 使い方: \writespace[高さ]{解答例}
+\newcommand{\writespace}[2][5em]{%
+  \begin{tcolorbox}[enhanced, colback=white, colframe=black!35,
+      boxrule=0.4pt, sharp corners, height=#1, valign=center,
+      left=8pt, right=8pt]
+    \ifshowanswer\textcolor{blue}{#2}\fi
+  \end{tcolorbox}%
+}
+
+% ========================================
+% 定義（赤系）・公式（青系）・定理（青系・太枠）
+% 使い方: \begin{definitionbox}{用語} ... \end{definitionbox}
+% ========================================
+\tcbset{
+  mathbox/.style={
+    enhanced, sharp corners,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    fonttitle=\bfseries,
+  }
+}
+\newtcolorbox{definitionbox}[1]{
+  mathbox, colback=red!5, colframe=red!70!black, boxrule=0.8pt,
+  code={\refstepcounter{definition}},
+  title={定義 \thedefinition\quad #1}
+}
+\newtcolorbox{formulabox}[1]{
+  mathbox, colback=blue!5, colframe=blue!70!black, boxrule=0.8pt,
+  code={\refstepcounter{formula}},
+  title={公式 \theformula\quad #1}
+}
+\newtcolorbox{theorembox}[1]{
+  mathbox, colback=blue!5, colframe=blue!70!black, boxrule=1.2pt,
+  code={\refstepcounter{theorem}},
+  title={定理 \thetheorem\quad #1}
+}

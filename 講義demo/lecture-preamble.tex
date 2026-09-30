@@ -1,0 +1,64 @@
+% ========================================
+% 講義MODE プリアンブル（A4 縦 × 2ページ → B4 横に左右2面で縮小印刷）
+% 使い方: \documentclass[17pt]{jsarticle}
+%         \input{lecture-preamble.tex}
+% ※ B4 に縮小（約87%）すると，17pt は実寸で約14.7pt になる
+% ※ jsarticle は \mag で拡大するので，紙面の寸法は truemm で指定する．
+%    TikZ の cm も拡大される（1cm → 実寸 約1.7cm）点に注意
+% ========================================
+\usepackage[dvipdfm, a4paper, margin=15truemm]{geometry}
+
+\input{common-preamble.tex}
+
+\pagestyle{empty}
+
+% ========================================
+% ヘッダ（1ページ目の先頭）
+% 使い方: \lectureheader{科目}{章番号}{章の名前}{節番号}{節の名前}{項番号}{項の名前}{本時の目標}
+% ========================================
+\newcommand{\lectureheader}[8]{%
+  \setcounter{mathchapter}{#2}%
+  \setcounter{section}{#4}%
+  \setcounter{subsection}{#6}%
+  \noindent\hfill
+  年\hspace{2zw}組\hspace{2zw}番\quad 氏名\ \underline{\hspace{8zw}}\par
+  \vspace{0.3em}
+  \noindent #1\quad 第#2章\quad #3\par
+  \noindent{\Large\bfseries 第#4節\quad #5}\hspace{1.5zw}{\large\bfseries #6\quad #7}\par
+  \vspace{-0.3em}
+  \noindent\rule{\linewidth}{0.8pt}\par
+  \vspace{0.3em}
+  \begin{itembox}[l]{\textbf{本時の目標}}
+    \centering #8
+  \end{itembox}
+  \vspace{0.3em}
+}
+
+% 右のページ（2ページ目）へ移る
+\newcommand{\nextpage}{\newpage}
+
+% 見出し: \heading{見出し}
+\newcommand{\heading}[1]{%
+  \par\noindent{\large\bfseries #1}\par\vspace{0.3em}%
+}
+
+% 本時のまとめ
+\newenvironment{summarybox}{%
+  \begin{itembox}[l]{\textbf{本時のまとめ}}
+}{\end{itembox}}
+
+% 左右配置（左：説明・計算，右：図）
+% 使い方: \sidebyside[左の幅の割合]{左}{右}
+\newcommand{\sidebyside}[3][0.5]{%
+  \par\noindent
+  \begin{minipage}[t]{#1\linewidth}\vspace{0pt}#2\end{minipage}\hfill
+  \begin{minipage}[t]{\dimexpr0.98\linewidth-#1\linewidth\relax}%
+    \vspace{0pt}\centering #3\end{minipage}\par
+}
+
+% 次回予告（2ページ目の下端）
+\newcommand{\nexttime}[1]{%
+  \par\noindent\parbox{\linewidth}{%
+    \rule{\linewidth}{0.4pt}\par
+    次回：#1}\par
+}
