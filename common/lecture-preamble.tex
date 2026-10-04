@@ -19,23 +19,42 @@
 
 % ========================================
 % ヘッダ（1ページ目の先頭）
-% 使い方: \lectureheader{科目}{章番号}{章の名前}{節番号}{節の名前}{項番号}{項の名前}{本時の目標}
+% 使い方: \lectureheader{科目}{章番号}{章の名前}{節番号}{節の名前}{項番号-小単元}{小単元の名前}
+%           {教科書のページ}{本時の目標}
+%   例: \lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{1}{指数関数}{2-A}{指数関数 $y=a^x$ のグラフ}
+%         {150--151}{指数関数のグラフを描けるようになろう}
+%   項番号-小単元は「2-A」のほか「2」だけでもよい（カウンターには先頭の数字を使う）
+%   教科書のページを空 {} にすると，手書き用の空欄になる
+%   タイトルと教科書のページが1行に収まらないときは，タイトルを横に縮めて収める
 % ========================================
-\newcommand{\lectureheader}[8]{%
+\newsavebox{\lectitlebox}
+\newsavebox{\lecpagebox}
+\newlength{\lectitlewidth}
+\def\lecitemnumber#1-#2\relax{#1}
+\newcommand{\lectureheader}[9]{%
   \setcounter{mathchapter}{#2}%
   \setcounter{section}{#4}%
-  \setcounter{subsection}{#6}%
+  \setcounter{subsection}{\lecitemnumber#6-\relax}%
   \noindent{\bfseries #1}\quad 第#2章\quad #3\hfill
   \rule{0pt}{1.4em}%
   \underline{\hspace{1.5zw}}年\underline{\hspace{1.5zw}}組\underline{\hspace{2zw}}番\quad
   氏名\underline{\hspace{8zw}}\par
   \vspace{0.3em}
-  \noindent{\Large\bfseries 第#4節\quad #5}\hspace{1.5zw}{\large\bfseries #6\quad #7}\par
+  \sbox{\lectitlebox}{\boldmath{\Large\bfseries 第#4節\enspace #5}\hspace{1zw}{\large\bfseries #6\enspace #7}}%
+  \sbox{\lecpagebox}{教科書 p.\,\ifx\relax#8\relax\hspace*{2zw}\else#8\fi}%
+  \setlength{\lectitlewidth}{\dimexpr\linewidth-\wd\lecpagebox-1zw\relax}%
+  \noindent
+  \ifdim\wd\lectitlebox>\lectitlewidth
+    \resizebox{\lectitlewidth}{!}{\usebox{\lectitlebox}}%
+  \else
+    \usebox{\lectitlebox}%
+  \fi
+  \hfill\usebox{\lecpagebox}\par
   \vspace{-0.3em}
   \noindent\rule{\linewidth}{0.8pt}\par
   \vspace{0.3em}
   \begin{itembox}[l]{\textbf{本時の目標}}
-    \centering #8
+    \centering\bfseries\boldmath #9
   \end{itembox}
   \vspace{0.3em}
 }

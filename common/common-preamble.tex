@@ -10,6 +10,7 @@
 \usetikzlibrary{calc, arrows.meta}
 \usepackage[most]{tcolorbox}
 \usepackage{enumitem}
+\usepackage{tasks}
 
 \linespread{1.25}
 \everymath{\displaystyle}
@@ -17,10 +18,11 @@
 \setlist[enumerate,1]{label=（\arabic*）, leftmargin=*, labelsep=0.5em}
 
 % ========================================
-% 解答表示の切り替え（生徒用：\showanswerfalse ／ 教師用：\showanswertrue）
+% 解答表示の切り替え（既定は教師用．make student で \studentmode が定義され生徒用になる）
 % ========================================
 \newif\ifshowanswer
 \showanswertrue
+\ifdefined\studentmode\showanswerfalse\fi
 
 % ========================================
 % 番号（「章.節.番号」形式，節ごとにリセット）
@@ -42,12 +44,15 @@
 % 箱の内側で \color を指定する
 \newcommand{\answerstyle}[1]{{\color{blue}\bfseries\boldmath #1}}
 
+% 空欄の左右それぞれの余白
+\newcommand{\fitblankpad}{2zw}
+
 % 空欄（答えの幅＋左右の余白で下線を引く）
 % 使い方: \fitblankbf[]{答え}  ※文字列は \text{...} で囲む
 \newsavebox{\fitblanksavebox}
 \newcommand{\fitblankbf}[2][]{%
   \sbox{\fitblanksavebox}{\answerstyle{$\displaystyle #2$}}%
-  \underline{\makebox[\dimexpr\wd\fitblanksavebox+3zw\relax][c]{%
+  \underline{\makebox[\dimexpr\wd\fitblanksavebox+\fitblankpad*2\relax][c]{%
     \ifshowanswer\usebox{\fitblanksavebox}%
     \else\phantom{\usebox{\fitblanksavebox}}\fi}}%
 }
@@ -56,7 +61,7 @@
 % 使い方: \frac{\fitblankbox{y \text{ の変化量}}}{\fitblankbox{x \text{ の変化量}}}
 \newcommand{\fitblankbox}[1]{%
   \sbox{\fitblanksavebox}{\answerstyle{$\displaystyle #1$}}%
-  \makebox[\dimexpr\wd\fitblanksavebox+2zw\relax][c]{%
+  \makebox[\dimexpr\wd\fitblanksavebox+\fitblankpad*2\relax][c]{%
     \ifshowanswer\usebox{\fitblanksavebox}%
     \else\phantom{\usebox{\fitblanksavebox}}\fi}%
 }
@@ -103,4 +108,13 @@
   mathbox, colback=blue!5, colframe=blue!70!black, boxrule=1.2pt,
   code={\refstepcounter{theorem}},
   title={定理 \thetheorem\quad #1}
+}
+% テクニック（緑系）
+% 使い方: \begin{techniquebox}[ラベル]{見出し} ... \end{techniquebox}
+\newcounter{technique}[section]
+\renewcommand{\thetechnique}{\arabic{mathchapter}.\arabic{section}.\arabic{technique}}
+\newtcolorbox{techniquebox}[2][]{
+  mathbox, colback=green!5, colframe=green!70!black, boxrule=0.8pt,
+  code={\refstepcounter{technique}\if\relax\detokenize{#1}\relax\else\label{#1}\fi},
+  title={Technique \thetechnique\if\relax\detokenize{#2}\relax\else\quad\textbf{#2}\fi}
 }
