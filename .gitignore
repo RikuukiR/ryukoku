@@ -8,6 +8,7 @@
 *.out
 *.fdb_latexmk
 *.fls
+.build/
 
 # macOS
 .DS_Store
