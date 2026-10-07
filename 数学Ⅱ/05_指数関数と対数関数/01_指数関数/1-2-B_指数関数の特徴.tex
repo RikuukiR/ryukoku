@@ -1,4 +1,4 @@
-\documentclass[14pt]{jsarticle}
+\documentclass[14pt,dvipdfmx]{jsarticle}
 \input{lecture-preamble.tex}
 
 % 例題・練習の見出し: \reidai{番号}，\renshu{番号}
@@ -7,9 +7,9 @@
 
 % 指数関数の特徴の図: \expfeature{底}{p}{q}{a>1 なら 1，0<a<1 なら 0}（0<a<1 では a^p，a^q を y 軸の右に置く）
 \newcommand{\expfeature}[4]{%
-  \begin{tikzpicture}[x=0.5cm, y=0.42cm]
+  \begin{tikzpicture}[x=0.45cm, y=0.36cm]
     \draw[-{Stealth}] (-3,0) -- (3,0) node[right]{$x$};
-    \draw[-{Stealth}] (0,-0.5) -- (0,4.6) node[above]{$y$};
+    \draw[-{Stealth}] (0,-0.4) -- (0,4.2) node[above]{$y$};
     \node[below left, font=\footnotesize] at (0,0) {O};
     \ifnum#4=1
       \draw[thick, domain=-3:2.15, samples=60] plot (\x, {#1^(\x)});
@@ -27,8 +27,8 @@
 
 \begin{document}
 
-\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{1}{指数関数}{2-BC}{指数関数の特徴，方程式・不等式}
-  {158,159}{指数関数の特徴を使って，大小比較や方程式・不等式について考えよう}
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{1}{指数関数}{2-B}{指数関数の特徴}
+  {158}{指数関数の特徴を使って，大小比較について考えよう}
 
 % 同じ節の2枚目以降は，前回までの番号を引き継ぐ
 \setcounter{definition}{2}
@@ -80,21 +80,6 @@
   \end{enumerate}
 \end{theorembox}
 
-% \heading{復習問題}
-% \textbf{1}\quad 次の数を $2$ の累乗の形で表せ．
-% \begin{tasks}[label=(\arabic*), label-width=1.5zw, item-indent=2zw, after-item-skip=0.4em](2)
-%   \task $8 = \answermath{2^3}$
-%   \task $\dfrac{1}{4} = \answermath{\frac{1}{2^2} = 2^{-2}}$
-%   \task $\sqrt{2} = \answermath{2^{\frac{1}{2}}}$
-%   \task $\sqrt[3]{4} = \answermath{\sqrt[3]{2^2} = 2^{\frac{2}{3}}}$
-% \end{tasks}
-
-% \textbf{2}\quad 次の数を $3$ の累乗の形で表せ．
-% \begin{tasks}[label=(\arabic*), label-width=1.5zw, item-indent=2zw, after-item-skip=0.4em](2)
-%   \task $\dfrac{1}{9} = \answermath{\frac{1}{3^2} = 3^{-2}}$
-%   \task $9^x = \answermath{(3^2)^x = 3^{2x}}$
-% \end{tasks}
-
 \vfill
 \nextpage
 
@@ -130,97 +115,14 @@
   \end{minipage}
 \end{theorembox}
 
-% \textbf{注意}\quad $a>0$，$a \neq 1$ のとき，次が成り立つ．\quad
-% $p=q \iff a^p \fitblankbf{=} a^q$
-
-% \vspace{0.8em}
-% \reidai{2} 次の3つの数の大小を不等号を用いて表せ．
-% \hfill $\sqrt{2}$，\ $\sqrt[3]{4}$，\ $\sqrt[5]{8}$\hspace*{3zw}
-% \par\vspace{0.8em}
-% \textbf{解}\quad 2の累乗で表すと\par\vspace{0.5em}
-% \hspace*{3zw}$\sqrt{2} = \answermath{2^{\frac{1}{2}}}$，\
-%               $\sqrt[3]{4} = \answermath{2^{\frac{2}{3}}}$，\
-%               $\sqrt[5]{8} = \answermath{2^{\frac{3}{5}}}$
-% \par\vspace{1em}
-% \hspace*{2zw}\begin{tabular}[t]{@{}l@{\hspace{1zw}}l@{}}
-%   指数の大小を調べると & $\answermath{\frac{1}{2} < \frac{3}{5} < \frac{2}{3}}$ \\[0.8em]
-%   底 $2$ は $1$ より\fitblankbf{\text{大きい}}から & $\answermath{2^{\frac{1}{2}} < 2^{\frac{3}{5}} < 2^{\frac{2}{3}}}$ \\[0.8em]
-%   すなわち & $\answermath{\sqrt{2} < \sqrt[5]{8} < \sqrt[3]{4}}$
-% \end{tabular}
-
 \begin{techniquebox}{数の大小比較}
   \begin{itemize}[leftmargin=1.5zw, itemsep=0.2em]
     \item 底を\fitblankbf{\text{そろえて}}，指数の大小を比べる．
     \item 底が \fitblankbf{1} より大きいか小さいかで，大小の向きが決まる．
   \end{itemize}
 \end{techniquebox}
-\vfill
-\nextpage
-
-% ============ 3ページ目（裏・左） ============
-\heading{指数関数を含む方程式について考えてみよう！}
-指数方程式 $8^x = 4$ を解くにはどうしたら良いだろうか．
-
-そもそも、「方程式を解く」ということは、\fitblankbf{x = \text{○}} の形まで持っていくことである．
-
-指数を含む数の大小関係を考えるために，\fitblankbf{\text{底を揃えて}}みよう！
-\vspace{0.4em}
-
-\begin{answerproof}[解答]
-  方程式を変形すると
-  \begin{answeralign}[1zw]
-    (2^3)^x &= 2^2 \\
-    2^{3x}  &= 2^2 \\
-    3x      &= 2
-  \end{answeralign}
-  よって $x = \fitblankbf{\dfrac{2}{3}}$
-\end{answerproof}
-
-となり、指数関数を含む方程式を解くことができた！
-\vspace{1em}
-
-\heading{指数関数を含む不等式について考えてみよう！}
-$2^x \geqq 8$ を解くにはどうしたら良いだろうか．
-
-まずは、方程式と同様に考えてみよう.
-
-\begin{answerproof}[解答]
-  不等式を変形すると
-  \begin{answeralign}[1zw]
-    2^x &\geqq 2^3
-  \end{answeralign}
-  \uwave{底 $2$ は $1$ より大きいから}，指数を比べて
-
-  $x \geqq \fitblankbf{3}$
-\end{answerproof}
-
-となり、指数関数を含む不等式を解くことができた！しかし、指数を含む不等式を解く際には注意が必要である．
 
 \vfill
-\nextpage
-
-% ============ 4ページ目（裏・右） ============
-
-
-\vspace{0.5em}
-\begin{techniquebox}{指数を含む方程式・不等式}
-  \begin{itemize}[leftmargin=1.5zw, itemsep=0.2em]
-    \item 両辺の\fitblankbf{\text{底}}をそろえて，指数を比べる．
-    \item 不等式では，底が $0<a<1$ のとき不等号の向きが\fitblankbf{\text{逆}}になる．
-  \end{itemize}
-\end{techniquebox}
-\vspace{0.3em}
-
-\begin{summarybox}
-  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em]
-    \item $a>1$ のとき $y=a^x$ は\fitblankbf{\text{増加関数}}，\\
-          $0<a<1$ のとき\fitblankbf{\text{減少関数}}である．
-    \item 数の大小比較や方程式・不等式は，\fitblankbf{\text{底}}をそろえて指数を比べる．
-  \end{enumerate}
-\end{summarybox}
-
-
-\vfill
-\nexttime{対数とは何かを学び，指数との関係を考えてみよう！}
+\nexttime{指数関数を含む方程式・不等式について考えてみよう！}
 
 \end{document}
