@@ -1,0 +1,326 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% 対数の導入用: y=2^x のグラフに M と log_2 M を書き込む
+\newcommand{\logtwograph}{%
+  \begin{tikzpicture}[x=0.95cm, y=0.72cm]
+    \draw[-{Stealth}] (-1.8,0) -- (3.0,0) node[right]{$x$};
+    \draw[-{Stealth}] (0,-0.4) -- (0,5.1) node[above]{$y$};
+    \node[below left, font=\footnotesize] at (0,0) {O};
+    \draw[thick, domain=-1.6:2.25, samples=80] plot (\x, {2^(\x)});
+    \node[font=\footnotesize, right] at (2.25,4.5) {$y=2^x$};
+    \draw (-0.12,1) -- (0.12,1);
+    \node[font=\footnotesize] at (-0.55,1.22) {$1$};
+    \ifshowanswer
+      \draw[blue, dashed] (0,3) node[left, font=\footnotesize]{$M$}
+        -- ({ln(3)/ln(2)},3) -- ({ln(3)/ln(2)},0)
+        node[below, font=\footnotesize]{$\log_{2} M$};
+      \fill[blue] ({ln(3)/ln(2)},3) circle (2pt);
+    \fi
+  \end{tikzpicture}%
+}
+
+% 一般の y=a^x: #1=底, #2=a>1 なら 1
+\newcommand{\logagraph}[2]{%
+  \begin{tikzpicture}[x=0.4cm, y=0.3cm]
+    \draw[-{Stealth}] (-2.5,0) -- (2.7,0) node[right]{$x$};
+    \draw[-{Stealth}] (0,-0.35) -- (0,3.7) node[above]{$y$};
+    \node[below left, font=\footnotesize] at (0,0) {O};
+    \ifnum#2=1
+      \draw[thick, domain=-2.5:1.8, samples=60] plot (\x, {#1^(\x)});
+      \def\xp{1.2}\def\lblside{left}
+    \else
+      \draw[thick, domain=-1.8:2.5, samples=60] plot (\x, {#1^(\x)});
+      \def\xp{-1.2}\def\lblside{right}
+    \fi
+    \node[font=\footnotesize, above \lblside] at (0,1) {$1$};
+    \ifshowanswer
+      \draw[blue, dashed] (0,{#1^(\xp)}) node[\lblside, font=\footnotesize]{$M$}
+        -- (\xp,{#1^(\xp)}) -- (\xp,0)
+        node[below, font=\footnotesize]{$\log_{a} M$};
+    \fi
+    \ifnum#2=1
+      \node[font=\footnotesize] at (1.6,3.3) {$y=a^x$};
+    \else
+      \node[font=\footnotesize] at (-1.6,3.3) {$y=a^x$};
+    \fi
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{3-A}{対数}
+  {161,162}{対数の意味を理解し, 指数との関係を考えよう}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-1.5zw}%
+\heading{〜前時の復習〜}
+\begin{reviewbox}{指数を含む方程式・不等式}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.12em]
+    \item 両辺の\fitblankbf{\text{底}}をそろえて, \fitblankbf{\text{指数}}を比べる.
+    \item 不等式では, 底が $0<a<1$ のとき不等号の向きが\fitblankbf{\text{逆}}になる.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.3em}
+$2^x = 4$ を満たす実数 $x$ は $x = \fitblankbf{2}$ である.
+\par\vspace{0.3em}
+では, $2^x = 3$ を満たす実数 $x$ の値は, どのように表せるだろうか.
+
+
+
+\vspace{0.4em}
+\heading{対数を定義しよう}
+$y=2^x$ は\fitblankbf{\text{増加関数}}で, 値域は\fitblankbf{\text{正の数}}全体である.
+\par\vspace{0.25em}
+したがって, どんな正の数 $M$ に対しても,
+$M = 2^x$ となる実数 $x$ がただ1つ定まる.
+この $x$ を $\log_{2} M$ で表す.
+
+\sidebyside[0.48]{%
+  右のグラフで, $y=M$ となる点の $x$ 座標が $\log_{2} M$ である.
+  \par\vspace{0.3em}
+  読み方：$\log_{2} M$ は\\
+  「\fitblankbf{\text{ログ $2$ の $M$}}」
+  \par\vspace{0.3em}
+  つまり $\log_{2} M$ とは, \\
+  「\fitblankbf{\text{$2$ を何乗したら $M$ になるか}}」\\
+  という問いに対する答えである.
+}{%
+  \logtwograph
+}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.5zw}%
+\begin{exampleprob}{7}
+  次の等式を、$\log_{2}$ を用いて表せ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.15em](2)
+    \task $8 = 2^3$
+    \task $\dfrac{1}{2} = 2^{-1}$
+  \end{tasks}
+\end{exampleprob}
+
+\begin{answerbox}{(1)}[5]
+  $8=2^3$ だから
+  \boxanswer{$\log_{2} 8 = 3$}
+\end{answerbox}
+\begin{answerbox}{(2)}[6]
+  $\dfrac{1}{2}=2^{-1}$ だから
+  \boxanswer{$\log_{2} \dfrac{1}{2} = -1$}
+\end{answerbox}
+
+\vspace{0.25em}
+
+\begin{definitionbox}{対数}
+  $a > 0$, $a \neq 1$, $M > 0$ のとき,
+
+  $M = a^p$ を満たす実数 $p$ を $p = \log_{a} M$ と表し,
+  $a$ を\fitblankbf{\text{底}}とする $M$ の\fitblankbf{\text{対数}}という.\\
+  また, $M$ をこの対数の\fitblankbf{\text{真数}}という.
+\end{definitionbox}
+
+\vspace{0.1em}
+\begin{theorembox}{指数と対数}
+  $a > 0$, $a \neq 1$, $M > 0$ のとき
+  \par\vspace{0.25em}
+  {\centering
+  $\fitblankbf{M = a^p} \iff \fitblankbf{\log_{a} M = p}$
+  \par}
+\end{theorembox}
+
+\vspace{0.08em}
+\textbf{注意}\quad $\log_{a} M$ と書くときは, 常に $a>0$, $a \neq 1$, $M>0$ とする.
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.5zw}%
+\begin{exampleprob}{8}
+  次の等式を、対数を用いて表せ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.15em](2)
+    \task $81 = 3^4$
+    \task $\dfrac{1}{49} = 7^{-2}$
+  \end{tasks}
+\end{exampleprob}
+
+\begin{answerbox}{(1)}[5]
+  $81=3^4$ だから
+  \boxanswer{$\log_{3} 81 = 4$}
+\end{answerbox}
+\begin{answerbox}{(2)}[6.5]
+  $\dfrac{1}{49}=7^{-2}$ だから
+  \boxanswer{$\log_{7} \dfrac{1}{49} = -2$}
+\end{answerbox}
+
+\begin{practiceprob}{13}
+  次の関係を、$\log_{a} M = p$ の形で表せ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.15em](3)
+    \task $9 = 3^2$
+    \task $\dfrac{1}{25} = 5^{-2}$
+    \task $\dfrac{1}{8} = \left(\dfrac{1}{2}\right)^3$
+  \end{tasks}
+\end{practiceprob}
+
+\begin{answerbox}{(1)}[5]
+  $9=3^2$ だから
+  \boxanswer{$\log_{3} 9 = 2$}
+\end{answerbox}
+\begin{answerbox}{(2)}[6.5]
+  $\dfrac{1}{25}=5^{-2}$ だから
+  \boxanswer{$\log_{5} \dfrac{1}{25} = -2$}
+\end{answerbox}
+\begin{answerbox}{(3)}[7]
+  $\dfrac{1}{8}=\left(\dfrac{1}{2}\right)^3$ だから
+  \boxanswer{$\log_{\frac{1}{2}} \dfrac{1}{8} = 3$}
+\end{answerbox}
+
+\begin{practiceprob}{14}
+  次の関係を、$M = a^{p}$ の形で表せ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.1em](3)
+    \task $\log_{4} 16 = 2$
+    \task $\log_{10} \dfrac{1}{100} = -2$
+    \task $\log_{9} 3 = \dfrac{1}{2}$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(1)}[5]
+  \boxanswer{$16 = 4^{2}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(2)}[5]
+  \boxanswer{$\dfrac{1}{100} = 10^{-2}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(3)}[5]
+  \boxanswer{$3 = 9^{\frac{1}{2}}$}
+\end{answerbox}
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.8zw}%
+$M = a^p$ のとき $\log_{a} M = p$ であるから, 次の等式が得られる.
+
+\begin{theorembox}{対数の基本}
+  $a > 0$, $a \neq 1$ のとき\qquad
+  $\log_{a} a^{p} = \fitblankbf{p}$
+\end{theorembox}
+
+\begin{exampleprob}{9}
+  次の値を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.1em](3)
+    \task $\log_{5} 125$
+    \task $\log_{\frac{1}{2}} 2$
+    \task $\log_{3} \sqrt{3}$
+  \end{tasks}
+\end{exampleprob}
+
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(1)}[5]
+  $\log_{5} 5^{3}$
+  \boxanswer{$3$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(2)}[5]
+  $\left(\dfrac{1}{2}\right)^{-1}$
+  \boxanswer{$-1$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(3)}[5]
+  $3^{\frac{1}{2}}$
+  \boxanswer{$\dfrac{1}{2}$}
+\end{answerbox}
+\end{minipage}
+
+\begin{practiceprob}{15}
+  次の値を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](4)
+    \task $\log_{2} 2^{5}$
+    \task $\log_{5} 25$
+    \task $\log_{3} \dfrac{1}{27}$
+    \task $\log_{\frac{1}{2}} \dfrac{1}{16}$
+    \task $\log_{10} 0.1$
+    \task $\log_{\frac{1}{3}} 3$
+    \task $\log_{2} \sqrt[3]{2}$
+    \task $\log_{\sqrt{5}} 5$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(1)}[5.2]
+  \boxanswer{$5$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(2)}[5.2]
+  $\log_{5} 5^{2}$
+  \boxanswer{$2$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(3)}[5.2]
+  $\log_{3} 3^{-3}$
+  \boxanswer{$-3$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(4)}[5.2]
+  $\left(\dfrac{1}{2}\right)^{4}$
+  \boxanswer{$4$}
+\end{answerbox}
+\end{minipage}
+
+\noindent
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(5)}[5.2]
+  $\log_{10} 10^{-1}$
+  \boxanswer{$-1$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(6)}[5.2]
+  $\left(\dfrac{1}{3}\right)^{-1}$
+  \boxanswer{$-1$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(7)}[5.2]
+  $2^{\frac{1}{3}}$
+  \boxanswer{$\dfrac{1}{3}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{answerbox}{(8)}[5.2]
+  $(\sqrt{5})^{2}$
+  \boxanswer{$2$}
+\end{answerbox}
+\end{minipage}
+
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $M = a^p \iff p = \fitblankbf{\log_{a} M}$
+    \item $a$ を\fitblankbf{\text{底}}, $M$ を\fitblankbf{\text{真数}}という.
+
+    真数 $M$ は常に\fitblankbf{\text{正の数}}である.
+    \item $\log_{a} a^{p} = \fitblankbf{p}$
+  \end{enumerate}
+\end{summarybox}
+
+\vfill
+\nexttime{対数の性質を学び, 積・商・累乗の対数を計算できるようになろう!}
+
+\end{document}
