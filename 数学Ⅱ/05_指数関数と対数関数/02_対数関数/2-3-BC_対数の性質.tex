@@ -11,60 +11,62 @@
 \setcounter{theorem}{2}
 
 % ============ 1ページ目（表・左） ============
-\vspace{-1.5zw}%
+\vspace{-1.8zw}%
 \heading{〜前時の復習〜}
 \begin{reviewbox}{対数の定義と基本}
-  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.08em]
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
     \item $M = a^p \iff p = \fitblankbf{\log_{a} M}$
     \item $a$ を\fitblankbf{\text{底}}, $M$ を\fitblankbf{\text{真数}}という.
-    \item 真数 $M$ は常に\fitblankbf{\text{正の数}}である. \quad
-          $\log_{a} a^{p} = \fitblankbf{p}$
+
+    真数 $M$ は常に\fitblankbf{\text{正の数}}である.
+    \item $\log_{a} a^{p} = \fitblankbf{p}$
   \end{enumerate}
 \end{reviewbox}
 
-\vspace{0.2em}
-$1 = a^{0}$, $a = a^{1}$ であることから, 次が成り立つ.
-\par\vspace{0.15em}
-\hspace*{1zw}$\log_{a} 1 = \fitblankbf{0}$,\quad $\log_{a} a = \fitblankbf{1}$
+$\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が成り立つ.
+\begin{theorembox}{特別な値}
+  {\centering
+  $\log_{a} 1 = \fitblankbf{0}$,\quad $\log_{a} a = \fitblankbf{1}$
+  \par}
+\end{theorembox}
 
-\vspace{0.25em}
-\heading{対数の性質}
 \begin{theorembox}{対数の性質}
   $M > 0$, $N > 0$ で, $k$ は実数とする.
-  \par\vspace{0.15em}
-  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.1em]
+  \par\vspace{0.2em}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.40em, topsep=0.15em]
     \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
     \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$
     \item $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
   \end{enumerate}
 \end{theorembox}
 
-\vspace{0.12em}
+\vspace{0.08em}
 \textbf{注意}\quad 2 において, とくに $M=1$ のときは\quad
-$\log_{a} \dfrac{1}{N} = \fitblankbf{-\log_{a} N}$
-
-\vspace{0.2em}
-\textbf{【1 の証明】}\quad
-$\log_{a} M = p$, $\log_{a} N = q$ とすると $M = a^{p}$, $N = a^{q}$.
-\par\vspace{0.12em}
-よって $MN = a^{p} \times a^{q} = a^{\fitblankbf{p+q}}$.
-したがって $\log_{a} MN = \fitblankbf{p+q} = \log_{a} M + \log_{a} N$.
+{\boldmath $\log_{a} \dfrac{1}{N} = -\log_{a} N$}
 
 \vfill
 \nextpage
 
 % ============ 2ページ目（表・右） ============
 \vspace{-1.5zw}%
+\textbf{【1 の証明】}
+\begin{answerbox}{1}[8]
+  $\log_{a} M = p$, $\log_{a} N = q$ とすると\\
+  $MN = a^{p} \times a^{q} = a^{p+q}$\\
+  したがって
+  \boxanswer{$\log_{a} M + \log_{a} N$}
+\end{answerbox}
+
 \begin{practiceprob}{16}
   上の証明にならって、性質2、3が成り立つことを証明せよ。
 \end{practiceprob}
 
-\begin{answerbox}{2}[7]
+\begin{answerbox}{2}[8]
   $\log_{a} M = p$, $\log_{a} N = q$ とすると\\
   $M = a^{p}$, $N = a^{q}$ より $\dfrac{M}{N} = a^{p-q}$
   \boxanswer{$\log_{a} M - \log_{a} N$}
 \end{answerbox}
-\begin{answerbox}{3}[7]
+\begin{answerbox}{3}[8]
   $\log_{a} M = p$ とすると $M = a^{p}$\\
   両辺を $k$ 乗すると $M^{k} = a^{pk}$
   \boxanswer{$k \log_{a} M$}
@@ -79,25 +81,18 @@ $\log_{a} M = p$, $\log_{a} N = q$ とすると $M = a^{p}$, $N = a^{q}$.
   \end{tasks}
 \end{exampleprob}
 
-\noindent
-\begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(1)}[5.5]
+\begin{answerbox}{(1)}[5]
   $\log_{10}(2 \times 5)$
   \boxanswer{$1$}
 \end{answerbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(2)}[5.5]
+\begin{answerbox}{(2)}[5]
   $\log_{2} \dfrac{24}{3}$
   \boxanswer{$3$}
 \end{answerbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(3)}[5.5]
+\begin{answerbox}{(3)}[5]
   $\log_{3} \dfrac{4^{2} \times 5}{8}$
   \boxanswer{$\log_{3} 10$}
 \end{answerbox}
-\end{minipage}
 
 \vfill
 \nextpage
@@ -140,14 +135,14 @@ $\log_{a} M = p$, $\log_{a} N = q$ とすると $M = a^{p}$, $N = a^{q}$.
 $a$ を底とする対数 $\log_{a} b$ を, $c$ を底とする対数で表してみよう.
 \par\vspace{0.12em}
 $\log_{a} b = p$ とすると $b = a^{p}$.
-$c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.
-よって $p = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$.
+$c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.\\
+よって $p = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$.
 
 \begin{theorembox}{底の変換}
   $a$, $b$, $c$ は正の数で, $a \neq 1$, $c \neq 1$ とするとき
   \par\vspace{0.15em}
   {\centering
-  $\log_{a} b = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$
+  $\log_{a} b = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$
   \par}
 \end{theorembox}
 
@@ -161,13 +156,13 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.
 
 \noindent
 \begin{minipage}[t]{0.49\linewidth}
-\begin{answerbox}{(1)}[5]
+\begin{answerbox}{(1)}[5.8]
   $\dfrac{\log_{2} 2^{4}}{\log_{2} 2^{3}}$
-  \boxanswer{$\dfrac{4}{3}$}
+  \boxanswer{$\textstyle\dfrac{4}{3}$}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{answerbox}{(2)}[5]
+\begin{answerbox}{(2)}[5.8]
   $\log_{2} 3 \cdot \dfrac{\log_{2} 8}{\log_{2} 3}$
   \boxanswer{$3$}
 \end{answerbox}
@@ -184,19 +179,19 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.
 
 \noindent
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(1)}[4.8]
+\begin{answerbox}{(1)}[5.5]
   $\dfrac{\log_{2} 8}{\log_{2} 4}$
-  \boxanswer{$\dfrac{3}{2}$}
+  \boxanswer{$\textstyle\dfrac{3}{2}$}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(2)}[4.8]
+\begin{answerbox}{(2)}[5.5]
   $\dfrac{\log_{3} 3}{\log_{3} 9}$
-  \boxanswer{$\dfrac{1}{2}$}
+  \boxanswer{$\textstyle\dfrac{1}{2}$}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(3)}[4.8]
+\begin{answerbox}{(3)}[5.5]
   $\log_{2} 27$
   \boxanswer{$3$}
 \end{answerbox}
@@ -207,7 +202,7 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.
     \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
     \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$,\quad
           $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
-    \item $\log_{a} b = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$
+    \item $\log_{a} b = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$
   \end{enumerate}
 \end{summarybox}
 
