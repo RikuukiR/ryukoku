@@ -1,0 +1,217 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{3-BC}{対数の性質}
+  {163,164}{対数の性質と底の変換を使い, 対数を計算できるようになろう}
+
+% 同じ節の続き（3-A までの番号を引き継ぐ）
+\setcounter{definition}{1}
+\setcounter{theorem}{2}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-1.5zw}%
+\heading{〜前時の復習〜}
+\begin{reviewbox}{対数の定義と基本}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.08em]
+    \item $M = a^p \iff p = \fitblankbf{\log_{a} M}$
+    \item $a$ を\fitblankbf{\text{底}}, $M$ を\fitblankbf{\text{真数}}という.
+    \item 真数 $M$ は常に\fitblankbf{\text{正の数}}である. \quad
+          $\log_{a} a^{p} = \fitblankbf{p}$
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.2em}
+$1 = a^{0}$, $a = a^{1}$ であることから, 次が成り立つ.
+\par\vspace{0.15em}
+\hspace*{1zw}$\log_{a} 1 = \fitblankbf{0}$,\quad $\log_{a} a = \fitblankbf{1}$
+
+\vspace{0.25em}
+\heading{対数の性質}
+\begin{theorembox}{対数の性質}
+  $M > 0$, $N > 0$ で, $k$ は実数とする.
+  \par\vspace{0.15em}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.1em]
+    \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
+    \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$
+    \item $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
+  \end{enumerate}
+\end{theorembox}
+
+\vspace{0.12em}
+\textbf{注意}\quad 2 において, とくに $M=1$ のときは\quad
+$\log_{a} \dfrac{1}{N} = \fitblankbf{-\log_{a} N}$
+
+\vspace{0.2em}
+\textbf{【1 の証明】}\quad
+$\log_{a} M = p$, $\log_{a} N = q$ とすると $M = a^{p}$, $N = a^{q}$.
+\par\vspace{0.12em}
+よって $MN = a^{p} \times a^{q} = a^{\fitblankbf{p+q}}$.
+したがって $\log_{a} MN = \fitblankbf{p+q} = \log_{a} M + \log_{a} N$.
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.5zw}%
+\begin{practiceprob}{16}
+  上の証明にならって、性質2、3が成り立つことを証明せよ。
+\end{practiceprob}
+
+\begin{answerbox}{2}[7]
+  $\log_{a} M = p$, $\log_{a} N = q$ とすると\\
+  $M = a^{p}$, $N = a^{q}$ より $\dfrac{M}{N} = a^{p-q}$
+  \boxanswer{$\log_{a} M - \log_{a} N$}
+\end{answerbox}
+\begin{answerbox}{3}[7]
+  $\log_{a} M = p$ とすると $M = a^{p}$\\
+  両辺を $k$ 乗すると $M^{k} = a^{pk}$
+  \boxanswer{$k \log_{a} M$}
+\end{answerbox}
+
+\begin{exampleprob}{10}
+  次の式を計算せよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.1em](2)
+    \task $\log_{10} 2 + \log_{10} 5$
+    \task $\log_{2} 24 - \log_{2} 3$
+    \task $2\log_{3} 4 + \log_{3} 5 - \log_{3} 8$
+  \end{tasks}
+\end{exampleprob}
+
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(1)}[5.5]
+  $\log_{10}(2 \times 5)$
+  \boxanswer{$1$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(2)}[5.5]
+  $\log_{2} \dfrac{24}{3}$
+  \boxanswer{$3$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(3)}[5.5]
+  $\log_{3} \dfrac{4^{2} \times 5}{8}$
+  \boxanswer{$\log_{3} 10$}
+\end{answerbox}
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.5zw}%
+\begin{practiceprob}{17}
+  次の式を計算せよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.12em](2)
+    \task $\log_{6} 3 + \log_{6} 12$
+    \task $\log_{3} 2 - \log_{3} 18$
+    \task $\log_{3} 4 + \log_{3} 18 - 3\log_{3} 2$
+    \task $\log_{5} 12 - \log_{5} 3 - 2\log_{5} 10$
+  \end{tasks}
+\end{practiceprob}
+
+\begin{answerbox}{(1)}[6]
+  $\log_{6}(3 \times 12) = \log_{6} 36$
+  \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(2)}[6.5]
+  $\log_{3} \dfrac{2}{18} = \log_{3} \dfrac{1}{9}$
+  \boxanswer{$-2$}
+\end{answerbox}
+\begin{answerbox}{(3)}[7]
+  $\log_{3} \dfrac{4 \times 18}{2^{3}} = \log_{3} 9$
+  \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(4)}[7]
+  $\log_{5} \dfrac{12}{3 \times 10^{2}} = \log_{5} \dfrac{1}{25}$
+  \boxanswer{$-2$}
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.8zw}%
+\heading{底の変換}
+$a$ を底とする対数 $\log_{a} b$ を, $c$ を底とする対数で表してみよう.
+\par\vspace{0.12em}
+$\log_{a} b = p$ とすると $b = a^{p}$.
+$c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.
+よって $p = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$.
+
+\begin{theorembox}{底の変換}
+  $a$, $b$, $c$ は正の数で, $a \neq 1$, $c \neq 1$ とするとき
+  \par\vspace{0.15em}
+  {\centering
+  $\log_{a} b = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$
+  \par}
+\end{theorembox}
+
+\begin{exampleprob}{11}
+  次の式を計算せよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
+    \task $\log_{8} 16$
+    \task $\log_{2} 3 \cdot \log_{3} 8$
+  \end{tasks}
+\end{exampleprob}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[5]
+  $\dfrac{\log_{2} 2^{4}}{\log_{2} 2^{3}}$
+  \boxanswer{$\dfrac{4}{3}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[5]
+  $\log_{2} 3 \cdot \dfrac{\log_{2} 8}{\log_{2} 3}$
+  \boxanswer{$3$}
+\end{answerbox}
+\end{minipage}
+
+\begin{practiceprob}{18}
+  次の式を簡単にせよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](3)
+    \task $\log_{4} 8$
+    \task $\log_{9} 3$
+    \task $\log_{2} 3 \cdot \log_{3} 27$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(1)}[4.8]
+  $\dfrac{\log_{2} 8}{\log_{2} 4}$
+  \boxanswer{$\dfrac{3}{2}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(2)}[4.8]
+  $\dfrac{\log_{3} 3}{\log_{3} 9}$
+  \boxanswer{$\dfrac{1}{2}$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\begin{answerbox}{(3)}[4.8]
+  $\log_{2} 27$
+  \boxanswer{$3$}
+\end{answerbox}
+\end{minipage}
+
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
+    \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$,\quad
+          $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
+    \item $\log_{a} b = \fitblankbf{\dfrac{\log_{c} b}{\log_{c} a}}$
+  \end{enumerate}
+\end{summarybox}
+
+\vfill
+\nexttime{対数関数のグラフをかき, 増加・減少を調べてみよう!}
+
+\end{document}
