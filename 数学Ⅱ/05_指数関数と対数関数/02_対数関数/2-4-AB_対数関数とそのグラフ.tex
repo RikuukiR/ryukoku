@@ -1,0 +1,291 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% 対応表のセル
+\newcommand{\tcell}[1]{\makebox[2.55zw]{$#1$}}
+\newcommand{\tans}[1]{\makebox[2.55zw]{\ifshowanswer\answerstyle{$#1$}\fi}}
+
+% 対数グラフ用の方眼（x>0）: #1=x最大, #2=y最大（正）
+\newcommand{\loggrid}[2]{%
+  \draw[gray!16] (0,-#2) grid[step=0.5] (#1,#2);
+  \draw[gray!50] (0,-#2) grid[step=1] (#1,#2);
+  \draw[-{Stealth}] (-0.35,0) -- (#1+0.45,0) node[right]{$x$};
+  \draw[-{Stealth}] (0,-#2-0.35) -- (0,#2+0.45) node[above]{$y$};
+  \node[below left, inner sep=1pt, font=\scriptsize] at (0,0) {O};
+  \foreach \i in {1,2,...,#1} \node[below, font=\scriptsize] at (\i,0) {$\i$};
+  \foreach \j in {1,2,...,#2} \node[left, font=\scriptsize] at (0,\j) {$\j$};
+  \foreach \j in {1,2,...,#2} \node[left, font=\scriptsize] at (0,-\j) {$-\j$};
+}
+
+% 指数と対数の比較用方眼（負の x を含む。y=x は破線で印刷）
+\newcommand{\cmpaxes}{%
+  \draw[gray!16] (-2.2,-2.2) grid[step=0.5] (4.4,4.4);
+  \draw[gray!50] (-2.2,-2.2) grid[step=1] (4.4,4.4);
+  \draw[-{Stealth}] (-2.45,0) -- (4.7,0) node[right]{$x$};
+  \draw[-{Stealth}] (0,-2.45) -- (0,4.7) node[above]{$y$};
+  \node[font=\scriptsize] at (0.42,-0.55) {O};
+  \foreach \i in {-2,-1,1,2,3,4} \node[below, font=\scriptsize] at (\i,0) {$\i$};
+  \foreach \j in {-2,-1,1,2,3,4} \node[left, font=\scriptsize] at (0,\j) {$\j$};
+  \draw[blue, dashed, thick] (-2.15,-2.15) -- (4.25,4.25);
+  \node[blue, font=\footnotesize, right] at (4.25,4.25) {$y=x$};
+}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{4-AB}{対数関数とそのグラフ, 対数関数のグラフ}
+  {165--167}{対数関数のグラフをかき, 増加・減少を調べてみよう}
+
+% 3-BC までの番号を引き継ぐ
+\setcounter{definition}{1}
+\setcounter{theorem}{5}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.2zw}%
+\enlargethispage{5zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.25em}
+\begin{reviewbox}{対数の性質と底の変換}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
+    \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$,\quad
+          $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
+    \item $\log_{a} b = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$
+  \end{enumerate}
+\end{reviewbox}
+
+\begin{definitionbox}{対数関数}
+  $a$ を $1$ と異なる正の定数とするとき, $y=\log_{a} x$ は $x$ の関数である.\\
+  この関数を, $a$ を\fitblankbf{\text{底}}とする $x$ の\fitblankbf{\text{対数関数}}という.
+\end{definitionbox}
+
+\heading{$y=2^{x}$ と $y=\log_{2} x$ のグラフを比べよう}
+1-2-A で調べた指数関数 $y=2^{x}$ の対応表を再掲する.
+\par\vspace{0.15em}
+\noindent\textbf{\boldmath$y=2^{x}$}
+\begin{center}
+  \vspace{-0.3em}
+  \renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{2.0pt}
+  \setlength{\arrayrulewidth}{0.8pt}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+    \hline
+    $x$ & \tcell{-2} & \tcell{-1.5} & \tcell{-1} & \tcell{-0.5} & \tcell{0}
+        & \tcell{0.5} & \tcell{1} & \tcell{1.5} & \tcell{2} \\ \hline
+    $y$ & \tcell{0.25} & \tcell{0.35} & \tcell{0.5} & \tcell{0.71} & \tcell{1}
+        & \tcell{1.41} & \tcell{2} & \tcell{2.83} & \tcell{4} \\ \hline
+  \end{tabular}
+\end{center}
+\par\vspace{0.1em}
+$y=\log_{2} x$ を変形すると $x=\fitblankbf{2^{y}}$ となる.
+そこで, 上の対応表で $x$ と $y$ を入れかえると, 次の対応表が得られる.
+\par\vspace{0.1em}
+\noindent\textbf{\boldmath$y=\log_{2} x$}
+\begin{center}
+  \vspace{-0.3em}
+  \renewcommand{\arraystretch}{1.18}\setlength{\tabcolsep}{2.0pt}
+  \setlength{\arrayrulewidth}{0.8pt}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+    \hline
+    $x$ & \tcell{0.25} & \tcell{0.35} & \tcell{0.5} & \tcell{0.71} & \tcell{1}
+        & \tcell{1.41} & \tcell{2} & \tcell{2.83} & \tcell{4} \\ \hline
+    $y$ & \tcell{-2} & \tans{-1.5} & \tans{-1} & \tcell{-0.5} & \tans{0}
+        & \tans{0.5} & \tcell{1} & \tcell{1.5} & \tcell{2} \\ \hline
+  \end{tabular}
+\end{center}
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\enlargethispage{3zw}%
+2つの表の点を同じ座標平面にとり, $y=2^{x}$ と $y=\log_{2} x$ のグラフをかけ.
+\begin{center}
+  \vspace{-0.35em}
+  \begin{tikzpicture}[x=0.94cm, y=0.94cm]
+    \cmpaxes
+    \ifshowanswer
+      \draw[blue, thick, domain=-2.15:2.15, samples=70] plot (\x, {2^(\x)});
+      \draw[blue!70!black, thick, domain=0.18:4.35, samples=70] plot (\x, {ln(\x)/ln(2)});
+      \foreach \px/\py in {-2/0.25, -1/0.5, 0/1, 1/2, 2/4}
+        \fill[blue] (\px,\py) circle (1.6pt);
+      \foreach \px/\py in {0.25/-2, 0.5/-1, 1/0, 2/1, 4/2}
+        \fill[blue!70!black] (\px,\py) circle (1.6pt);
+      \node[blue, font=\footnotesize, left] at (2.05,4.2) {$y=2^{x}$};
+      \node[blue!70!black, font=\footnotesize, right] at (4.35,{ln(4.35)/ln(2)}) {$y=\log_{2} x$};
+    \fi
+  \end{tikzpicture}
+\end{center}
+\par\vspace{0.08em}
+2つのグラフは, 直線 $y=\fitblankbf{x}$ に関して\fitblankbf{\text{対称}}である.
+
+\vspace{0.2em}
+\begin{tcolorbox}[mathbox, colback=blue!5, colframe=blue!70!black, boxrule=1.2pt,
+    title={再掲\quad 定理 5.1.1\quad 指数関数 $y=a^{x}$ のグラフの特徴}]
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.10em]
+    \item 2点 $(0,\ \fitblankbf{1})$, $(1,\ \fitblankbf{a})$ を通る.
+    \item $\fitblankbf{x \text{軸}}$ を漸近線としてもつ.
+    \item $a>1$ のとき\fitblankbf{\text{右上がり}}の曲線,\\
+          $0<a<1$ のとき\fitblankbf{\text{右下がり}}の曲線である.
+  \end{enumerate}
+\end{tcolorbox}
+
+\vspace{-0.15em}
+\begin{theorembox}{対数関数 $y=\log_{a} x$ のグラフの特徴}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.10em]
+    \item 2点 $(1,\ \fitblankbf{0})$, $(a,\ \fitblankbf{1})$ を通る.
+    \item $\fitblankbf{y \text{軸}}$ を漸近線としてもつ.
+    \item $a>1$ のとき\fitblankbf{\text{右上がり}}の曲線,\\
+          $0<a<1$ のとき\fitblankbf{\text{右下がり}}の曲線である.
+  \end{enumerate}
+\end{theorembox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.6zw}%
+\enlargethispage{2zw}%
+\heading{対数関数のグラフ}
+\begin{practiceprob}{19}
+  次の関数のグラフをかけ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.1em](2)
+    \task $y=\log_{3} x$
+    \task $y=\log_{\frac{1}{2}} x$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+  \textbf{(1)}\\[0.1em]
+  \begin{tikzpicture}[x=0.55cm, y=0.50cm]
+    \loggrid{5}{3}
+    \ifshowanswer
+      \draw[blue, thick, domain=0.16:5, samples=70] plot (\x, {ln(\x)/ln(3)});
+      \fill[blue] (1,0) circle (1.7pt);
+      \fill[blue] (3,1) circle (1.7pt);
+      \node[blue, font=\footnotesize, above] at (3.7,1.5) {$y=\log_{3} x$};
+    \fi
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+  \textbf{(2)}\\[0.1em]
+  \begin{tikzpicture}[x=0.55cm, y=0.50cm]
+    \loggrid{5}{3}
+    \ifshowanswer
+      \draw[blue, thick, domain=0.16:5, samples=70] plot (\x, {ln(\x)/ln(0.5)});
+      \fill[blue] (1,0) circle (1.7pt);
+      \fill[blue] (0.5,1) circle (1.7pt);
+      \fill[blue] (2,-1) circle (1.7pt);
+      \fill[blue] (4,-2) circle (1.7pt);
+      \node[blue, font=\footnotesize, below] at (3.2,-2.35) {$y=\log_{\frac{1}{2}} x$};
+    \fi
+  \end{tikzpicture}
+\end{minipage}
+
+\vspace{0.25em}
+\heading{対数関数の特徴}
+\vspace{-0.2em}
+\begin{theorembox}{対数関数 $y=\log_{a} x$ の特徴}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.10em]
+    \item 定義域は正の数全体, 値域は実数全体である.
+    \item $a>1$ のとき, \fitblankbf{\text{増加関数}}である.\\
+          すなわち\quad $0<p<q \iff \log_{a} p \fitblankbf{<} \log_{a} q$
+    \item $0<a<1$ のとき, \fitblankbf{\text{減少関数}}である.\\
+          すなわち\quad $0<p<q \iff \log_{a} p \fitblankbf{>} \log_{a} q$
+  \end{enumerate}
+\end{theorembox}
+
+\vspace{0.05em}
+\textbf{注意}\quad $p>0$, $q>0$ のとき\quad
+$p=q \iff \log_{a} p = \log_{a} q$
+\vspace{0.15em}
+
+\begin{tcolorbox}[mathbox, colback=blue!5, colframe=blue!70!black, boxrule=1.2pt,
+    title={再掲\quad 定理 5.1.3\quad 指数関数 $y=a^{x}$ の特徴}]
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.10em]
+    \item 定義域は実数全体, 値域は正の数全体である.
+    \item $a>1$ のとき, \fitblankbf{\text{増加関数}}である.\\
+          すなわち\quad $p<q \iff a^{p} \fitblankbf{<} a^{q}$
+    \item $0<a<1$ のとき, \fitblankbf{\text{減少関数}}である.\\
+          すなわち\quad $p<q \iff a^{p} \fitblankbf{>} a^{q}$
+  \end{enumerate}
+\end{tcolorbox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+
+\begin{exampleprob}{5}
+  次の2つの数の大小を不等号を用いて表せ。
+  \par\vspace{-0.3em}
+  \hspace*{1zw}$2\log_{5} 3$,\quad $3\log_{5} 2$
+\end{exampleprob}
+\begin{answerbox}{解}[5.6]
+  $2\log_{5} 3=\log_{5} 9$,\quad $3\log_{5} 2=\log_{5} 8$\\
+  底 $5$ は $1$ より大きいから \qquad $\log_{5} 8<\log_{5} 9$\par\vspace{0.25em}
+  \boxanswer{$3\log_{5} 2 < 2\log_{5} 3$}
+\end{answerbox}
+
+\begin{practiceprob}{20}
+  次の2つの数の大小を不等号を用いて表せ。
+  \par\vspace{-0.3em}
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](2)
+    \task $3\log_{2} 3$,\ $2\log_{2} 5$
+    \task $\dfrac{1}{2}\log_{\frac{1}{4}} 8$,\ $\log_{\frac{1}{4}} 3$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[10]
+  $3\log_{2} 3=\log_{2} 27$,\\
+  $2\log_{2} 5=\log_{2} 25$\\
+  底 $2$ は $1$ より大きいから\\
+  \mbox{}\hfill $2\log_{2} 5 < 3\log_{2} 3$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[10]
+  $\tfrac{1}{2}\log_{\frac{1}{4}} 8=\log_{\frac{1}{4}}\sqrt{8}$,\\
+  底 $\tfrac{1}{4}$ は $1$ より小さいから\\
+  \mbox{}\hfill $\log_{\frac{1}{4}} 3 < \tfrac{1}{2}\log_{\frac{1}{4}} 8$
+\end{answerbox}
+\end{minipage}
+
+\par\vspace{0.45em}\noindent{\bfseries 演習問題}\quad
+次の4つの値を小さい順に並べよ。
+\par\vspace{-0.25em}
+\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
+  \task $\log_{0.5} 5$,\ $\log_{0.5} \dfrac{1}{5}$,\ $0$,\ $\log_{0.5} 3$
+  \task $\log_{2} 3$,\ $\log_{4} 5$,\ $1$,\ $\log_{\frac{1}{2}} 3$
+\end{tasks}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[12]
+  $0=\log_{0.5} 1$, 底 $0.5<1$\\
+  $5>3>1>\frac{1}{5}$\\
+  $\log_{0.5} 5$,\ $\log_{0.5} 3$,\ $0$,\ $\log_{0.5}\frac{1}{5}$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[12]
+  $\log_{4} 5=\log_{2}\sqrt{5}$,\ $1=\log_{2} 2$\\
+  $\log_{\frac{1}{2}} 3=\log_{2}\frac{1}{3}$, 底 $2>1$\\
+  $\log_{\frac{1}{2}} 3$,\ $1$,\ $\log_{4} 5$,\ $\log_{2} 3$
+\end{answerbox}
+\end{minipage}
+
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.08em]
+    \item $y=\log_{a} x$ のグラフは $y=a^{x}$ と直線 $y=\fitblankbf{x}$ に関して対称.
+    \item 点 $(1,\ \fitblankbf{0})$, $(a,\ \fitblankbf{1})$ を通り, \fitblankbf{y \text{軸}}を漸近線とする.
+    \item $a>1$ のとき\fitblankbf{\text{増加関数}}, $0<a<1$ のとき\fitblankbf{\text{減少関数}}.
+  \end{enumerate}
+\end{summarybox}
+
+\vfill
+\nexttime{対数関数を含む方程式・不等式を解いてみよう!}
+
+\end{document}

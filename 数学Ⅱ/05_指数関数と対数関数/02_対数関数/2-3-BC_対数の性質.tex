@@ -3,7 +3,7 @@
 
 \begin{document}
 
-\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{3-BC}{対数の性質}
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{3-BC}{対数の性質, 底の変換公式}
   {163,164}{対数の性質と底の変換を使い, 対数を計算できるようになろう}
 
 % 同じ節の続き（3-A までの番号を引き継ぐ）
@@ -33,9 +33,13 @@ $\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が
 \begin{theorembox}{対数の性質}
   $M > 0$, $N > 0$ で, $k$ は実数とする.
   \par\vspace{0.2em}
-  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.40em, topsep=0.15em]
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.65em, topsep=0.2em]
     \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
+      \par\vspace{0.28em}
+      \hspace{0.5zw}（\fitblankbf{\text{真数の積}} $= \fitblankbf{\text{対数の和}}$）
     \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$
+      \par\vspace{0.28em}
+      \hspace{0.5zw}（\fitblankbf{\text{真数の商}} $= \fitblankbf{\text{対数の差}}$）
     \item $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
   \end{enumerate}
 \end{theorembox}
@@ -71,6 +75,7 @@ $\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が
   両辺を $k$ 乗すると $M^{k} = a^{pk}$
   \boxanswer{$k \log_{a} M$}
 \end{answerbox}
+\vspace{1em}
 
 \begin{exampleprob}{10}
   次の式を計算せよ。
@@ -82,11 +87,11 @@ $\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が
 \end{exampleprob}
 
 \begin{answerbox}{(1)}[5]
-  $\log_{10}(2 \times 5)$
+  $\log_{10}(2 \times 5) = \log_{10} 10$
   \boxanswer{$1$}
 \end{answerbox}
 \begin{answerbox}{(2)}[5]
-  $\log_{2} \dfrac{24}{3}$
+  $\log_{2} \dfrac{24}{3} = \log_{2} 8$
   \boxanswer{$3$}
 \end{answerbox}
 \begin{answerbox}{(3)}[5]
@@ -98,10 +103,10 @@ $\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が
 \nextpage
 
 % ============ 3ページ目（裏・左） ============
-\vspace{-1.5zw}%
+\vspace{-1.8zw}%
 \begin{practiceprob}{17}
   次の式を計算せよ。
-  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.12em](2)
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
     \task $\log_{6} 3 + \log_{6} 12$
     \task $\log_{3} 2 - \log_{3} 18$
     \task $\log_{3} 4 + \log_{3} 18 - 3\log_{3} 2$
@@ -109,34 +114,68 @@ $\fitblankbf{1} = a^{0}$, $\fitblankbf{a} = a^{1}$ であることから, 次が
   \end{tasks}
 \end{practiceprob}
 
-\begin{answerbox}{(1)}[6]
-  $\log_{6}(3 \times 12) = \log_{6} 36$
+\begin{answerbox}{(1)}[4.2]
+  $\log_{6}(3 \times 12)=\log_{6} 36$
   \boxanswer{$2$}
 \end{answerbox}
-\begin{answerbox}{(2)}[6.5]
-  $\log_{3} \dfrac{2}{18} = \log_{3} \dfrac{1}{9}$
+\begin{answerbox}{(2)}[4.3]
+  $\log_{3} \dfrac{2}{18}=\log_{3} \dfrac{1}{9}$
   \boxanswer{$-2$}
 \end{answerbox}
-\begin{answerbox}{(3)}[7]
-  $\log_{3} \dfrac{4 \times 18}{2^{3}} = \log_{3} 9$
+\begin{answerbox}{(3)}[4.4]
+  $\log_{3} \dfrac{4 \times 18}{2^{3}}=\log_{3} 9$
   \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(4)}[4.4]
+  $\log_{5} \dfrac{12}{3 \times 10^{2}}=\log_{5} \dfrac{1}{25}$
+  \boxanswer{$-2$}
+\end{answerbox}
+
+\vspace{1em}
+\begin{exerciseprob}{10}
+  次の計算をせよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
+    \task $\log_{6} 2 + \log_{6} 3$
+    \task $\log_{3} 36 - \log_{3} 4$
+    \task $3\log_{10} 2 + 2\log_{10} \sqrt{5} - \log_{10} 40$
+    \task $3\log_{2} \sqrt{2} - \dfrac{1}{2}\log_{2} 3 + \log_{2}\!\left(\dfrac{\sqrt{3}}{2}\right)$
+  \end{tasks}
+\end{exerciseprob}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[4.4]
+  $\log_{6}(2 \times 3)=\log_{6} 6$
+  \boxanswer{$1$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[4.4]
+  $\log_{3} \dfrac{36}{4}=\log_{3} 9$
+  \boxanswer{$2$}
+\end{answerbox}
+\end{minipage}
+
+\begin{answerbox}{(3)}[5]
+  $\log_{10} \dfrac{2^{3} \times (\sqrt{5})^{2}}{40}=\log_{10} 1$
+  \boxanswer{$0$}
 \end{answerbox}
 \begin{answerbox}{(4)}[7]
-  $\log_{5} \dfrac{12}{3 \times 10^{2}} = \log_{5} \dfrac{1}{25}$
-  \boxanswer{$-2$}
+  $\log_{2} \dfrac{(\sqrt{2})^{3} \times \frac{\sqrt{3}}{2}}{3^{\frac{1}{2}}}=\log_{2} \sqrt{2}$\par\vspace{0.45em}
+  \boxanswer{\raisebox{2ex}{$\dfrac{1}{2}$}}
 \end{answerbox}
 
 \vfill
 \nextpage
 
 % ============ 4ページ目（裏・右） ============
-\vspace{-1.8zw}%
+\vspace{-2.0zw}%
 \heading{底の変換}
-$a$ を底とする対数 $\log_{a} b$ を, $c$ を底とする対数で表してみよう.
-\par\vspace{0.12em}
-$\log_{a} b = p$ とすると $b = a^{p}$.
-$c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.\\
-よって $p = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$.
+\vspace{-0.15em}
+ここまでの問題は底がすべて揃っていたから、計算することができた。
+
+では、$\log_{2} 3 - \log_{4} 18$ のように\uwave{底が異なる対数を計算する}にはどうすればよいだろうか。
+\par\vspace{0.05em}
 
 \begin{theorembox}{底の変換}
   $a$, $b$, $c$ は正の数で, $a \neq 1$, $c \neq 1$ とするとき
@@ -145,10 +184,12 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.\\
   $\log_{a} b = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$
   \par}
 \end{theorembox}
+\par\vspace{-0.5em}
 
 \begin{exampleprob}{11}
   次の式を計算せよ。
-  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
+  \par\vspace{-0.35em}
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](2)
     \task $\log_{8} 16$
     \task $\log_{2} 3 \cdot \log_{3} 8$
   \end{tasks}
@@ -156,43 +197,46 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.\\
 
 \noindent
 \begin{minipage}[t]{0.49\linewidth}
-\begin{answerbox}{(1)}[5.8]
-  $\dfrac{\log_{2} 2^{4}}{\log_{2} 2^{3}}$
-  \boxanswer{$\textstyle\dfrac{4}{3}$}
+\begin{answerbox}{(1)}[6.6]
+  $\dfrac{\log_{2} 2^{4}}{\log_{2} 2^{3}}$\par\vspace{0.55em}
+  \boxanswer{\raisebox{1.1ex}{$\dfrac{4}{3}$}}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.49\linewidth}
-\begin{answerbox}{(2)}[5.8]
+\begin{answerbox}{(2)}[6.6]
   $\log_{2} 3 \cdot \dfrac{\log_{2} 8}{\log_{2} 3}$
+  \par\vspace{1.5em}
   \boxanswer{$3$}
 \end{answerbox}
 \end{minipage}
 
 \begin{practiceprob}{18}
   次の式を簡単にせよ。
-  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](3)
+  \par\vspace{-0.35em}
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](3)
     \task $\log_{4} 8$
     \task $\log_{9} 3$
-    \task $\log_{2} 3 \cdot \log_{3} 27$
+    \task $\log_{3} 2 \cdot \log_{2} 27$
   \end{tasks}
 \end{practiceprob}
 
 \noindent
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(1)}[5.5]
-  $\dfrac{\log_{2} 8}{\log_{2} 4}$
-  \boxanswer{$\textstyle\dfrac{3}{2}$}
+\begin{answerbox}{(1)}[6.3]
+  $\dfrac{\log_{2} 8}{\log_{2} 4}$\par\vspace{0.45em}
+  \boxanswer{\raisebox{1.1ex}{$\dfrac{3}{2}$}}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(2)}[5.5]
-  $\dfrac{\log_{3} 3}{\log_{3} 9}$
-  \boxanswer{$\textstyle\dfrac{1}{2}$}
+\begin{answerbox}{(2)}[6.3]
+  $\dfrac{\log_{3} 3}{\log_{3} 9}$\par\vspace{0.45em}
+  \boxanswer{\raisebox{1.1ex}{$\dfrac{1}{2}$}}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.32\linewidth}
-\begin{answerbox}{(3)}[5.5]
-  $\log_{2} 27$
+\begin{answerbox}{(3)}[6.3]
+  $\log_{3} 2 \cdot \dfrac{\log_{3} 27}{\log_{3} 2}$
+  \par\vspace{1.5em}
   \boxanswer{$3$}
 \end{answerbox}
 \end{minipage}
@@ -202,11 +246,12 @@ $c$ を底とする両辺の対数をとると $\log_{c} b = p \log_{c} a$.\\
     \item $\log_{a} MN = \fitblankbf{\log_{a} M + \log_{a} N}$
     \item $\log_{a} \dfrac{M}{N} = \fitblankbf{\log_{a} M - \log_{a} N}$,\quad
           $\log_{a} M^{k} = \fitblankbf{k \log_{a} M}$
+          \par\vspace{0.5em}
     \item $\log_{a} b = \fitblankbox{\dfrac{\log_{c} b}{\log_{c} a}}$
   \end{enumerate}
 \end{summarybox}
 
 \vfill
-\nexttime{対数関数のグラフをかき, 増加・減少を調べてみよう!}
+\nexttime{対数関数のグラフをかき, 指数関数のグラフとの関係を考えてみよう!}
 
 \end{document}
