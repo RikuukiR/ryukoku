@@ -17,7 +17,7 @@
   \foreach \j in {1,2,...,#2} \node[left, font=\scriptsize] at (0,-\j) {$-\j$};
 }
 
-% 指数と対数の比較用方眼（負の x を含む。y=x は破線で印刷）
+% 指数と対数の比較用方眼（負の x を含む。y=x は教師用のみ破線で表示）
 \newcommand{\cmpaxes}{%
   \draw[gray!16] (-2.2,-2.2) grid[step=0.5] (4.4,4.4);
   \draw[gray!50] (-2.2,-2.2) grid[step=1] (4.4,4.4);
@@ -26,8 +26,10 @@
   \node[font=\scriptsize] at (0.42,-0.55) {O};
   \foreach \i in {-2,-1,1,2,3,4} \node[below, font=\scriptsize] at (\i,0) {$\i$};
   \foreach \j in {-2,-1,1,2,3,4} \node[left, font=\scriptsize] at (0,\j) {$\j$};
-  \draw[blue, dashed, thick] (-2.15,-2.15) -- (4.25,4.25);
-  \node[blue, font=\footnotesize, right] at (4.25,4.25) {$y=x$};
+  \ifshowanswer
+    \draw[blue, dashed, thick] (-2.15,-2.15) -- (4.25,4.25);
+    \node[blue, font=\footnotesize, right] at (4.25,4.25) {$y=x$};
+  \fi
 }
 
 \begin{document}
@@ -221,7 +223,7 @@ $p=q \iff \log_{a} p = \log_{a} q$
   \par\vspace{-0.3em}
   \hspace*{1zw}$2\log_{5} 3$,\quad $3\log_{5} 2$
 \end{exampleprob}
-\begin{answerbox}{解}[5.6]
+\begin{answerbox}{}[5.6]
   $2\log_{5} 3=\log_{5} 9$,\quad $3\log_{5} 2=\log_{5} 8$\\
   底 $5$ は $1$ より大きいから \qquad $\log_{5} 8<\log_{5} 9$\par\vspace{0.25em}
   \boxanswer{$3\log_{5} 2 < 2\log_{5} 3$}
