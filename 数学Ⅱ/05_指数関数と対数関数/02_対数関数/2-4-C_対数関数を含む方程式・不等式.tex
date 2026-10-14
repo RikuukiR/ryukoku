@@ -6,11 +6,12 @@
 \setcounter{technique}{0}
 
 \begin{document}
-\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{4-C}{対数関数を含む方程式, 不等式}{167--168}{対数関数を含む方程式・不等式を解いてみよう}
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{4-C}{対数関数を含む方程式, 不等式}{167--168}{対数関数を含む方程式・不等式について考えてみよう}
 
-\vspace{-1.6zw}
+% ============ 1ページ目（表・左） ============
+\vspace{-1.8zw}
 \heading{〜前時の復習〜}
-\vspace{-0.45em}
+\vspace{-0.55em}
 \begin{reviewbox}{対数関数とそのグラフ}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
     \item $y=\log_{a} x$ のグラフは $y=a^{x}$ と直線 $y=\fitblankbf{x}$ に関して対称.
@@ -20,29 +21,32 @@
 \end{reviewbox}
 
 \heading{対数関数を含む方程式}
-\vspace{-0.15em}
-対数の定義 $\log_{a} x = p \Longleftrightarrow x = a^{p}$ を用いる. 真数はつねに正である.
+\vspace{-0.25em}
+対数方程式も指数方程式と同様に, 今まで学習してきた知識を使って \fitblankbf{x = \text{○}} の形に変形する.
 
 \begin{exampleprob}{6}
-  次の方程式, 不等式を解け。
-  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
-    \task $\log_{2} x = 3$
-    \task $\log_{2} x \leqq 3$
-  \end{tasks}
+  次の方程式を解け。\\
+  (1)\quad $\log_{2} x = 3$
 \end{exampleprob}
-\begin{answerbox}{(1)}[4.2]
-  定義から $x=2^{3}$\\
-  $x=8$
+\begin{answerbox}{(1)}[3.8]
+  対数の定義から \qquad $x=2^{3}=8$
 \end{answerbox}
 
+\vspace{2em}
 \begin{techniquebox}{対数方程式の解き方}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
-    \item 真数が\fitblankbf{\text{正}}である範囲を先に求める.
-    \item 定義 $\log_{a} x = p \Longleftrightarrow x = \fitblankbf{a^{p}}$ で指数の式に直す.
-    \item 求めた解が, 真数の条件をみたすか確かめる.
+    \item 真数が\fitblankbf{\text{正}}である範囲を求める.
+    \item 対数の定義 $(\log_{a} x = p \Longleftrightarrow x = \fitblankbf{a^{p}})$ や
+
+    対数の性質$(\log_{a} M+\log_{a} N=\fitblankbf{\log_{a} MN}など)$を使って式を変形する。
+    \item 求めた解が, \fitblankbf{真数条件}をみたすか確かめる.
   \end{enumerate}
 \end{techniquebox}
 
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
 \begin{practiceprob}{21}
   次の方程式を解け。
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
@@ -52,31 +56,29 @@
 \end{practiceprob}
 \enlargethispage{6zw}
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(1)}[3.8]
-  定義から $x=3^{4}=81$
+\begin{answerbox}{(1)}[4.5]
+  対数の定義から
+
+  $x=3^{4}=81$
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(2)}[3.8]
-  定義から $x=2^{2}=4$
+\begin{answerbox}{(2)}[4.5]
+  対数の定義から
+
+  $x=2^{2}=4$
 \end{answerbox}
 \end{minipage}
-
-\vfill
-\nextpage
 
 \noindent{\bfseries 応用例題\,1}\quad
 方程式 $\log_{3} x+\log_{3}(x-8)=2$ を解け。
 \vspace{0.15em}
 
-\noindent{\bfseries 考え方}\\
-真数がともに正である $x$ の範囲を先に求める.\\
-$M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
-\vspace{0.1em}
-
-\begin{answerbox}{解}[8.6]
-  真数が正であるから $x>8$ ……①\\
-  $\log_{3} x(x-8)=2$ より $x(x-8)=9$\\
+\begin{answerbox}{}[15]
+  \makebox[10zw][l]{真数が正であるから}$x>0$ かつ $x>8$ \\
+  \makebox[10zw][l]{すなわち}$x>8$ ……①\\
+  \makebox[10zw][l]{方程式を変形すると}$\log_{3} x(x-8)=2$\\
+  \makebox[10zw][l]{よって}$x(x-8)=3^{2}$\\
   $(x+1)(x-9)=0$ より, ①をみたすのは $x=9$
 \end{answerbox}
 
@@ -103,37 +105,39 @@ $M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
 \end{minipage}
 
 \vspace{0.2em}
-\noindent{\bfseries 演習問題}\quad
-次の方程式を解け。
-\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
-  \task $\log_{6} x+\log_{6}(x+1)=1$
-  \task $2\log_{2}(x-3)=\log_{2}(5-x)$
-\end{tasks}
-\vspace{0.08em}
-\begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(1)}[8.6]
-  $x>0$ ……①\\
-  $x(x+1)=6$,\ $(x+3)(x-2)=0$\\
-  ①より $x=2$
-\end{answerbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(2)}[8.6]
-  $3<x<5$ ……①\\
-  $(x-3)^{2}=5-x$,\ $(x-1)(x-4)=0$\\
-  ①より $x=4$
-\end{answerbox}
-\end{minipage}
+% \noindent{\bfseries 演習問題}\quad
+% 次の方程式を解け。
+% \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
+%   \task $\log_{6} x+\log_{6}(x+1)=1$
+%   \task $2\log_{2}(x-3)=\log_{2}(5-x)$
+% \end{tasks}
+% \vspace{0.08em}
+% \begin{minipage}[t]{0.48\textwidth}
+% \begin{answerbox}{(1)}[8.6]
+%   $x>0$ ……①\\
+%   $x(x+1)=6$,\ $(x+3)(x-2)=0$\\
+%   ①より $x=2$
+% \end{answerbox}
+% \end{minipage}\hfill
+% \begin{minipage}[t]{0.48\textwidth}
+% \begin{answerbox}{(2)}[8.6]
+%   $3<x<5$ ……①\\
+%   $(x-3)^{2}=5-x$,\ $(x-1)(x-4)=0$\\
+%   ①より $x=4$
+% \end{answerbox}
+% \end{minipage}
 
 \vfill
 \nextpage
 
+% ============ 3ページ目（裏・左） ============
 \heading{対数関数を含む不等式}
 \vspace{-0.1em}
+
 \begin{exampleprob}{6}
   (2)\quad $\log_{2} x \leqq 3$
 \end{exampleprob}
-\begin{answerbox}{(2)}[6.4]
+\begin{answerbox}{(2)}[6.6]
   真数が正であるから $x>0$ ……①\\
   $\log_{2} x \leqq \log_{2} 8$, 底 $2>1$ より $x\leqq 8$ ……②\\
   ①, ②より $0<x\leqq 8$
@@ -159,14 +163,14 @@ $M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
 \end{practiceprob}
 \vspace{0.08em}
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(3)}[6.8]
+\begin{answerbox}{(3)}[6.6]
   $x>0$ ……①\\
   底 $2>1$ より $x\leqq 16$ ……②\\
   ①, ②より $0<x\leqq 16$
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(4)}[6.8]
+\begin{answerbox}{(4)}[6.6]
   $x>0$ ……①\\
   底 $\dfrac{1}{2}<1$ より $x>\dfrac{1}{4}$ ……②\\
   ①, ②より $x>\dfrac{1}{4}$
@@ -174,14 +178,14 @@ $M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
 \end{minipage}
 \vspace{0.12em}
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(5)}[6.8]
+\begin{answerbox}{(5)}[6.6]
   $x>0$ ……①\\
   底 $3>1$ より $x\geqq \sqrt{3}$ ……②\\
   ①, ②より $x\geqq \sqrt{3}$
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(6)}[6.8]
+\begin{answerbox}{(6)}[6.6]
   $x>0$ ……①\\
   底 $\dfrac{1}{3}<1$ より $x<3$ ……②\\
   ①, ②より $0<x<3$
@@ -191,6 +195,7 @@ $M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
 \vfill
 \nextpage
 
+% ============ 4ページ目（裏・右） ============
 \noindent{\bfseries 応用例題\,2}\quad
 不等式 $\log_{\frac{1}{3}}(x-1)>2$ を解け。
 \vspace{0.08em}
@@ -222,27 +227,27 @@ $M>0$, $N>0$ のとき $\log_{a} M+\log_{a} N=\log_{a} MN$
 \end{minipage}
 
 \vspace{0.15em}
-\noindent{\bfseries 演習問題}\quad
-次の不等式を解け。
-\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](2)
-  \task $\log_{2}(x+1)>\log_{2}(2x-5)$
-  \task $2\log_{\frac{1}{3}}(x-1)<\log_{\frac{1}{3}}(13-x)$
-\end{tasks}
-\vspace{0.06em}
-\begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(1)}[7.2]
-  $x>\frac{5}{2}$ ……①\\
-  底 $2>1$ より $x<6$ ……②\\
-  ①, ②より $\frac{5}{2}<x<6$
-\end{answerbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{answerbox}{(2)}[7.2]
-  $1<x<13$ ……①\\
-  $(x-4)(x+3)>0$\\
-  ①より $4<x<13$
-\end{answerbox}
-\end{minipage}
+% \noindent{\bfseries 演習問題}\quad
+% 次の不等式を解け。
+% \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](2)
+%   \task $\log_{2}(x+1)>\log_{2}(2x-5)$
+%   \task $2\log_{\frac{1}{3}}(x-1)<\log_{\frac{1}{3}}(13-x)$
+% \end{tasks}
+% \vspace{0.06em}
+% \begin{minipage}[t]{0.48\textwidth}
+% \begin{answerbox}{(1)}[7.2]
+%   $x>\frac{5}{2}$ ……①\\
+%   底 $2>1$ より $x<6$ ……②\\
+%   ①, ②より $\frac{5}{2}<x<6$
+% \end{answerbox}
+% \end{minipage}\hfill
+% \begin{minipage}[t]{0.48\textwidth}
+% \begin{answerbox}{(2)}[7.2]
+%   $1<x<13$ ……①\\
+%   $(x-4)(x+3)>0$\\
+%   ①より $4<x<13$
+% \end{answerbox}
+% \end{minipage}
 
 \vspace{0.15em}
 \begin{summarybox}{対数関数を含む方程式・不等式}
