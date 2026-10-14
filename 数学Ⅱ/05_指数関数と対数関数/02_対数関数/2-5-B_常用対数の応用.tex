@@ -1,0 +1,187 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+\setcounter{definition}{3}
+\setcounter{theorem}{8}
+\setcounter{technique}{3}
+
+\begin{document}
+\lectureheader{数学Ⅱ}{5}{指数関数と対数関数}{2}{対数関数}{5-B}{常用対数の応用}{170--171}{常用対数を使って, 大きな数の桁数を求めよう}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-1.6zw}
+\heading{〜前時の復習〜}
+\vspace{-0.35em}
+\begin{reviewbox}{常用対数}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $10$ を底とする対数 $\log_{10} M$ を\fitblankbf{\text{常用対数}}という.
+    \item $M = a \times 10^{n}$ （$1 \leqq a < 10$）のとき $\log_{10} M = \fitblankbf{n + \log_{10} a}$.
+    \item $0 \leqq \log_{10} a < \fitblankbf{1}$ である.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.2em}
+\heading{常用対数の応用}
+自然数 $N$ の桁数と, 常用対数 $\log_{10} N$ の関係を調べよう.
+
+\vspace{0.15em}
+\noindent{\bfseries 例\,13}\quad
+自然数 $N$ が $3$ 桁の数のとき, $N$ のとり得る値の範囲を考える.
+\par\vspace{0.12em}
+$3$ 桁の自然数のうち, 最小の数は $100$, 最大の数は $999$ であるから
+\par\vspace{0.08em}
+{\centering
+$100 \leqq N < 1000$\qquad すなわち\qquad
+$10^{\fitblankbf{2}} \leqq N < 10^{\fitblankbf{3}}$
+\par}
+\vspace{0.08em}
+両辺の常用対数をとると
+\par\vspace{0.06em}
+{\centering
+$\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\qquad よって\qquad
+$\fitblankbf{2} \leqq \log_{10} N < \fitblankbf{3}$
+\par}
+
+\vspace{0.2em}
+\begin{theorembox}{桁数と常用対数}
+  自然数 $N$ が $k$ 桁の数であることは, 次と同値である.
+  \par\vspace{0.12em}
+  {\centering
+  $10^{k-1} \leqq N < 10^{k}$\qquad
+  $\Longleftrightarrow$\qquad
+  $k-1 \leqq \log_{10} N < k$
+  \par}
+\end{theorembox}
+
+\vspace{0.1em}
+\textbf{注意}\quad $\log_{10} N$ の整数部分が $k-1$ のとき, $N$ は\fitblankbf{k}桁の数である.\\
+すなわち, 桁数は $\log_{10} N$ の整数部分に $1$ を足した数である.
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}
+例13のように対数を用いると, $3^{20}$ などの大きな数の桁数を求められる.
+
+\begin{exampleprob}{7}
+  $3^{20}$ は何桁の数か。ただし, $\log_{10} 3 = 0.4771$ とする。
+\end{exampleprob}
+
+\begin{answerbox}{}[11]
+  $\log_{10} 3^{20} = 20\log_{10} 3 = 20 \times 0.4771 = 9.5420$\\
+  $9 < 9.5420 < 10$ であるから\\
+  $10^{9} < 3^{20} < 10^{10}$
+  \boxanswer{$10$ 桁}
+\end{answerbox}
+
+\vspace{0.12em}
+\begin{techniquebox}{累乗の桁数の求め方}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $\log_{10} a^{n} = \fitblankbf{n \log_{10} a}$ を計算する.
+    \item $k-1 \leqq \log_{10} a^{n} < k$ となる整数 $k$ を求める.
+    \item $a^{n}$ は\fitblankbf{k}桁の数である.
+  \end{enumerate}
+\end{techniquebox}
+
+\vspace{0.15em}
+\begin{practiceprob}{25}
+  次の数は何桁か。ただし, $\log_{10} 2 = 0.3010$ とする。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
+    \task $2^{20}$
+    \task $2^{30}$
+  \end{tasks}
+\end{practiceprob}
+
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+\begin{answerbox}{(1)}[8]
+  $20\log_{10} 2 = 6.0200$\\
+  $6 < 6.0200 < 7$
+  \boxanswer{$7$ 桁}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\begin{answerbox}{(2)}[8]
+  $30\log_{10} 2 = 9.0300$\\
+  $9 < 9.0300 < 10$
+  \boxanswer{$10$ 桁}
+\end{answerbox}
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}
+自然数 $n$ に対して $2^{n}$ の桁数が与えられたとき,
+常用対数を用いて $n$ の値を求めることができる.
+
+\vspace{0.1em}
+\noindent{\bfseries 応用例題\,3}\quad
+$2^{n}$ が $10$ 桁の数となるような自然数 $n$ をすべて求めよ。
+ただし, $\log_{10} 2 = 0.3010$ とする。
+
+\vspace{0.08em}
+\textbf{考え方}\quad
+$2^{n}$ が $10$ 桁の数のとき, $10^{9} \leqq 2^{n} < 10^{10}$ が成り立つ.
+常用対数をとると $n$ の $1$ 次不等式が得られる.
+
+\begin{answerbox}{}[16]
+  \makebox[13zw][l]{$2^{n}$ が $10$ 桁の数のとき}$10^{9} \leqq 2^{n} < 10^{10}$\\
+  \makebox[13zw][l]{常用対数をとると}$9 \leqq n\log_{10} 2 < 10$\\
+  \makebox[13zw][l]{$\log_{10} 2 = 0.3010 > 0$ であるから}$\dfrac{9}{0.3010} \leqq n < \dfrac{10}{0.3010}$ \quad ……①\\
+  \makebox[13zw][l]{ここで}$9/0.3010=29.9\cdots$,\ $10/0.3010=33.2\cdots$\\
+  \makebox[13zw][l]{①を満たす自然数 $n$ は}$n=30,\ 31,\ 32,\ 33$
+\end{answerbox}
+
+\vspace{0.12em}
+\begin{techniquebox}{桁数が与えられたときの $n$ の求め方}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
+    \item $k$ 桁 $\Longleftrightarrow$ $10^{k-1} \leqq a^{n} < 10^{k}$ とおく.
+    \item 常用対数をとって $n$ の不等式にする.
+    \item $\log_{10} a > 0$ で両辺をわり, 整数 $n$ を求める.
+  \end{enumerate}
+\end{techniquebox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.2zw}
+\begin{practiceprob}{26}
+  $3^{n}$ が $8$ 桁の数となるような自然数 $n$ をすべて求めよ。
+  ただし, $\log_{10} 3 = 0.4771$ とする。
+\end{practiceprob}
+
+\begin{answerbox}{}[14]
+  \makebox[13zw][l]{$3^{n}$ が $8$ 桁の数のとき}$10^{7} \leqq 3^{n} < 10^{8}$\\
+  \makebox[13zw][l]{常用対数をとると}$7 \leqq n\log_{10} 3 < 8$\\
+  \makebox[13zw][l]{$\log_{10} 3 = 0.4771 > 0$ であるから}$\dfrac{7}{0.4771} \leqq n < \dfrac{8}{0.4771}$ \quad ……①\\
+  \makebox[13zw][l]{ここで}$7/0.4771=14.6\cdots$,\ $8/0.4771=16.7\cdots$\\
+  \makebox[13zw][l]{①を満たす自然数 $n$ は}$n=15,\ 16$
+\end{answerbox}
+
+\vspace{0.15em}
+\textbf{注意}\quad 例題7と応用例題3は, どちらも次の関係を用いている.
+\par\vspace{0.08em}
+{\centering
+$10^{k-1} \leqq N < 10^{k}$\quad $\Longleftrightarrow$\quad $N$ は $k$ 桁の数
+\par}
+\vspace{0.08em}
+例題7は $\log_{10} N$ から桁数 $k$ を求め,
+応用例題3は桁数 $k$ から $n$ を求める.
+
+\vspace{0.25em}
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.06em]
+    \item 自然数 $N$ が $k$ 桁 $\Longleftrightarrow$ $k-1 \leqq \log_{10} N < k$.
+    \item 桁数は $\log_{10} N$ の整数部分に \fitblankbf{1} を足した数.
+    \item $a^{n}$ の桁数は $\fitblankbf{n \log_{10} a}$ から求める.
+  \end{enumerate}
+\end{summarybox}
+
+\vfill
+\nexttime{常用対数を使って, 小数第何位かを調べてみよう!}
+
+\end{document}
