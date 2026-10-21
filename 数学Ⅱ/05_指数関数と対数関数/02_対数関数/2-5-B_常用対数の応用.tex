@@ -26,14 +26,14 @@
 \noindent{\bfseries 例\,13}\quad
 自然数 $N$ が $3$ 桁の数のとき, $N$ のとり得る値の範囲を考える.
 \par\vspace{0.12em}
-$3$ 桁の自然数のうち, 最小の数は $100$, 最大の数は $999$ であるから
+$3$ 桁の自然数のうち, 最小の数は $100$, 最大の数は $999$ であるから,
 \par\vspace{0.1em}
 {\centering
 $100 \leqq N < 1000$\\[0.45em]
 すなわち\qquad $10^{\fitblankbf{2}} \leqq N < 10^{\fitblankbf{3}}$
 \par}
 \vspace{0.12em}
-両辺の常用対数をとると
+両辺の常用対数をとると,
 \par\vspace{0.08em}
 {\centering
 $\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\\[0.45em]
@@ -42,7 +42,7 @@ $\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\\[0.45em]
 
 \vspace{5em}
 \begin{theorembox}{桁数と常用対数}
-  一般に、自然数 $N$ が $k$ について次が成り立つ.
+  一般に, 自然数 $N$ と自然数 $k$ について次が成り立つ.
   \par\vspace{0.12em}
   {\centering
   $N$ が \fitblankbf{k} 桁の数\qquad\
@@ -58,30 +58,19 @@ $\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\\[0.45em]
 \vspace{-1.4zw}
 
 \begin{exampleprob}{7}
-  $3^{20}$ は何桁の数か。ただし, $\log_{10} 3 = 0.4771$ とする。
+  $3^{20}$ は何桁の数か。ただし、$\log_{10} 3 = 0.4771$ とする。
 \end{exampleprob}
 
-\begin{answerbox}{}[13]
+\begin{answerbox}{}[10]
   $\log_{10} 3^{20} = 20\log_{10} 3 = 20 \times 0.4771 = 9.5420$\\
   $9 < 9.5420 < 10$ であるから\\
-  $9\log_{10} 10 \leqq \log_{10} 3^{20} < 10\log_{10} 10$\\
-  $\log_{10} 10^{9} \leqq \log_{10} 3^{20} < \log_{10} 10^{10}$\\
-  $10^{9} < 3^{20} < 10^{10}$
+  $9 < \log_{10} 3^{20} < 10$\\
   \boxanswer{$10$ 桁}
 \end{answerbox}
 
-% \vspace{0.12em}
-% \begin{techniquebox}{累乗の桁数の求め方}
-%   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
-%     \item $\log_{10} a^{n} = \fitblankbf{n \log_{10} a}$ を計算する.
-%     \item $k-1 \leqq \log_{10} a^{n} < k$ となる整数 $k$ を求める.
-%     \item $a^{n}$ は\fitblankbf{k}桁の数である.
-%   \end{enumerate}
-% \end{techniquebox}
-
 \vspace{0.2em}
 \begin{practiceprob}{25}
-  次の数は何桁か。ただし, $\log_{10} 2 = 0.3010$ とする。
+  次の数は何桁か。ただし、$\log_{10} 2 = 0.3010$ とする。
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
     \task $2^{20}$
     \task $2^{30}$
@@ -90,16 +79,20 @@ $\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\\[0.45em]
 
 \noindent
 \begin{minipage}[t]{0.48\linewidth}
-\begin{answerbox}{(1)}[8]
-  $20\log_{10} 2 = 6.0200$\\
-  $6 < 6.0200 < 7$
+\begin{answerbox}{(1)}[12]
+  $\log_{10} 2^{20} = 20\log_{10} 2$\\
+  $= 20 \times 0.3010 = 6.0200$\\
+  $6 < 6.0200 < 7$ であるから\\
+  $6 < \log_{10} 2^{20} < 7$
   \boxanswer{$7$ 桁}
 \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}
-\begin{answerbox}{(2)}[8]
-  $30\log_{10} 2 = 9.0300$\\
-  $9 < 9.0300 < 10$
+\begin{answerbox}{(2)}[12]
+  $\log_{10} 2^{30} = 30\log_{10} 2$\\
+  $= 30 \times 0.3010 = 9.0300$\\
+  $9 < 9.0300 < 10$ であるから\\
+  $9 < \log_{10} 2^{30} < 10$
   \boxanswer{$10$ 桁}
 \end{answerbox}
 \end{minipage}
@@ -107,7 +100,7 @@ $\log_{10} 10^{2} \leqq \log_{10} N < \log_{10} 10^{3}$\\[0.45em]
 \vspace{1em}
 \noindent{\bfseries 応用例題\,3}\quad
 $2^{n}$ が $10$ 桁の数となるような自然数 $n$ をすべて求めよ。
-ただし, $\log_{10} 2 = 0.3010$ とする。
+ただし、$\log_{10} 2 = 0.3010$ とする。
 
 \vspace{1em}
 \begin{answerbox}{}[18]
@@ -119,7 +112,7 @@ $2^{n}$ が $10$ 桁の数となるような自然数 $n$ をすべて求めよ�
   \vspace{0.8em}
   \makebox[17zw][l]{}$\frac{10}{\log_{10} 2}=33.2\cdots$\\
   \vspace{0.8em}
-  \makebox[17zw][l]{よって、①を満たす自然数 $n$ は}$n=30,\ 31,\ 32,\ 33$
+  \makebox[17zw][l]{よって,①を満たす自然数 $n$ は}$n=30,\ 31,\ 32,\ 33$
 \end{answerbox}
 
 \vfill
@@ -127,20 +120,10 @@ $2^{n}$ が $10$ 桁の数となるような自然数 $n$ をすべて求めよ�
 
 % ============ 3ページ目（裏・左） ============
 
-
-% \vspace{0.12em}
-% \begin{techniquebox}{桁数が与えられたときの $n$ の求め方}
-%   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
-%     \item $k$ 桁 $\Longleftrightarrow$ $10^{k-1} \leqq a^{n} < 10^{k}$ とおく.
-%     \item 常用対数をとって $n$ の不等式にする.
-%     \item $\log_{10} a > 0$ で両辺をわり, 整数 $n$ を求める.
-%   \end{enumerate}
-% \end{techniquebox}
-
 \vspace{-1.2zw}
 \begin{practiceprob}{26}
   $3^{n}$ が $8$ 桁の数となるような自然数 $n$ をすべて求めよ。
-  ただし, $\log_{10} 3 = 0.4771$ とする。
+  ただし、$\log_{10} 3 = 0.4771$ とする。
 \end{practiceprob}
 
 \begin{answerbox}{}[16]
@@ -152,11 +135,11 @@ $2^{n}$ が $10$ 桁の数となるような自然数 $n$ をすべて求めよ�
   \vspace{0.45em}
   \makebox[17zw][l]{}$\frac{8}{\log_{10} 3}=16.7\cdots$\\
   \vspace{0.45em}
-  \makebox[17zw][l]{よって、①を満たす自然数 $n$ は}$n=15,\ 16$
+  \makebox[17zw][l]{よって,①を満たす自然数 $n$ は}$n=15,\ 16$
 \end{answerbox}
 
-\vspace{0.2em}
-$0 < M < 1$ である小数 $M$ と常用対数 $\log_{10} M$ の関係を調べよう.
+\vspace{2em}
+次に, $0 < M < 1$ である小数 $M$ と常用対数 $\log_{10} M$ の関係を調べよう.
 
 \vspace{0.08em}
 たとえば, $M$ の小数第 $3$ 位に初めて $0$ でない数字が現れるとは,
@@ -168,20 +151,20 @@ $0.001 \leqq M < 0.01$\\[0.3em]
 \par}
 \vspace{0.06em}
 $0.001 = 10^{-3}$,\ $0.01 = 10^{-2}$ である.
-両辺の常用対数をとると
+両辺の常用対数をとると,
 \par\vspace{0.04em}
 {\centering
 $\fitblankbf{-3} \leqq \log_{10} M < \fitblankbf{-2}$
 \par}
 
-\vspace{0.2em}
+\vspace{5em}
 \begin{theorembox}{小数の位と常用対数}
-  一般に、$0 < M < 1$ である小数 $M$ と自然数 $k$ について次が成り立つ.
+  一般に, $0 < M < 1$ である小数 $M$ と自然数 $k$ について次が成り立つ.
   \par\vspace{0.1em}
   {\centering
   小数第 \fitblankbf{k} 位に初めて $0$ でない数字が現れる\\[0.3em]
   $\Longleftrightarrow$\qquad
-  $\fitblankbf{-k} \leqq \log_{10} M < \fitblankbf{-(k-1)}$
+  $\fitblankbf{-k} \leqq \log_{10} M < \fitblankbf{-k+1}$
   \par}
 \end{theorembox}
 
@@ -191,41 +174,43 @@ $\fitblankbf{-3} \leqq \log_{10} M < \fitblankbf{-2}$
 % ============ 4ページ目（裏・右） ============
 \vspace{-1.2zw}
 \begin{exampleprob}{8}
-  $\left(\dfrac{1}{3}\right)^{30}$ を小数で表したとき, 小数第何位に初めて $0$ でない数字が
-  現れるか。ただし, $\log_{10} 3 = 0.4771$ とする。
+  $\left(\dfrac{1}{3}\right)^{30}$ を小数で表したとき、小数第何位に初めて $0$ でない数字が
+  現れるか。ただし、$\log_{10} 3 = 0.4771$ とする。
 \end{exampleprob}
 
-\begin{answerbox}{}[11]
+\begin{answerbox}{}[18]
   $\log_{10}\!\left(\dfrac{1}{3}\right)^{30}
     = 30\log_{10}\dfrac{1}{3}
     = -30\log_{10} 3
-    = -30 \times 0.4771 = -14.313$\\
-  $-15 < -14.313 < -14$ であるから\\
-  $10^{-15} < \left(\dfrac{1}{3}\right)^{30} < 10^{-14}$
+    = -30 \times 0.4771 = -14.3130$\\
+  $-15 < -14.3130 < -14$ であるから\\
+  $-15 < \log_{10}\!\left(\dfrac{1}{3}\right)^{30} < -14$\\
+  \vspace{0.45em}
+  すなわち,\\
+  \vspace{0.45em}
+  $\log_{10} 10^{-15} < \log_{10}\!\left(\dfrac{1}{3}\right)^{30} < \log_{10} 10^{-14}$\\
+  $10^{-15} < \left(\dfrac{1}{3}\right)^{30} < 10^{-14}$\\
   \boxanswer{小数第 $15$ 位}
 \end{answerbox}
 
-% \begin{techniquebox}{小数第何位かの求め方}
-%   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.02em]
-%     \item $\log_{10} a^{n} = \fitblankbf{n \log_{10} a}$ を計算する.
-%     \item $-k \leqq \log_{10} a^{n} < -(k-1)$ となる自然数 $k$ を求める.
-%     \item 小数第\fitblankbf{k}位に初めて $0$ でない数字が現れる.
-%   \end{enumerate}
-% \end{techniquebox}
-
-\vspace{0.1em}
+\vspace{1em}
 \begin{practiceprob}{27}
-  $\left(\dfrac{1}{2}\right)^{20}$ を小数で表したとき, 小数第何位に初めて $0$ でない数字が
-  現れるか。ただし, $\log_{10} 2 = 0.3010$ とする。
+  $\left(\dfrac{1}{2}\right)^{20}$ を小数で表したとき、小数第何位に初めて $0$ でない数字が
+  現れるか。ただし、$\log_{10} 2 = 0.3010$ とする。
 \end{practiceprob}
 
-\begin{answerbox}{}[11]
+\begin{answerbox}{}[18]
   $\log_{10}\!\left(\dfrac{1}{2}\right)^{20}
     = 20\log_{10}\dfrac{1}{2}
     = -20\log_{10} 2
     = -20 \times 0.3010 = -6.0200$\\
   $-7 < -6.0200 < -6$ であるから\\
-  $10^{-7} < \left(\dfrac{1}{2}\right)^{20} < 10^{-6}$
+  $-7 < \log_{10}\!\left(\dfrac{1}{2}\right)^{20} < -6$\\
+  \vspace{0.45em}
+  すなわち,\\
+  \vspace{0.45em}
+  $\log_{10} 10^{-7} < \log_{10}\!\left(\dfrac{1}{2}\right)^{20} < \log_{10} 10^{-6}$\\
+  $10^{-7} < \left(\dfrac{1}{2}\right)^{20} < 10^{-6}$\\
   \boxanswer{小数第 $7$ 位}
 \end{answerbox}
 
@@ -234,12 +219,9 @@ $\fitblankbf{-3} \leqq \log_{10} M < \fitblankbf{-2}$
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.08em]
     \item $N$ が \fitblankbf{k} 桁の数 $\Longleftrightarrow$
       $\fitblankbf{k-1} \leqq \log_{10} N < \fitblankbf{k}$.
-    \item 小数第 \fitblankbf{k} 位に初めて $0$ でない数字が現れる $\Longleftrightarrow$\\
-      $\fitblankbf{-k} \leqq \log_{10} M < \fitblankbf{-(k-1)}$.
+    \item 小数第 \fitblankbf{k} 位に初めて $0$ でない数字が現れる \\
+      \qquad \qquad \qquad $\Longleftrightarrow \fitblankbf{-k} \leqq \log_{10} M < \fitblankbf{-k+1}$.
   \end{enumerate}
 \end{summarybox}
-
-\vfill
-\nexttime{この章の問題で, 指数と対数の計算をまとめよう!}
 
 \end{document}
