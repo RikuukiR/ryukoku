@@ -1,0 +1,217 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% 平均変化率の説明図（曲線と割線）
+\newcommand{\avgratefig}{%
+  \begin{tikzpicture}[x=1.48cm, y=1.48cm, line cap=round]
+    \draw[-{Stealth}] (-0.4,0) -- (5.55,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-0.4) -- (0,4.5) node[above] {$y$};
+    \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
+    \draw[thick, domain=0.25:5.05, samples=60, smooth]
+      plot (\x, {0.105*(\x+0.55)*(\x+0.55)+0.28});
+    \node[font=\footnotesize] at (4.15,3.85) {$y=f(x)$};
+    \coordinate (A) at (1.15, {0.105*(1.15+0.55)*(1.15+0.55)+0.28});
+    \coordinate (B) at (3.85, {0.105*(3.85+0.55)*(3.85+0.55)+0.28});
+    \ifshowanswer
+      \draw[blue, thick] ($(A)!-0.32!(B)$) -- ($(B)!-0.18!(A)$);
+    \fi
+    \fill (A) circle (2.2pt);
+    \fill (B) circle (2.2pt);
+    \node[above left, font=\footnotesize, inner sep=5.5pt] at (A) {A};
+    \node[above, font=\footnotesize, inner sep=5.5pt] at (B) {B};
+    \draw[dashed, gray] (A) -- (A |- 0,0) node[below, font=\footnotesize] {$a$};
+    \draw[dashed, gray] (B) -- (B |- 0,0) node[below, font=\footnotesize] {$b$};
+    \draw[dashed, gray] (A) -- (A -| B);
+    \node[below, font=\footnotesize, inner sep=1.5pt] at ($(A)!0.5!(A -| B)$) {$b-a$};
+    \node[right, font=\footnotesize, inner sep=1pt] at ($(B)!0.5!(A -| B)$) {$f(b)-f(a)$};
+  \end{tikzpicture}%
+}
+
+% 例1: y=x^2 の割線
+\newcommand{\parabolaex}{%
+  \begin{tikzpicture}[x=1.18cm, y=0.62cm]
+    \draw[-{Stealth}] (-0.3,0) -- (3.15,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-0.5) -- (0,8.0) node[above] {$y$};
+    \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
+    \draw[thick, domain=0:2.6, samples=40] plot (\x, {\x*\x});
+    \node[font=\footnotesize, anchor=south east] at (2.15,6.9) {$y=x^{2}$};
+    \draw (1,1) -- (2.1,4.41);
+    \fill (1,1) circle (1.6pt);
+    \fill (2.1,4.41) circle (1.6pt);
+    \draw[dashed, gray] (1,1) -- (1,0) node[below, font=\footnotesize] {$1$};
+    \draw[dashed, gray] (2.1,4.41) -- (2.1,0) node[below, font=\footnotesize] {$1+h$};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{1-AB}{平均変化率、極限値}
+  {178,179}{平均変化率を求め、極限値の意味を理解しよう}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-1.6zw}%
+\heading{平均変化率}
+\vspace{-0.3em}
+\begin{definitionbox}{平均変化率}
+  関数 $y=f(x)$ において、$x$ の値が $a$ から $b$ まで変化するとき、
+  \[
+    \frac{\fitblankbox{y \text{ の変化量}}}{\fitblankbox{x \text{ の変化量}}}
+    =\fitblankbox{\frac{f(b)-f(a)}{b-a}}
+  \]
+  を、$x=a$ から $x=b$ までの関数 $f(x)$ の\fitblankbf{\text{平均変化率}}という。
+\end{definitionbox}
+
+\vspace{0.15em}
+この平均変化率は、グラフ上の $2$ 点 $\mathrm{A}(a,\ f(a))$、$\mathrm{B}(b,\ f(b))$
+を通る直線 $\mathrm{AB}$ の\fitblankbf{\text{傾き}}を表している。
+
+\begin{center}
+  \vspace{-0.2em}
+  \avgratefig
+\end{center}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 例\,1}\quad
+$2$ 次関数 $y=x^{2}$ において、$x=1$ から $x=1+h$ までの平均変化率を求める。
+
+\begin{tcolorbox}[sharp corners,
+  colback=green!4!white, colframe=green!55!black!70, boxrule=0.8pt,
+  left=7pt, right=7pt, top=4pt, bottom=4pt,
+  before skip=0.3em, after skip=0.3em,
+  height=22zw]
+  \begin{minipage}[t][19zw][t]{0.56\linewidth}
+    \raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}%
+    \setlength{\baselineskip}{2.2zw}%
+    \ifshowanswer
+      {\color{blue}%
+        $\dfrac{(1+h)^{2}-1^{2}}{(1+h)-1}$\\[0.7em]
+        $=\dfrac{2h+h^{2}}{h}=\dfrac{h(2+h)}{h}$\\[0.7em]
+        $=2+h$}%
+    \fi
+  \end{minipage}\hfill
+  \begin{minipage}[t][19zw][c]{0.40\linewidth}
+    \centering\parabolaex
+  \end{minipage}
+\end{tcolorbox}
+
+\begin{practiceprob}{1}
+  次の平均変化率を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](1)
+    \task $1$ 次関数 $y=2x$ の、$x=a$ から $x=b$ までの平均変化率
+    \task $2$ 次関数 $y=-x^{2}$ の、$x=2$ から $x=2+h$ までの平均変化率
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.15em}
+\begin{answerbox}{(1)}[8]
+  $\dfrac{2b-2a}{b-a}=\dfrac{2(b-a)}{b-a}=2$
+  \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(2)}[8]
+  $\dfrac{-(2+h)^{2}-(-4)}{h}=\dfrac{-4h-h^{2}}{h}=-4-h$
+  \boxanswer{$-4-h$}
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\heading{極限値}
+\vspace{-0.35em}
+\noindent{\bfseries 例\,1}\quad
+上で求めた平均変化率 $2+h$ について、$x$ の変化量 $h$ を
+$0.1$、$0.01$、$0.001$、$0.0001$、$\cdots\cdots$
+または
+$-0.1$、$-0.01$、$-0.001$、$-0.0001$、$\cdots\cdots$
+（$h<0$ でもよい）のように、$0$ の両側から $0$ に限りなく近づけてみよう。
+\par\vspace{0.25em}
+すると、下の表のように、$2+h$ は $2$ に限りなく近づく。
+\vspace{0.5em}
+
+\begin{center}
+  \small
+  \renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{3.4pt}
+  \setlength{\arrayrulewidth}{0.8pt}
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|}
+    \hline
+    $h$ & $-0.1$ & $-0.01$ & $-0.001$ & $\cdots$ & $0$ & $\cdots$
+        & $0.001$ & $0.01$ & $0.1$ \\ \hline
+    $2+h$ & $1.9$ & $1.99$ & $1.999$ & $\cdots$ & $2$ & $\cdots$
+        & $2.001$ & $2.01$ & $2.1$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\vspace{-0.2em}
+\begin{definitionbox}{極限値}
+  $h$ が $0$ に限りなく近づくとき、$2+h$ の\fitblankbf{\text{極限値}}は
+  \fitblankbf{2} である\mbox{といい、}記号 $\lim$ を用いて次のように書く。
+  \[
+    \lim_{h \to 0}(2+h)=\fitblankbf{2}
+  \]
+\end{definitionbox}
+
+\vspace{0.1em}
+\textbf{注意}\quad
+$h$ が $0$ に限りなく近づく場合、$h$ は $0$ と異なる値をとりながら
+$0$ に近づくと約束する。
+\par\vspace{0.35em}
+{\footnotesize ＊ $\lim$ は「極限」を意味する英語 limit を略したものである。}
+
+\vspace{0.7em}
+このような極限値の例を、ほかにも示そう。
+\par\vspace{1em}
+\noindent{\bfseries 例\,2}\quad 次の極限値を求めよ。
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=2.4zw, itemsep=0.4em]
+  \item $\lim_{h \to 0}(4-h)=\fitblankbf{4}$
+        \par\vspace{0.5em}
+  \item $\lim_{h \to 0}(3+3h+h^{2})=\fitblankbf{3}$
+        \par\vspace{0.5em}
+        {\normalsize $3h$ と $h^{2}$ は、どちらも $0$ に限りなく近づく。}
+\end{enumerate}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\begin{practiceprob}{2}
+  次の極限値を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.2em](1)
+    \task $\displaystyle\lim_{h \to 0}(6+h)$
+    \task $\displaystyle\lim_{h \to 0}(12-6h+h^{2})$
+  \end{tasks}
+\end{practiceprob}
+
+\vspace{-0.15em}
+\begin{answerbox}{(1)}[8]
+  $h$ が $0$ に近づくとき、$6+h$ は $6$ に近づく。
+  \boxanswer{$6$}
+\end{answerbox}
+\begin{answerbox}{(2)}[8]
+  $-6h$ と $h^{2}$ は $0$ に近づく。
+  \boxanswer{$12$}
+\end{answerbox}
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em]
+    \par\vspace{0.5em}
+    \item 平均変化率は {\renewcommand{\fitblankpad}{6zw}%
+          \fitblankbf{\textstyle\frac{f(b)-f(a)}{b-a}}} で、
+          \par\vspace{0.5em}
+          直線の\fitblankbf{\text{傾き}}を表す。
+    \item $2 + h$ の $h$ が $0$ に限りなく近づくとき、極限値は $2$ である。
+          \par\vspace{0.5em}
+          これを {\renewcommand{\fitblankpad}{5zw}%
+          \fitblankbf{\lim_{h \to 0}(2+h)=2}} と書く。
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.4em}
+\nexttime{平均変化率の極限として、微分係数を考えてみよう!}
+
+\end{document}
