@@ -1,0 +1,211 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{2-A}{導関数}
+  {182,183}{導関数を理解し, 定義と公式を使って求めよう}
+
+% 1-1-CD の定義 6.1.3、6.1.4 の続き
+\setcounter{definition}{4}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.35em}
+\begin{reviewbox}{微分係数と接線}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em]
+    \item $x=a$ における微分係数は
+          \par\vspace{0.3em}
+          {\renewcommand{\fitblankpad}{3zw}%
+          \fitblankbf{f'(a)=\lim_{h \to 0}\dfrac{f(a+h)-f(a)}{h}}}
+          \mbox{である.}
+    \item 接線の傾きは, 微分係数 \fitblankbf{f'(a)} に等しい.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.45em}
+\heading{微分係数を $a$ の式で表す}
+\vspace{-0.25em}
+関数 $f(x)$ が与えられたとき, $x=a$ における微分係数 $f'(a)$ を計算すると,
+$f'(a)$ が $a$ の式で表される.
+関数 $f(x)=x^{2}$ で確かめてみよう.
+\par\vspace{0.15em}
+\[
+\begin{aligned}
+  f'(a)
+  &=\lim_{h \to 0}\frac{f(a+h)-f(a)}{h}
+   =\lim_{h \to 0}\frac{(a+h)^{2}-a^{2}}{h} \\[0.4em]
+  &=\lim_{h \to 0}\frac{2ah+h^{2}}{h}
+   =\lim_{h \to 0}\frac{h(2a+h)}{h}
+   =\lim_{h \to 0}(2a+h)=\fitblankbf{2a}
+\end{aligned}
+\]
+\vspace{-0.4em}
+すなわち $f'(a)=\fitblankbf{2a}$ ……①
+\par\vspace{0.45em}
+①を利用すると, 極限を計算し直さなくても, $x$ のいろいろな値における微分係数が求められる.
+たとえば $f'(3)$ は, ①に $a=3$ を代入して
+$f'(3)=\fitblankbf{2\cdot 3=6}$ である.
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\begin{practiceprob}{5}
+  関数 $f(x)=x^{2}$ について, ①を利用して, 次の微分係数を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.12em](3)
+    \task $f'(4)$
+    \task $f'(0)$
+    \task $f'(-2)$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.25em}
+\begin{answerbox}{(1)}[7]
+  ①より $f'(4)=2\cdot 4=8$
+  \boxanswer{$8$}
+\end{answerbox}
+\begin{answerbox}{(2)}[7]
+  ①より $f'(0)=2\cdot 0=0$
+  \boxanswer{$0$}
+\end{answerbox}
+\begin{answerbox}{(3)}[7]
+  ①より $f'(-2)=2\cdot(-2)=-4$
+  \boxanswer{$-4$}
+\end{answerbox}
+
+\vspace{0.15em}
+①で $a$ の値を $1$ つ決めると, $f'(a)$ の値もただ $1$ つ決まる.
+すなわち $a$ を変数とみると, $f'(a)$ は $a$ の関数である.
+\par\vspace{0.25em}
+一般に, 関数 $f(x)$ において, $x$ の各値に微分係数を対応させると,
+$x$ の新しい関数が得られる.
+たとえば $f(x)=x^{2}$ では, $f'(x)=\fitblankbf{2x}$ である.
+
+\vspace{0.25em}
+\begin{definitionbox}{導関数}
+  このようにして得られる関数を, もとの関数 $f(x)$ の\fitblankbf{\text{導関数}}といい,
+  \fitblankbf{f'(x)} で表す.
+  \[
+    f'(x)=\fitblankbf{\lim_{h \to 0}\dfrac{f(x+h)-f(x)}{h}}
+  \]
+\end{definitionbox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 例\,5}\quad
+導関数の定義にしたがって, 次の関数の導関数を求める。
+
+\vspace{0.1em}
+\noindent (1)\ 関数 $f(x)=x$
+\vspace{-0.15em}
+\begin{answerbox}{}[7]
+  $f'(x)=\lim_{h \to 0}\dfrac{(x+h)-x}{h}
+    =\lim_{h \to 0}\dfrac{h}{h}=\lim_{h \to 0}1=1$
+  \boxanswer{$1$}
+\end{answerbox}
+
+\noindent (2)\ 関数 $f(x)=x^{3}$
+\vspace{-0.15em}
+\begin{answerbox}{}[13]
+  $(x+h)^{3}=x^{3}+3x^{2}h+3xh^{2}+h^{3}$ より\\[0.35em]
+  $f'(x)=\lim_{h \to 0}\dfrac{(x+h)^{3}-x^{3}}{h}
+    =\lim_{h \to 0}\dfrac{3x^{2}h+3xh^{2}+h^{3}}{h}$\\[0.45em]
+  $=\lim_{h \to 0}(3x^{2}+3xh+h^{2})=3x^{2}$\\[0.15em]
+  {\footnotesize $3xh$ と $h^{2}$ は, どちらも $0$ に限りなく近づく.}
+  \boxanswer{$3x^{2}$}
+\end{answerbox}
+
+\noindent (3)\ 関数 $f(x)=2$
+\vspace{-0.15em}
+\begin{answerbox}{}[6]
+  $f'(x)=\lim_{h \to 0}\dfrac{2-2}{h}=\lim_{h \to 0}0=0$
+  \boxanswer{$0$}
+\end{answerbox}
+
+\vspace{0.1em}
+\textbf{注意}\quad
+$c$ を定数とするとき, $f(x)=c$ の形の関数を\fitblankbf{\text{定数関数}}という.
+定数関数の導関数は \fitblankbf{0} である.
+
+\vspace{0.35em}
+導関数は $y'$, $\dfrac{dy}{dx}$, $\dfrac{d}{dx}f(x)$ や $(x^{3})'$ とも書く.
+これまでに $(x)'=1$, $(x^{2})'=2x$, $(x^{3})'=3x^{2}$, $(2)'=0$ である.
+一般に, $n$ を正の整数とすると, 次の公式が成り立つ.
+
+\vspace{-0.15em}
+\begin{formulabox}{$x^{n}$ と定数関数の導関数}
+  $(x^{n})'=\fitblankbf{nx^{n-1}}$,\qquad
+  $(c)'=\fitblankbf{0}$
+  \par\vspace{0.1em}
+  {\footnotesize $c$ は定数とする. 証明は教科書 p.\,187.}
+\end{formulabox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\begin{practiceprob}{6}
+  導関数の定義にしたがって, 次の関数の導関数を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](3)
+    \task $f(x)=3x$
+    \task $f(x)=-x^{2}$
+    \task $f(x)=4$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.35em}
+\begin{answerbox}{(1)}[6]
+  $f'(x)=\lim_{h \to 0}\dfrac{3(x+h)-3x}{h}
+    =\lim_{h \to 0}\dfrac{3h}{h}=3$
+  \boxanswer{$3$}
+\end{answerbox}
+\begin{answerbox}{(2)}[9]
+  $f'(x)=\lim_{h \to 0}\dfrac{-(x+h)^{2}-(-x^{2})}{h}$\\[0.35em]
+  $=\lim_{h \to 0}\dfrac{-2xh-h^{2}}{h}
+    =\lim_{h \to 0}(-2x-h)=-2x$
+  \boxanswer{$-2x$}
+\end{answerbox}
+\begin{answerbox}{(3)}[6]
+  $f'(x)=\lim_{h \to 0}\dfrac{4-4}{h}=\lim_{h \to 0}0=0$
+  \boxanswer{$0$}
+\end{answerbox}
+
+\vspace{-0.15em}
+\begin{practiceprob}{7}
+  公式を用いて, 次の関数の導関数を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.05em](2)
+    \task $y=x^{4}$
+    \task $y=x^{5}$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.45em}
+\begin{answerbox}{(1)}[5]
+  $(x^{4})'=4x^{3}$
+  \boxanswer{$4x^{3}$}
+\end{answerbox}
+\begin{answerbox}{(2)}[5]
+  $(x^{5})'=5x^{4}$
+  \boxanswer{$5x^{4}$}
+\end{answerbox}
+
+\vspace{0.05em}
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.25em]
+    \item 導関数は
+          {\renewcommand{\fitblankpad}{2.2zw}%
+          \fitblankbf{f'(x)=\lim_{h \to 0}\dfrac{f(x+h)-f(x)}{h}}}
+          \mbox{である.}
+    \item $(x^{n})'=\fitblankbf{nx^{n-1}}$,\ 
+          $(c)'=\fitblankbf{0}$\mbox{である.}
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.05em}
+\nexttime{和や定数倍の導関数を使って, 整式を微分してみよう!}
+
+\end{document}

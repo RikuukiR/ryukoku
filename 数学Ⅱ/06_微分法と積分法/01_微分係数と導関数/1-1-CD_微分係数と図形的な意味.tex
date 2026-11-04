@@ -1,0 +1,230 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% 割線 AP（平均変化率）
+\newcommand{\secantfig}{%
+  \begin{tikzpicture}[x=1.05cm, y=1.18cm, line cap=round]
+    \draw[-{Stealth}] (-0.35,0) -- (3.35,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-0.28) -- (0,2.85) node[above] {$y$};
+    \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
+    \draw[thick, domain=0.15:2.95, samples=40] plot (\x, {0.30*\x*\x});
+    \node[font=\footnotesize, anchor=south west] at (1.85,2.65) {$y=f(x)$};
+    \coordinate (A) at (1.05, {0.30*1.05*1.05});
+    \coordinate (P) at (2.35, {0.30*2.35*2.35});
+    \draw ($(A)!-0.22!(P)$) -- ($(P)!-0.35!(A)$);
+    \fill (A) circle (1.8pt);
+    \fill (P) circle (1.8pt);
+    \node[above=2pt, font=\footnotesize] at (A) {A};
+    \node[above=2pt, font=\footnotesize] at (P) {P};
+    \draw[dashed, gray] (A) -- (1.05,0) node[below, font=\footnotesize] {$a$};
+    \draw[dashed, gray] (P) -- (2.35,0) node[below, font=\footnotesize] {$a+h$};
+    \draw[dashed, gray] (A) -- (A -| P);
+    \node[right, font=\footnotesize, inner sep=1pt]
+      at ($(P)!0.5!(A -| P)$) {$f(a+h)-f(a)$};
+    \node[above, font=\footnotesize, inner sep=1pt] at (1.70,0) {$h$};
+  \end{tikzpicture}%
+}
+
+% 接線（h→0 で割線が接線に近づく）
+\newcommand{\tangentfig}{%
+  \begin{tikzpicture}[x=1.05cm, y=1.18cm, line cap=round]
+    \draw[-{Stealth}] (-0.35,0) -- (3.35,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-0.28) -- (0,2.85) node[above] {$y$};
+    \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
+    \draw[thick, domain=0.15:2.95, samples=40] plot (\x, {0.30*\x*\x});
+    \node[font=\footnotesize, anchor=south west] at (1.95,2.55) {$y=f(x)$};
+    \coordinate (A) at (1.05, {0.30*1.05*1.05});
+    % y=0.30x^2 の x=1.05 における傾きは 0.63
+    \coordinate (P) at (2.45, {0.30*2.45*2.45});
+    \coordinate (Q) at (1.75, {0.30*1.75*1.75});
+    \draw[gray] ($(A)!-0.12!(Q)$) -- (Q);
+    \draw[gray] ($(A)!-0.08!(P)$) -- (P);
+    \fill (Q) circle (1.2pt);
+    \fill (P) circle (1.2pt);
+    \node[above=2pt, font=\footnotesize] at (P) {P};
+    \draw[thick] ($(A)+(-0.42,-0.265)$) -- ($(A)+(1.85,1.166)$);
+    \node[font=\footnotesize, above right] at ($(A)+(2,1.25)$) {$\ell$};
+    \fill (A) circle (1.8pt);
+    \node[above=2pt, font=\footnotesize] at (A) {A};
+    \draw[dashed, gray] (A) -- (1.05,0) node[below, font=\footnotesize] {$a$};
+    % 底辺 1、高さは傾き 0.63
+    \coordinate (S) at ($(A)+(0.28,0.176)$);
+    \coordinate (R) at ($(S)+(1,0)$);
+    \coordinate (U) at ($(R)+(0,0.63)$);
+    \draw[dashed] (S) -- (R) node[midway, below, font=\footnotesize] {$1$};
+    \draw[dashed] (R) -- (U) node[midway, right, font=\footnotesize] {$f'(a)$};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{1-CD}{微分係数, 図形的な意味}
+  {180,181}{微分係数を求め, 接線の傾きとの関係を理解しよう}
+
+% 1-1-AB の定義 6.1.1、6.1.2 の続き
+\setcounter{definition}{2}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.35em}
+\begin{reviewbox}{平均変化率と極限値}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em]
+    \item 平均変化率は {\renewcommand{\fitblankpad}{6zw}%
+          \fitblankbf{\textstyle\frac{f(b)-f(a)}{b-a}}} で,
+          \par\vspace{0.5em}
+          直線の\fitblankbf{\text{傾き}}を表す.
+    \item $2 + h$ の $h$ が $0$ に限りなく近づくとき, 極限値は $2$ である.
+          \par\vspace{0.5em}
+          これを {\renewcommand{\fitblankpad}{5zw}%
+          \fitblankbf{\lim_{h \to 0}(2+h)=2}} と書く.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.5em}
+\heading{微分係数}
+\vspace{-0.3em}
+\begin{definitionbox}{微分係数}
+  関数 $f(x)$ の, $x=a$ から $x=a+h$ までの平均変化率
+  \[
+    \frac{f(a+h)-f(a)}{h}
+  \]
+  において, $h$ が $0$ に限りなく近づくとき,\\
+  この平均変化率が一定の値に限りなく近づくならば, その極限値を,\\
+  関数 $f(x)$ の $x=a$ における\fitblankbf{\text{微分係数}}, または変化率
+  といい, \fitblankbf{f'(a)} で表す.
+  \[
+    f'(a)=\fitblankbf{\lim_{h \to 0}\frac{f(a+h)-f(a)}{h}}
+  \]
+\end{definitionbox}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 例\,3}\quad
+関数 $f(x)=x^{2}$ の、$x=3$ における微分係数を求める。
+
+\vspace{0.15em}
+\begin{answerbox}{}[15]
+  $f'(3)=\lim_{h \to 0}\dfrac{f(3+h)-f(3)}{h}
+    =\lim_{h \to 0}\dfrac{(3+h)^{2}-3^{2}}{h}$\\[0.55em]
+  $=\lim_{h \to 0}\dfrac{6h+h^{2}}{h}
+    =\lim_{h \to 0}\dfrac{h(6+h)}{h}$\\[0.55em]
+  $=\lim_{h \to 0}(6+h)=6$
+  \boxanswer{$6$}
+\end{answerbox}
+
+\begin{practiceprob}{3}
+  次の微分係数を求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.15em](1)
+    \task 関数 $f(x)=x^{2}$ の、$x=1$ における微分係数
+    \task 関数 $f(x)=3x^{2}$ の、$x=-2$ における微分係数
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.15em}
+\begin{answerbox}{(1)}[15]
+  $f'(1)=\lim_{h \to 0}\dfrac{(1+h)^{2}-1^{2}}{h}
+    =\lim_{h \to 0}\dfrac{2h+h^{2}}{h}$\\[0.55em]
+  $=\lim_{h \to 0}(2+h)=2$
+  \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(2)}[15]
+  $f'(-2)=\lim_{h \to 0}\dfrac{3(-2+h)^{2}-3\cdot(-2)^{2}}{h}$\\[0.55em]
+  $=\lim_{h \to 0}\dfrac{3(4-4h+h^{2})-12}{h}
+    =\lim_{h \to 0}\dfrac{-12h+3h^{2}}{h}$\\[0.55em]
+  $=\lim_{h \to 0}(-12+3h)=-12$
+  \boxanswer{$-12$}
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\heading{微分係数の図形的な意味}
+\vspace{-0.2em}
+関数 $f(x)$ が微分係数 $f'(a)$ をもつとする.
+\par\vspace{0.35em}
+\sidebyside[0.56]{%
+  関数 $y=f(x)$ のグラフ上に $2$ 点
+  $\mathrm{A}(a,\ f(a))$, $\mathrm{P}(a+h,\ f(a+h))$
+  をとると, 直線 $\mathrm{AP}$ の傾き
+  \[
+    \frac{f(a+h)-f(a)}{h}
+  \]
+  は, $x=a$ から $x=a+h$ までの平均変化率に等しい.
+}{\secantfig}
+
+\vspace{0.45em}
+\sidebyside[0.56]{%
+  $h$ が $0$ に限りなく近づくとき, 点 $\mathrm{P}$ は点 $\mathrm{A}$ に
+  限りなく近づく. このとき,
+  \[
+    \lim_{h \to 0}\frac{f(a+h)-f(a)}{h}=f'(a)
+  \]
+  であるから, 直線 $\mathrm{AP}$ は点 $\mathrm{A}$ を通り, 傾きが
+  $f'(a)$ の直線 $\ell$ に限りなく近づく.
+}{\tangentfig}
+
+\vspace{0.45em}
+この直線 $\ell$ を, グラフ上の点 $\mathrm{A}$ における\fitblankbf{\text{接線}}といい,\\
+$\mathrm{A}$ を\fitblankbf{\text{接点}}という.\\
+また, 直線 $\ell$ はこの曲線に点 $\mathrm{A}$ で\fitblankbf{\text{接する}}という.
+
+\vspace{0.5em}
+\begin{definitionbox}{接線の傾き}
+  関数 $y=f(x)$ のグラフ上の点 $\mathrm{A}(a,\ f(a))$ における接線の傾きは,
+  関数 $f(x)$ の $x=a$ における微分係数 \fitblankbf{f'(a)} に等しい.
+\end{definitionbox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 例\,4}\quad
+関数 $y=x^{2}$ のグラフ上の点 $(3,\ 9)$ における接線の傾き $m$ を求める。
+
+\vspace{0.15em}
+\begin{answerbox}{}[10]
+  $f(x)=x^{2}$ とすると, $m=f'(3)$.\\[0.4em]
+  例3より, $f'(3)=6$ であるから, $m=6$.
+  \boxanswer{$6$}
+\end{answerbox}
+
+\begin{practiceprob}{4}
+  関数 $y=x^{2}$ のグラフ上の次の点における接線の傾きを求めよ。
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.15em](1)
+    \task 点 $(1,\ 1)$
+    \task 点 $(-2,\ 4)$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.15em}
+\begin{answerbox}{(1)}[8]
+  練習3\,(1) より, $f'(1)=2$ であるから, 傾きは $2$.
+  \boxanswer{$2$}
+\end{answerbox}
+\begin{answerbox}{(2)}[14]
+  $f'(-2)=\lim_{h \to 0}\dfrac{(-2+h)^{2}-(-2)^{2}}{h}$\\[0.5em]
+  $=\lim_{h \to 0}\dfrac{-4h+h^{2}}{h}=\lim_{h \to 0}(-4+h)=-4$
+  \boxanswer{$-4$}
+\end{answerbox}
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.35em]
+    \item $x=a$ における微分係数は
+          \par\vspace{0.35em}
+          {\renewcommand{\fitblankpad}{3zw}%
+          \fitblankbf{f'(a)=\lim_{h \to 0}\dfrac{f(a+h)-f(a)}{h}}}
+          \mbox{である.}
+    \item 接線の傾きは, 微分係数 \fitblankbf{f'(a)} に等しい.
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.4em}
+\nexttime{各点の微分係数を対応させて, 導関数を考えてみよう!}
+
+\end{document}
