@@ -4,7 +4,7 @@
 \begin{document}
 
 \lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{2-A}{導関数}
-  {182,183}{導関数を理解し, 定義と公式を使って求めよう}
+  {182,183}{導関数の意味を理解し, 定義と定理を使って求めよう}
 
 % 1-1-CD の定義 6.1.3、6.1.4 の続き
 \setcounter{definition}{4}
@@ -20,31 +20,29 @@
           {\renewcommand{\fitblankpad}{3zw}%
           \fitblankbf{f'(a)=\lim_{h \to 0}\dfrac{f(a+h)-f(a)}{h}}}
           \mbox{である.}
+          \par\vspace{0.5em}
     \item 接線の傾きは, 微分係数 \fitblankbf{f'(a)} に等しい.
   \end{enumerate}
 \end{reviewbox}
 
 \vspace{0.45em}
-\heading{微分係数を $a$ の式で表す}
+\heading{導関数}
 \vspace{-0.25em}
 関数 $f(x)$ が与えられたとき, $x=a$ における微分係数 $f'(a)$ を計算すると,
 $f'(a)$ が $a$ の式で表される.
 関数 $f(x)=x^{2}$ で確かめてみよう.
 \par\vspace{0.15em}
-\[
-\begin{aligned}
-  f'(a)
-  &=\lim_{h \to 0}\frac{f(a+h)-f(a)}{h}
-   =\lim_{h \to 0}\frac{(a+h)^{2}-a^{2}}{h} \\[0.4em]
-  &=\lim_{h \to 0}\frac{2ah+h^{2}}{h}
-   =\lim_{h \to 0}\frac{h(2a+h)}{h}
-   =\lim_{h \to 0}(2a+h)=\fitblankbf{2a}
-\end{aligned}
-\]
-\vspace{-0.4em}
+\begin{answerbox}{}[14]
+  $f'(a)=\lim_{h \to 0}\dfrac{f(a+h)-f(a)}{h}
+    =\lim_{h \to 0}\dfrac{(a+h)^{2}-a^{2}}{h}$\\[0.5em]
+  $=\lim_{h \to 0}\dfrac{2ah+h^{2}}{h}
+    =\lim_{h \to 0}\dfrac{h(2a+h)}{h}$\\[0.5em]
+  $=\lim_{h \to 0}(2a+h)=2a$
+\end{answerbox}
+\vspace{1em}
 すなわち $f'(a)=\fitblankbf{2a}$ ……①
 \par\vspace{0.45em}
-①を利用すると, 極限を計算し直さなくても, $x$ のいろいろな値における微分係数が求められる.
+①を使うと, 極限を計算し直さなくても, $x$ のいろいろな値における微分係数が求められる.
 たとえば $f'(3)$ は, ①に $a=3$ を代入して
 $f'(3)=\fitblankbf{2\cdot 3=6}$ である.
 
@@ -54,7 +52,7 @@ $f'(3)=\fitblankbf{2\cdot 3=6}$ である.
 % ============ 2ページ目（表・右） ============
 \vspace{-1.4zw}%
 \begin{practiceprob}{5}
-  関数 $f(x)=x^{2}$ について, ①を利用して, 次の微分係数を求めよ。
+  関数 $f(x)=x^{2}$ について、①を用いて、次の微分係数を求めよ。
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.12em](3)
     \task $f'(4)$
     \task $f'(0)$
@@ -75,7 +73,7 @@ $f'(3)=\fitblankbf{2\cdot 3=6}$ である.
   \boxanswer{$-4$}
 \end{answerbox}
 
-\vspace{0.15em}
+\vspace{1em}
 ①で $a$ の値を $1$ つ決めると, $f'(a)$ の値もただ $1$ つ決まる.
 すなわち $a$ を変数とみると, $f'(a)$ は $a$ の関数である.
 \par\vspace{0.25em}
@@ -98,60 +96,33 @@ $x$ の新しい関数が得られる.
 % ============ 3ページ目（裏・左） ============
 \vspace{-1.4zw}%
 \noindent{\bfseries 例\,5}\quad
-導関数の定義にしたがって, 次の関数の導関数を求める。
-
-\vspace{0.1em}
-\noindent (1)\ 関数 $f(x)=x$
-\vspace{-0.15em}
-\begin{answerbox}{}[7]
+導関数の定義にしたがって、次の関数の導関数を求める。
+\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](3)
+  \task 関数 $f(x)=x$
+  \task 関数 $f(x)=x^{3}$
+  \task 関数 $f(x)=2$
+\end{tasks}
+\vspace{-0.2em}
+\begin{answerbox}{(1)}[5.5]
   $f'(x)=\lim_{h \to 0}\dfrac{(x+h)-x}{h}
     =\lim_{h \to 0}\dfrac{h}{h}=\lim_{h \to 0}1=1$
   \boxanswer{$1$}
 \end{answerbox}
-
-\noindent (2)\ 関数 $f(x)=x^{3}$
-\vspace{-0.15em}
-\begin{answerbox}{}[13]
-  $(x+h)^{3}=x^{3}+3x^{2}h+3xh^{2}+h^{3}$ より\\[0.35em]
+\begin{answerbox}{(2)}[12]
+  $(x+h)^{3}=x^{3}+3x^{2}h+3xh^{2}+h^{3}$ より\\[0.25em]
   $f'(x)=\lim_{h \to 0}\dfrac{(x+h)^{3}-x^{3}}{h}
-    =\lim_{h \to 0}\dfrac{3x^{2}h+3xh^{2}+h^{3}}{h}$\\[0.45em]
-  $=\lim_{h \to 0}(3x^{2}+3xh+h^{2})=3x^{2}$\\[0.15em]
-  {\footnotesize $3xh$ と $h^{2}$ は, どちらも $0$ に限りなく近づく.}
+    =\lim_{h \to 0}\dfrac{3x^{2}h+3xh^{2}+h^{3}}{h}$\\[0.3em]
+  $=\lim_{h \to 0}(3x^{2}+3xh+h^{2})=3x^{2}$
   \boxanswer{$3x^{2}$}
 \end{answerbox}
-
-\noindent (3)\ 関数 $f(x)=2$
-\vspace{-0.15em}
-\begin{answerbox}{}[6]
+\begin{answerbox}{(3)}[5]
   $f'(x)=\lim_{h \to 0}\dfrac{2-2}{h}=\lim_{h \to 0}0=0$
   \boxanswer{$0$}
 \end{answerbox}
 
-\vspace{0.1em}
-\textbf{注意}\quad
-$c$ を定数とするとき, $f(x)=c$ の形の関数を\fitblankbf{\text{定数関数}}という.
-定数関数の導関数は \fitblankbf{0} である.
-
-\vspace{0.35em}
-導関数は $y'$, $\dfrac{dy}{dx}$, $\dfrac{d}{dx}f(x)$ や $(x^{3})'$ とも書く.
-これまでに $(x)'=1$, $(x^{2})'=2x$, $(x^{3})'=3x^{2}$, $(2)'=0$ である.
-一般に, $n$ を正の整数とすると, 次の公式が成り立つ.
-
-\vspace{-0.15em}
-\begin{formulabox}{$x^{n}$ と定数関数の導関数}
-  $(x^{n})'=\fitblankbf{nx^{n-1}}$,\qquad
-  $(c)'=\fitblankbf{0}$
-  \par\vspace{0.1em}
-  {\footnotesize $c$ は定数とする. 証明は教科書 p.\,187.}
-\end{formulabox}
-
-\vfill
-\nextpage
-
-% ============ 4ページ目（裏・右） ============
-\vspace{-1.4zw}%
+\vspace{0.25em}
 \begin{practiceprob}{6}
-  導関数の定義にしたがって, 次の関数の導関数を求めよ。
+  導関数の定義にしたがって、次の関数の導関数を求めよ。
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](3)
     \task $f(x)=3x$
     \task $f(x)=-x^{2}$
@@ -159,25 +130,52 @@ $c$ を定数とするとき, $f(x)=c$ の形の関数を\fitblankbf{\text{定�
   \end{tasks}
 \end{practiceprob}
 \vspace{-0.35em}
-\begin{answerbox}{(1)}[6]
+\begin{answerbox}{(1)}[5]
   $f'(x)=\lim_{h \to 0}\dfrac{3(x+h)-3x}{h}
     =\lim_{h \to 0}\dfrac{3h}{h}=3$
   \boxanswer{$3$}
 \end{answerbox}
-\begin{answerbox}{(2)}[9]
+\begin{answerbox}{(2)}[10]
   $f'(x)=\lim_{h \to 0}\dfrac{-(x+h)^{2}-(-x^{2})}{h}$\\[0.35em]
   $=\lim_{h \to 0}\dfrac{-2xh-h^{2}}{h}
     =\lim_{h \to 0}(-2x-h)=-2x$
   \boxanswer{$-2x$}
 \end{answerbox}
-\begin{answerbox}{(3)}[6]
+\begin{answerbox}{(3)}[5]
   $f'(x)=\lim_{h \to 0}\dfrac{4-4}{h}=\lim_{h \to 0}0=0$
   \boxanswer{$0$}
 \end{answerbox}
 
-\vspace{-0.15em}
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\vspace{0.15em}
+\textbf{注意}\quad
+$c$ を定数とするとき, $f(x)=c$ の形の関数を\textbf{定数関数}という.
+定数関数の導関数は \fitblankbf{0} である.
+\vspace{1em}
+
+導関数は $y'$, $\dfrac{dy}{dx}$, $\dfrac{d}{dx}f(x)$ や $(x^{3})'$ とも表す.
+これまでに調べたことから
+\[
+  (x)'=\fitblankbf{1},\quad (x^{2})'=\fitblankbf{2x}, \quad (x^{3})'=\fitblankbf{3x^{2}}, \quad (2)'=\fitblankbf{0}
+\]
+である.
+一般に, 次が成り立つ.
+
+\vspace{-0.1em}
+\begin{theorembox}{$x^{n}$ と定数関数の導関数}
+  $n$ を正の整数, $c$ を定数とする.
+  \par\vspace{0.15em}
+  $(x^{n})'=\fitblankbf{nx^{n-1}}$,\qquad
+  $(c)'=\fitblankbf{0}$
+\end{theorembox}
+
+\vspace{-0.2em}
 \begin{practiceprob}{7}
-  公式を用いて, 次の関数の導関数を求めよ。
+  定理 6.1.1 を用いて、次の関数の導関数を求めよ。
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.05em](2)
     \task $y=x^{4}$
     \task $y=x^{5}$
@@ -193,19 +191,20 @@ $c$ を定数とするとき, $f(x)=c$ の形の関数を\fitblankbf{\text{定�
   \boxanswer{$5x^{4}$}
 \end{answerbox}
 
-\vspace{0.05em}
+\vfill
 \begin{summarybox}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.25em]
     \item 導関数は
           {\renewcommand{\fitblankpad}{2.2zw}%
           \fitblankbf{f'(x)=\lim_{h \to 0}\dfrac{f(x+h)-f(x)}{h}}}
           \mbox{である.}
-    \item $(x^{n})'=\fitblankbf{nx^{n-1}}$,\ 
+          \par\vspace{0.5em}
+    \item $(x^{n})'=\fitblankbf{nx^{n-1}}$,\quad\quad
           $(c)'=\fitblankbf{0}$\mbox{である.}
   \end{enumerate}
 \end{summarybox}
 
 \vspace{0.05em}
-\nexttime{和や定数倍の導関数を使って, 整式を微分してみよう!}
+\nexttime{和や定数倍を使って, 整式の導関数を求めてみよう!}
 
 \end{document}
