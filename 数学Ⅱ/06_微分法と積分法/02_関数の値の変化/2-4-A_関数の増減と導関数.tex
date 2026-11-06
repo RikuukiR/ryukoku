@@ -1,0 +1,247 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% y=x^2-4x. 頂点 (2,-4). 接点 (1,-3) の傾きは -2, 接点 (3,-3) の傾きは 2
+\newcommand{\parabolafig}{%
+  \begin{tikzpicture}[x=0.62cm, y=0.36cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-0.7,0) -- (4.7,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}] (0,-4.35) -- (0,1.35) node[above, font=\footnotesize] {$y$};
+    \node[font=\footnotesize, inner sep=1pt] at (-0.38,-0.62) {O};
+    \draw[thick, domain=0:4, samples=60] plot (\x, {\x*\x-4*\x});
+    % 接線 y=-2x-1 （接点 (1,-3)）. 下端はラベルより上で止める
+    \draw[red!75!black, thick] (0.2,-1.4) -- (1.65,-4.3);
+    \fill[red!75!black] (1,-3) circle (1.5pt);
+    \node[red!75!black, font=\footnotesize, anchor=north, inner sep=0pt]
+      at (0.72,-4.55) {右下がり};
+    % 接線 y=2x-9 （接点 (3,-3)）
+    \draw[red!75!black, thick] (2.35,-4.3) -- (3.8,-1.4);
+    \fill[red!75!black] (3,-3) circle (1.5pt);
+    \node[red!75!black, font=\footnotesize, anchor=north, inner sep=0pt]
+      at (3.55,-4.55) {右上がり};
+    \node[below=2pt, font=\footnotesize, inner sep=1pt] at (2,0) {$2$};
+    \node[font=\footnotesize, inner sep=1pt] at (4,-0.95) {$4$};
+    \node[font=\footnotesize, anchor=south, inner sep=1pt] at (2.55,0.38) {$y=x^{2}-4x$};
+  \end{tikzpicture}%
+}
+
+% y=x^3-3x. 山 (-1,2), 谷 (1,-2)
+\newcommand{\cubicfig}{%
+  \begin{tikzpicture}[x=0.46cm, y=0.36cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-2.55,0) -- (2.45,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}] (0,-2.85) -- (0,2.85) node[above, font=\footnotesize] {$y$};
+    \node[font=\footnotesize, inner sep=1pt] at (0.42,0.48) {O};
+    \draw[thick, domain=-2:2, samples=80] plot (\x, {\x*\x*\x-3*\x});
+    % 破線は軸の数字に届かないところで止める
+    \draw[dashed, gray] (-1,2) -- (-1,0.48);
+    \draw[dashed, gray] (-1,2) -- (-0.78,2);
+    \draw[dashed, gray] (1,-2) -- (1,-1.25);
+    \draw[dashed, gray] (1,-2) -- (0.55,-2);
+    \fill (-1,2) circle (1.5pt);
+    \fill (1,-2) circle (1.5pt);
+    \node[font=\footnotesize, inner sep=1pt] at (-1,-0.58) {$-1$};
+    \node[font=\footnotesize, inner sep=1pt] at (1,-0.58) {$1$};
+    \node[font=\footnotesize, anchor=east, inner sep=1pt] at (-0.16,2.05) {$2$};
+    \node[font=\footnotesize, anchor=east, inner sep=1pt] at (-0.16,-2) {$-2$};
+    \node[font=\scriptsize, anchor=south west, inner sep=1pt] at (0.45,2.15) {$y=x^{3}-3x$};
+  \end{tikzpicture}%
+}
+
+% 増減表. 3次式では両端の矢印が同じなので, 矢印は1つで両端に使う
+% 引数: x1, x2, 左符号, 中符号, 右符号, 両端の矢印, f(x1), 中の矢印, f(x2)
+\newif\ifzgblank
+\newcommand{\zg}[1]{\ifzgblank\fitblankbf{#1}\else $#1$\fi}
+\newcommand{\incdecchartbody}[9]{%
+  \renewcommand{\arraystretch}{1.22}%
+  \renewcommand{\fitblankpad}{0.2zw}%
+  \setlength{\tabcolsep}{0.35zw}%
+  \newcommand{\zgdots}{\makebox[3.2zw]{$\cdots$}}%
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & \zgdots & \zg{#1} & \zgdots & \zg{#2} & \zgdots \\
+    \hline
+    $f'(x)$ & \zg{#3} & \zg{0} & \zg{#4} & \zg{0} & \zg{#5} \\
+    \hline
+    $f(x)$ & \zg{#6} & \zg{#7} & \zg{#8} & \zg{#9} & \zg{#6} \\
+    \hline
+  \end{tabular}%
+}
+\newcommand{\incdecchart}[9]{%
+  \begingroup\zgblanktrue\incdecchartbody{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}\endgroup
+}
+\newcommand{\incdecchartfilled}[9]{%
+  \begingroup\footnotesize\zgblankfalse
+  \incdecchartbody{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}\endgroup
+}
+
+\begin{document}
+
+\lectureheader[7]{数学Ⅱ}{6}{微分法と積分法}{2}{関数の値の変化}{4-A}%
+  {関数の増減と導関数}
+  {191,192}{導関数の符号から関数の増減を調べ, 増減表に表そう}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.7em}
+\begin{reviewbox}{接線の傾き}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.06em, topsep=0.08em]
+    \item 点 $(a,\ f(a))$ における接線の傾きは, 微分係数 \fitblankbf{f'(a)} に等しい.
+    \item 傾きが正の直線は\fitblankbf{\text{右上がり}},
+          傾きが負の直線は\fitblankbf{\text{右下がり}}である.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{-0.15em}
+\topic{A}{関数の増減と導関数}
+\vspace{-0.85em}
+グラフ上の $1$ 点の近くでは, グラフはその点の\fitblankbf{\text{接線}}とほぼ一致しているとみなせる.
+\par\vspace{0.1em}
+\hspace*{1zw}増加\quad ……\quad グラフは\fitblankbf{\text{右上がり}}
+\par\vspace{0.06em}
+\hspace*{1zw}減少\quad ……\quad グラフは\fitblankbf{\text{右下がり}}
+\par\vspace{0.2em}
+{\renewcommand{\fitblankpad}{0.4zw}%
+関数 $f(x)=x^{2}-4x$ では
+$f'(x)=\fitblankbf{2x-4}=\fitblankbf{2(x-2)}$ である.}
+\par\vspace{0.08em}
+点 $\mathrm{A}(a,\ f(a))$ の接線の傾きは $f'(a)=\fitblankbf{2(a-2)}$ である.
+
+\vspace{0.15em}
+\noindent
+\begin{minipage}[c]{0.50\linewidth}
+  \raggedright
+  \textbf{[1]}\quad $a<2$ では \ $f'(a)\fitblankbf{<0}$\\[0.18em]
+  接線は\fitblankbf{\text{右下がり}}\\[0.08em]
+  関数は\fitblankbf{\text{減少}}する.
+  \par\vspace{0.45em}
+  \textbf{[2]}\quad $a>2$ では \ $f'(a)\fitblankbf{>0}$\\[0.18em]
+  接線は\fitblankbf{\text{右上がり}}\\[0.08em]
+  関数は\fitblankbf{\text{増加}}する.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.48\linewidth}
+  \centering\parabolafig
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+したがって, $f'(x)$ の符号で増減が決まる. 一般に, 次のことがいえる.
+
+\vspace{-0.35em}
+\begin{theorembox}{関数の増減と $f'(x)$ の符号}
+  $f'(x)>0$ となる $x$ の値の範囲では \fitblankbf{\text{増加}} し,
+  \par\vspace{0.2em}
+  $f'(x)<0$ となる $x$ の値の範囲では \fitblankbf{\text{減少}} する.
+\end{theorembox}
+
+\vspace{-0.35em}
+\textbf{補足}\quad
+$f'(x)=0$ となる範囲では, $f(x)$ は\fitblankbf{\text{一定の値}}をとる.
+
+\vspace{0.15em}
+\noindent{\bfseries 例\,8}\quad
+定理 6.2.1 を用いて, 関数 $f(x)=x^{3}-3x$ の増減を調べる.
+\par\vspace{0.15em}
+\noindent
+\begin{minipage}[c]{0.60\linewidth}
+  \begin{answerbox}{}[13.2]
+    $f'(x)=3x^{2}-3=3(x+1)(x-1)$\\[0.06em]
+    $f'(x)=0$ とすると \quad $x=-1,\ 1$\\[0.04em]
+    $f'(x)>0$ を解くと \quad $x<-1,\ 1<x$\\[0.04em]
+    $f'(x)<0$ を解くと \quad $-1<x<1$\\[0.08em]
+    $f(-1)=2$,\quad $f(1)=-2$
+  \end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.38\linewidth}
+  \centering\cubicfig
+\end{minipage}
+
+\vspace{0.15em}
+よって, $f(x)$ の増減は次の表で表される.
+\par\vspace{0.05em}
+\begin{center}
+  \incdecchart{-1}{1}{+}{-}{+}{\nearrow}{2}{\searrow}{-2}
+\end{center}
+\vspace{-0.7em}
+したがって, $f(x)$ は
+\fitblankbf{x\leqq -1},\ \fitblankbf{1\leqq x} で増加し,
+\par\vspace{0.08em}
+\hspace*{2zw}\fitblankbf{-1\leqq x\leqq 1} で減少する.
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\textbf{注意}\quad
+増加または減少する範囲には, $f'(x)=\fitblankbf{0}$ となる $x$ も含まれる.
+例8では $x<-1$ ではなく \fitblankbf{x\leqq -1} と書く.
+
+\vspace{0.15em}
+\begin{definitionbox}{増減表}
+  例8のような表を\fitblankbf{\text{増減表}}という.
+  $\nearrow$ はその範囲で関数が\fitblankbf{\text{増加}}すること,
+  $\searrow$ は\fitblankbf{\text{減少}}することを示す.
+\end{definitionbox}
+
+\vspace{-0.1em}
+\textbf{Point}\quad 増減の調べ方
+\par\vspace{0.02em}
+\begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.6zw, itemsep=0.06em, topsep=0.1em]
+  \item 導関数 $f'(x)$ を求める.
+  \item $f'(x)=0$ となる $x$ で範囲を分け, 各範囲の符号を調べる.
+  \item 増減表にまとめ, 範囲は \fitblankbf{\leqq} を用いて書く.
+\end{enumerate}
+
+\vspace{-0.25em}
+\begin{practiceprob}{15}
+  次の関数の増減を調べよ.
+  \par\vspace{0.05em}
+  (1)\quad $f(x)=x^{3}-6x^{2}+5$
+\end{practiceprob}
+\vspace{-0.7em}
+\begin{answerbox}{(1)}[18.5]
+  $f'(x)=3x^{2}-12x=3x(x-4)$\\[0.04em]
+  $f'(x)=0$ とすると \quad $x=0,\ 4$\\[0.02em]
+  $f'(x)>0$ は $x<0,\ 4<x$,\quad $f'(x)<0$ は $0<x<4$\\[0.04em]
+  $f(0)=5$,\quad $f(4)=64-96+5=-27$\\[0.12em]
+  \incdecchartfilled{0}{4}{+}{-}{+}{\nearrow}{5}{\searrow}{-27}
+  \par\vspace{0.06em}
+  $x\leqq 0$,\ $4\leqq x$ で増加し,\ $0\leqq x\leqq 4$ で減少する.
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 練習\,15}\enspace (2)\quad
+関数 $f(x)=-2x^{3}-3x^{2}+12x+1$ の増減を調べよ.
+\par\vspace{0.15em}
+\begin{answerbox}{(2)}[22]
+  $f'(x)=-6x^{2}-6x+12=-6(x+2)(x-1)$\\[0.06em]
+  $f'(x)=0$ とすると \quad $x=-2,\ 1$\\[0.04em]
+  $-6<0$ なので, 符号は $(x+2)(x-1)$ と逆になる.\\[0.04em]
+  $f'(x)>0$ は $-2<x<1$,\quad $f'(x)<0$ は $x<-2,\ 1<x$\\[0.06em]
+  $f(-2)=16-12-24+1=-19$,\quad $f(1)=8$\\[0.12em]
+  \incdecchartfilled{-2}{1}{-}{+}{-}{\searrow}{-19}{\nearrow}{8}
+  \par\vspace{0.08em}
+  $-2\leqq x\leqq 1$ で増加し,\ $x\leqq -2$,\ $1\leqq x$ で減少する.
+\end{answerbox}
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.16em, topsep=0.08em]
+    \item $f'(x)>\fitblankbf{0}$ の範囲では増加し,
+          $f'(x)<\fitblankbf{0}$ の範囲では減少する.
+    \item 増減は\fitblankbf{\text{増減表}}にまとめる.
+          範囲には $f'(x)=0$ となる $x$ も含まれる.
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.02em}
+\nexttime{増減の変わり目から, 関数の極大・極小を考えてみよう!}
+
+\end{document}
