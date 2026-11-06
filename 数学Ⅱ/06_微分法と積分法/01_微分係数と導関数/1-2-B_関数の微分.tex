@@ -1,0 +1,231 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{2-B}{関数の微分}
+  {184,185}{定数倍と和・差の性質を使って, 整式を微分しよう}
+
+% 1-2-A の定理 6.1.1 の続き（定義は 6.1.5 まで）
+\setcounter{theorem}{1}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.5em}
+\begin{reviewbox}{導関数}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.08em]
+    \item 導関数は
+          \par\vspace{0.15em}
+          {\renewcommand{\fitblankpad}{1.2zw}%
+          \fitblankbf{f'(x)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}}}
+          \mbox{である.}
+          \par\vspace{0.25em}
+    \item $(x^{n})'=\fitblankbf{nx^{n-1}}$,\quad
+          $(c)'=\fitblankbf{0}$
+          \quad（$n$ は正の整数, $c$ は定数）
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.15em}
+\heading{関数の微分}
+\vspace{-0.45em}
+関数 $f(x)$ から導関数 $f'(x)$ を求めることを,
+$f(x)$ を $x$ で\fitblankbf{\text{微分する}}という.
+単に微分するともいう.
+\par\vspace{0.2em}
+\textbf{注意}\quad
+今後, 関数 $f(x)$, $g(x)$ は $x$ の多項式で表される関数とする.
+\par\vspace{0.3em}
+2つの関数 $f(x)=x^{3}$, $g(x)=x^{2}$ の導関数
+{\renewcommand{\fitblankpad}{0.7zw}%
+\mbox{$f'(x)=\fitblankbf{3x^{2}}$,}\ \mbox{$g'(x)=\fitblankbf{2x}$}}
+をもとに, 関数 $y=2f(x)$ や $y=f(x)+g(x)$ などを微分してみよう.
+\par\vspace{0.25em}
+まず, 関数 $y=2f(x)$ すなわち $y=2x^{3}$ の導関数を求めよう.
+\vspace{1em}
+\begin{answerbox}{}[15]
+  $y'=\lim_{h \to 0}\dfrac{2(x+h)^{3}-2x^{3}}{h}
+    =\lim_{h \to 0}2\left\{\dfrac{(x+h)^{3}-x^{3}}{h}\right\}$\\[0.4em]
+  $=\lim_{h \to 0}2(3x^{2}+3xh+h^{2})
+    =\lim_{h \to 0}(2\cdot 3x^{2}+2\cdot 3xh+2h^{2})$\\[0.4em]
+  $=2\cdot 3x^{2}$
+  \boxanswer{$2\cdot 3x^{2}$}
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+すなわち $y'=\fitblankbf{2\cdot 3x^{2}}$
+\par\vspace{0.35em}
+ここで, $f'(x)=\fitblankbf{3x^{2}}$ であるから, 次のことがいえる.
+\par\vspace{0.3em}
+$y=2f(x)$ を微分すると \quad $y'=\fitblankbf{2f'(x)}$
+
+\vspace{1.5em}
+次に, 関数 $y=f(x)+g(x)$ すなわち $y=x^{3}+x^{2}$ の導関数を求めよう.
+
+\begin{answerbox}{}[15]
+  $y'=\lim_{h \to 0}\dfrac{\{(x+h)^{3}+(x+h)^{2}\}-(x^{3}+x^{2})}{h}$\\[0.45em]
+  $=\lim_{h \to 0}\left\{\dfrac{(x+h)^{3}-x^{3}}{h}+\dfrac{(x+h)^{2}-x^{2}}{h}\right\}$\\[0.45em]
+  $=\lim_{h \to 0}\{(3x^{2}+3xh+h^{2})+(2x+h)\}$\\[0.4em]
+  $=3x^{2}+2x$
+  \boxanswer{$3x^{2}+2x$}
+\end{answerbox}
+\vspace{0.5em}
+すなわち $y'=\fitblankbf{3x^{2}+2x}$
+\par\vspace{0.35em}
+ここで, $f'(x)=\fitblankbf{3x^{2}}$, $g'(x)=\fitblankbf{2x}$ であるから,
+次のことがいえる.
+\par\vspace{0.3em}
+$y=f(x)+g(x)$ を微分すると \quad $y'=\fitblankbf{f'(x)+g'(x)}$
+\par\vspace{0.55em}
+同様にして, 次のこともいえる.
+\par\vspace{0.3em}
+$y=f(x)-g(x)$ を微分すると \quad $y'=\fitblankbf{f'(x)-g'(x)}$
+\vspace{1.5em}
+
+一般に, 関数 $f(x)$, $g(x)$ について, 次の性質が成り立つ.
+
+\vspace{-0.15em}
+\begin{theorembox}{関数の定数倍および和, 差の導関数}
+  $k$ を定数とする.
+  \par\vspace{0.2em}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.6zw, itemsep=0.45em]
+    \item $y=kf(x)$ を微分すると \quad
+          $y'=\fitblankbf{kf'(x)}$
+    \item $y=f(x)+g(x)$ を微分すると \quad
+          $y'=\fitblankbf{f'(x)+g'(x)}$
+    \item $y=f(x)-g(x)$ を微分すると \quad
+          $y'=\fitblankbf{f'(x)-g'(x)}$
+  \end{enumerate}
+\end{theorembox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 例\,6}\quad
+定理 6.1.2 を用いて, 次の関数を微分する.
+\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
+  \task 関数 $y=3x^{2}-4x+2$
+  \task 関数 $y=\dfrac{2}{3}x^{3}-\dfrac{5}{2}x^{2}+5x$
+\end{tasks}
+\vspace{-0.55em}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[16]
+  $y'=(3x^{2})'-(4x)'+(2)'$\\[0.2em]
+  $=3(x^{2})'-4(x)'+(2)'$\\[0.2em]
+  $=3\cdot 2x-4\cdot 1+0$\\[0.2em]
+  $=6x-4$
+  \boxanswer{$6x-4$}
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[16]
+  $y'=\dfrac{2}{3}(x^{3})'-\dfrac{5}{2}(x^{2})'+5(x)'$\\[0.25em]
+  $=\dfrac{2}{3}\cdot 3x^{2}-\dfrac{5}{2}\cdot 2x+5\cdot 1$\\[0.25em]
+  $=2x^{2}-5x+5$
+  \boxanswer{$2x^{2}-5x+5$}
+\end{answerbox}
+\end{minipage}
+
+\vspace{0.15em}
+\begin{practiceprob}{8}
+  定理 6.1.2 を用いて, 次の関数を微分せよ.
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
+    \task $y=4x^{2}+3x-4$
+    \task $y=2x^{2}-5x+1$
+    \task $y=-3x^{2}+x-2$
+    \task $y=-x^{2}-x+3$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.7em}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[12]
+  $y'=4(x^{2})'+3(x)'+(-4)'$\\[0.25em]
+  $=4\cdot 2x+3\cdot 1+0=8x+3$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[12]
+  $y'=2(x^{2})'-5(x)'+(1)'$\\[0.25em]
+  $=2\cdot 2x-5\cdot 1+0=4x-5$
+\end{answerbox}
+\end{minipage}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(3)}[12]
+  $y'=-3(x^{2})'+(x)'+(-2)'$\\[0.25em]
+  $=-3\cdot 2x+1+0=-6x+1$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(4)}[12]
+  $y'=-(x^{2})'-(x)'+(3)'$\\[0.25em]
+  $=-2x-1+0=-2x-1$
+\end{answerbox}
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 練習\,8}\quad（続き）
+\begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em, start=5](2)
+  \task $y=x^{3}+2x^{2}-3x$
+  \task $y=-2x^{3}-x^{2}+6x-2$
+  \task $y=\dfrac{4}{3}x^{3}+\dfrac{3}{4}x^{2}-\dfrac{1}{2}x$
+  \task $y=-\dfrac{1}{3}x^{3}-\dfrac{3}{2}x-\dfrac{1}{2}$
+\end{tasks}
+\vspace{0.2em}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(5)}[10]
+  $y'=(x^{3})'+2(x^{2})'-3(x)'$\\[0.3em]
+  $=3x^{2}+4x-3$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(6)}[10]
+  $y'=-2(x^{3})'-(x^{2})'+6(x)'$\\[0.3em]
+  $=-6x^{2}-2x+6$
+\end{answerbox}
+\end{minipage}
+
+\vspace{0.35em}
+\begin{answerbox}{(7)}[11]
+  $y'=\dfrac{4}{3}(x^{3})'+\dfrac{3}{4}(x^{2})'-\dfrac{1}{2}(x)'$\\[0.35em]
+  $=\dfrac{4}{3}\cdot 3x^{2}+\dfrac{3}{4}\cdot 2x-\dfrac{1}{2}$\\[0.3em]
+  $=4x^{2}+\dfrac{3}{2}x-\dfrac{1}{2}$
+\end{answerbox}
+\vspace{0.15em}
+\begin{answerbox}{(8)}[11]
+  $y'=-\dfrac{1}{3}(x^{3})'-\dfrac{3}{2}(x)'+\left(-\dfrac{1}{2}\right)'$\\[0.35em]
+  $=-\dfrac{1}{3}\cdot 3x^{2}-\dfrac{3}{2}$\\[0.3em]
+  $=-x^{2}-\dfrac{3}{2}$
+\end{answerbox}
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em, topsep=0.15em]
+    \item $f(x)$ を微分するとは, 導関数 $f'(x)$ を求めることである.
+    \item $k$ を定数とする.\enspace
+          {\renewcommand{\fitblankpad}{0.6zw}%
+          $(kf(x))'=\fitblankbf{kf'(x)}$,\
+          $(f(x)+g(x))'=\fitblankbf{f'(x)+g'(x)}$,\
+          $(f(x)-g(x))'=\fitblankbf{f'(x)-g'(x)}$}
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.05em}
+\nexttime{積は展開してから微分し, 微分係数を導関数で求めてみよう!}
+
+\end{document}

@@ -1,0 +1,242 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+\begin{document}
+
+\lectureheader{数学Ⅱ}{6}{微分法と積分法}{1}{微分係数と導関数}{2-B}{関数の微分}
+  {186,187}{定数倍と和・差の性質を使って, 整式を微分しよう}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.5em}
+\begin{reviewbox}{微分の公式}
+  $k$ を定数とする.
+  \par\vspace{0.15em}
+  {\renewcommand{\fitblankpad}{0.5zw}%
+  $(x^{n})'=\fitblankbf{nx^{n-1}}$,\quad
+  $(c)'=\fitblankbf{0}$,\quad
+  $(kf(x))'=\fitblankbf{kf'(x)}$}
+  \par\vspace{0.25em}
+  {\renewcommand{\fitblankpad}{0.5zw}%
+  $(f(x)+g(x))'=\fitblankbf{f'(x)+g'(x)}$,\quad
+  $(f(x)-g(x))'=\fitblankbf{f'(x)-g'(x)}$}
+\end{reviewbox}
+
+\vspace{0.1em}
+\begin{exampleprob}{1}
+  次の関数を微分せよ.
+  \par\vspace{0.15em}
+  \hspace*{2zw}$y=x(x+1)(x-2)$
+\end{exampleprob}
+\vspace{-0.35em}
+\begin{answerbox}{}[9]
+  $x(x+1)(x-2)=x(x^{2}-x-2)=x^{3}-x^{2}-2x$\\[0.3em]
+  よって $y=x^{3}-x^{2}-2x$\\[0.25em]
+  したがって $y'=3x^{2}-2x-2$
+  \boxanswer{$3x^{2}-2x-2$}
+\end{answerbox}
+
+\vspace{0.05em}
+\begin{practiceprob}{9}
+  次の関数を微分せよ.
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.08em](2)
+    \task $y=(x+2)(x+3)$
+    \task $y=3(x-2)^{2}$
+    \task $y=x(x+2)(x-2)$
+    \task $y=2x(x+1)(x-3)$
+  \end{tasks}
+\end{practiceprob}
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[6.4]
+  $y=(x+2)(x+3)$\\[0.1em]
+  $=x^{2}+5x+6$\\[0.1em]
+  $y'=2x+5$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[6.4]
+  $y=3(x^{2}-4x+4)$\\[0.1em]
+  $=3x^{2}-12x+12$\\[0.1em]
+  $y'=6x-12$
+\end{answerbox}
+\end{minipage}
+
+\begin{answerbox}{(3)}[5.6]
+  $y=x(x^{2}-4)=x^{3}-4x$
+  \qquad $y'=3x^{2}-4$
+\end{answerbox}
+\vspace{-0.2em}
+\begin{answerbox}{(4)}[6.2]
+  $y=2x(x^{2}-2x-3)=2x^{3}-4x^{2}-6x$\\[0.15em]
+  $y'=6x^{2}-8x-6$
+\end{answerbox}
+
+\vspace{0.15em}
+\begin{exampleprob}{2}
+  関数 $f(x)=-x^{2}+4x+1$ の導関数を利用して,
+  $x=-1$ における $f(x)$ の微分係数を求めよ.
+\end{exampleprob}
+\vspace{-0.4em}
+\begin{answerbox}{}[7.2]
+  $f(x)$ を微分すると $f'(x)=-2x+4$\\[0.3em]
+  求める微分係数は $f'(-1)=-2\cdot(-1)+4=6$
+  \boxanswer{$6$}
+\end{answerbox}
+
+\vspace{-0.15em}
+\begin{practiceprob}{10}
+  関数 $f(x)=x^{3}-3x^{2}+3$ について,
+  次の $x$ の値における微分係数を求めよ.
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.02em](3)
+    \task $x=2$
+    \task $x=0$
+    \task $x=-2$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.7em}
+\noindent
+$f'(x)=\fitblankbf{3x^{2}-6x}$ であるから
+\par\vspace{0.05em}
+\begin{answerbox}{(1)}[3.8]
+  $f'(2)=3\cdot 4-6\cdot 2=0$
+\end{answerbox}
+\vspace{-0.25em}
+\begin{answerbox}{(2)}[3.6]
+  $f'(0)=0$
+\end{answerbox}
+\vspace{-0.25em}
+\begin{answerbox}{(3)}[3.8]
+  $f'(-2)=3\cdot 4-6\cdot(-2)=24$
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+\textbf{Point}\quad
+180ページの例3のように求めていた微分係数は,
+導関数を利用すると例題2のように求めることができる.
+
+\vspace{0.55em}
+\heading{いろいろな関数の導関数}
+\vspace{-0.4em}
+変数が $x$, $y$ 以外の文字で表される関数についても, 同様に導関数を考える.
+たとえば, $t$ の関数 $s=f(t)$ の導関数は
+\par\vspace{0.2em}
+{\renewcommand{\fitblankpad}{0.4zw}%
+\fitblankbf{s'},\ \fitblankbf{f'(t)},\
+\fitblankbf{\dfrac{ds}{dt}},\ \fitblankbf{\dfrac{d}{dt}f(t)}}
+などで表す.
+
+\vspace{0.35em}
+\noindent{\bfseries 例\,7}\quad
+$g$ は定数とする. $s=\dfrac{1}{2}gt^{2}$ を $t$ の関数とみて $t$ で微分すると
+\par\vspace{0.15em}
+\hspace*{2zw}$s'=\dfrac{1}{2}g\cdot 2t=\fitblankbf{gt}$
+\par\vspace{0.3em}
+\textbf{補足}\quad
+$s$ が $t$ の関数であり, その導関数を求めていることを式で明確にしたいときは,
+$s'$ の代わりに $\dfrac{ds}{dt}$ を用いることがある.
+
+\vspace{0.15em}
+\begin{practiceprob}{11}
+  次の $t$ の関数を微分せよ. ただし, $a$, $b$ は定数とする.
+  \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.06em](2)
+    \task $s=3t^{2}-4t+2$
+    \task $f(t)=at^{2}+bt^{2}$
+  \end{tasks}
+\end{practiceprob}
+\vspace{-0.55em}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(1)}[4.8]
+  $s'=6t-4$
+\end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{answerbox}{(2)}[4.8]
+  $f'(t)=2at+2bt$
+\end{answerbox}
+\end{minipage}
+
+\vspace{-0.1em}
+\begin{practiceprob}{12}
+  半径 $r$ の球の体積を $V$, 表面積を $S$ とすると,
+  $V=\dfrac{4}{3}\pi r^{3}$, $S=4\pi r^{2}$ である.
+  $V$ と $S$ を $r$ の関数とみて, それぞれ $r$ で微分せよ.
+\end{practiceprob}
+\vspace{-0.55em}
+\begin{answerbox}{$V$}[4.6]
+  $V'=\dfrac{4}{3}\pi\cdot 3r^{2}=4\pi r^{2}$
+\end{answerbox}
+\vspace{-0.25em}
+\begin{answerbox}{$S$}[4.2]
+  $S'=8\pi r$
+\end{answerbox}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\heading{研究\quad 関数 $x^{n}$ の導関数}
+\vspace{-0.45em}
+183ページで学んだ次の導関数の公式を証明してみよう.
+\par\vspace{0.25em}
+\hspace*{2zw}$n$ を正の整数とするとき\quad
+$(x^{n})'=\fitblankbf{nx^{n-1}}$
+
+\vspace{0.35em}
+\textbf{【証明】}\quad
+導関数の定義より
+\[
+  (x^{n})'=\lim_{h \to 0}\frac{(x+h)^{n}-x^{n}}{h}
+\]
+二項定理により
+\begin{align*}
+  (x+h)^{n}
+  &={}_{n}\mathrm{C}_{0}x^{n}+{}_{n}\mathrm{C}_{1}x^{n-1}h
+    +{}_{n}\mathrm{C}_{2}x^{n-2}h^{2}+\cdots+{}_{n}\mathrm{C}_{n}h^{n}\\
+  &=x^{n}+nx^{n-1}h+\frac{1}{2}n(n-1)x^{n-2}h^{2}+\cdots+h^{n}
+\end{align*}
+よって
+\[
+  (x+h)^{n}-x^{n}
+  =nx^{n-1}h+\frac{1}{2}n(n-1)x^{n-2}h^{2}+\cdots+h^{n}
+\]
+両辺を $0$ でない数 $h$ で割ると
+\begin{align*}
+  \frac{(x+h)^{n}-x^{n}}{h}
+  &=nx^{n-1}+\frac{1}{2}n(n-1)x^{n-2}h+\cdots+h^{n-1}
+\end{align*}
+したがって
+\[
+  \lim_{h \to 0}\frac{(x+h)^{n}-x^{n}}{h}
+  =\fitblankbf{nx^{n-1}}
+\]
+すなわち $(x^{n})'=\fitblankbf{nx^{n-1}}$
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.18em, topsep=0.1em]
+    \item 積の形は\fitblankbf{\text{展開して}}から微分する.
+    \item 微分係数 $f'(a)$ は, $f'(x)$ に
+          $x=\fitblankbf{a}$ を代入して求める.
+    \item $t$ の関数でも同様に微分でき,
+          $s'$, $\dfrac{ds}{dt}$ などで表す.
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.05em}
+\nexttime{接線の方程式を, 微分を使って求めてみよう!}
+
+\end{document}
