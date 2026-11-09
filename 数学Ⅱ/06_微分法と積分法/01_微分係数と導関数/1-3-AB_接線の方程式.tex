@@ -3,18 +3,19 @@
 
 % 例題3: y=-x^2+4x と点 A(1,3) における接線 y=2x+1
 \newcommand{\exthreefig}{%
-  \begin{tikzpicture}[x=0.72cm, y=0.46cm, line cap=round, line join=round]
-    \draw[-{Stealth}] (-0.55,0) -- (4.85,0) node[right, font=\footnotesize] {$x$};
-    \draw[-{Stealth}] (0,-0.85) -- (0,5.15) node[above, font=\footnotesize] {$y$};
-    \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
-    \draw[thick, domain=0:4, samples=50] plot (\x, {-\x*\x+4*\x});
-    \draw[red!75!black, thick] (-0.25,0.5) -- (1.9,4.8);
-    \node[red!75!black, font=\footnotesize] at (0.12,1.95) {$\ell$};
+  \begin{tikzpicture}[x=0.98cm, y=0.63cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-0.62,0) -- (4.85,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}] (0,-2.3) -- (0,5.15) node[above, font=\footnotesize] {$y$};
+    \node[below left, inner sep=1pt, font=\footnotesize] at (0.4,0) {O};
+    \draw[thick, domain=-0.45:4.45, samples=60] plot (\x, {-\x*\x+4*\x});
+    \draw[red!75!black, thick] (-0.25,0.65) -- (1.9,4.8);
+    \node[red!75!black, font=\footnotesize] at (2.2,5.2) {$\ell$};
     \draw[dashed, gray] (1,3) -- (1,0);
+    \draw[dashed, gray] (1,3) -- (0,3);
     \fill (1,3) circle (1.7pt);
-    \node[above left, font=\footnotesize, inner sep=1.5pt] at (1,3) {A};
+    \node[above left, font=\footnotesize, inner sep=1.5pt] at (1,3.3) {A};
     \node[below, font=\footnotesize] at (1,0) {$1$};
-    \node[below, font=\footnotesize] at (4,0) {$4$};
+    \node[below, font=\footnotesize] at (4.25,0) {$4$};
     \node[left, font=\footnotesize] at (0,3) {$3$};
   \end{tikzpicture}%
 }
@@ -25,13 +26,15 @@
     \draw[-{Stealth}] (-2.15,0) -- (4.15,0) node[right, font=\footnotesize] {$x$};
     \draw[-{Stealth}] (0,-2.2) -- (0,14.6) node[above, font=\footnotesize] {$y$};
     \node[below left, inner sep=1pt, font=\footnotesize] at (0,0) {O};
-    \draw[thick, domain=-1.65:3.45, samples=50] plot (\x, {\x*\x+3});
-    \draw[red!75!black, thick] (-1.55,5.1) -- (1,0);
-    \draw[red!75!black, thick] (1,0) -- (3.2,13.2);
-    \fill (-1,4) circle (1.7pt);
-    \fill (3,12) circle (1.7pt);
-    \fill (1,0) circle (1.9pt);
-    \node[anchor=north, font=\footnotesize, inner sep=1pt] at (1.15,-0.55) {C};
+    \ifshowanswer
+      \draw[thick, domain=-1.65:3.45, samples=50] plot (\x, {\x*\x+3});
+      \draw[red!75!black, thick] (-1.55,5.1) -- (1,0);
+      \draw[red!75!black, thick] (1,0) -- (3.2,13.2);
+      \fill (-1,4) circle (1.7pt);
+      \fill (3,12) circle (1.7pt);
+      \fill (1,0) circle (1.9pt);
+      \node[anchor=north, font=\footnotesize, inner sep=1pt] at (1.15,-0.55) {C};
+    \fi
   \end{tikzpicture}%
 }
 
@@ -41,26 +44,28 @@
   {接線の方程式, グラフ上にない点から引いた接線}
   {188,189}{接線の方程式を求め, グラフの外の点からの接線も考えよう}
 
+% 1-2-B の定理 6.1.2 の続き
+\setcounter{theorem}{2}
+
 % ============ 1ページ目（表・左） ============
 \vspace{-2.0zw}%
 \heading{〜前時の復習〜}
-\vspace{-0.55em}
 \begin{reviewbox}{接線の傾き}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.15em]
     \item グラフ上の点 $(a,\ f(a))$ における接線の傾きは,
           微分係数 \fitblankbf{f'(a)} に等しい.
-    \item $f'(a)$ は, 導関数 $f'(x)$ に
+    \item 微分係数 (接線の傾き) $f'(a)$ は, 導関数 $f'(x)$ に
           $x=\fitblankbf{a}$ を代入して求める.
   \end{enumerate}
 \end{reviewbox}
 
 \vspace{0.15em}
 \topic{A}{接線の方程式}
-\vspace{-0.55em}
-関数 $y=f(x)$ のグラフ上の点 $(a,\ f(a))$ における接線の傾きは $f'(a)$ である.
+
+関数 $y=f(x)$ のグラフ上の点 $(a,\ f(a))$ における接線の傾きは $\fitblankbf{f'(a)}$ である.
 この直線の方程式を求めよう.
 
-\vspace{-0.15em}
+\vspace{1em}
 \begin{exampleprob}{3}
   関数 $y=-x^{2}+4x$ のグラフ上に点 $\mathrm{A}(1,\ 3)$ をとる.
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.04em](1)
@@ -68,7 +73,6 @@
     \task 点 $\mathrm{A}$ における接線 $\ell$ の方程式を求めよ.
   \end{tasks}
 \end{exampleprob}
-\vspace{-0.55em}
 \begin{answerbox}{(1)}[9.6]
   $f(x)=-x^{2}+4x$ とすると, $m=f'(1)$ である.\\[0.2em]
   $f'(x)=-2x+4$ であるから\\[0.15em]
@@ -82,8 +86,8 @@
 % ============ 2ページ目（表・右） ============
 \vspace{-1.4zw}%
 \noindent\hbox to \linewidth{%
-  \begin{minipage}[c]{0.58\linewidth}
-    \begin{answerbox}{(2)}[12.2]
+  \begin{minipage}[c]{0.51\linewidth}
+    \begin{answerbox}{(2)}[14]
       接線 $\ell$ は, 点 $\mathrm{A}(1,\ 3)$ を通り,\\
       傾きが $2$ の直線である.\\[0.2em]
       よって $y-3=2(x-1)$\\[0.15em]
@@ -92,42 +96,33 @@
     \end{answerbox}
   \end{minipage}%
   \hfill
-  \begin{minipage}[c]{0.40\linewidth}
+  \begin{minipage}[c]{0.47\linewidth}
     \centering\exthreefig
   \end{minipage}%
 }
 
-\vspace{0.25em}
-これは, 点 $(1,\ f(1))$ を通り傾き $f'(1)$ の直線なので
-\par\vspace{0.15em}
-\hspace*{2zw}$y-f(1)=\fitblankbf{f'(1)(x-1)}$
-\par\vspace{0.35em}
+\vspace{1em}
 一般に, 次のことがいえる.
 
-\vspace{-0.35em}
-\begin{formulabox}{グラフ上の点における接線の方程式}
+\begin{theorembox}{グラフ上の点における接線の方程式}
   関数 $y=f(x)$ のグラフ上の点 $(a,\ f(a))$ における接線の方程式は
   \par\vspace{0.15em}
   \centering $y-f(a)=\fitblankbf{f'(a)(x-a)}$
-\end{formulabox}
+\end{theorembox}
 
-\vspace{-0.15em}
-\begin{practiceprob}{13}
+\begin{practiceprob}{15}
   関数 $y=2x^{2}-4x+3$ のグラフ上に点 $\mathrm{A}(2,\ 3)$ をとる.
-  公式 6.1.1 を用いて, 次を求めよ.
   \begin{tasks}[label=(\arabic*), label-width=1.6zw, item-indent=2zw, after-item-skip=0.02em](1)
     \task 点 $\mathrm{A}$ における接線の傾き
     \task 点 $\mathrm{A}$ における接線の方程式
   \end{tasks}
 \end{practiceprob}
-\vspace{-0.7em}
-\begin{answerbox}{(1)}[6.6]
+\begin{answerbox}{(1)}[8]
   $f(x)=2x^{2}-4x+3$ とすると $f'(x)=4x-4$\\[0.1em]
   傾きは $f'(2)=4\cdot 2-4=4$
   \boxanswer{$4$}
 \end{answerbox}
-\vspace{-0.35em}
-\begin{answerbox}{(2)}[7.4]
+\begin{answerbox}{(2)}[8]
   $y-f(2)=f'(2)(x-2)$ より $y-3=4(x-2)$\\[0.15em]
   すなわち $y=4x-5$
   \boxanswer{$y=4x-5$}
@@ -139,13 +134,12 @@
 % ============ 3ページ目（裏・左） ============
 \vspace{-1.4zw}%
 \topic{B}{グラフ上にない点から引いた接線}
-\vspace{-0.7em}
-公式 6.1.1 は, 接点 $(a,\ f(a))$ における接線の方程式である.
+定理 6.1.3 は, 接点 $(a,\ f(a))$ における接線の方程式である.
 グラフ上にない点から接線を引くときは, 接点がわからない.
 接点の $x$ 座標を \fitblankbf{a} とおき,
 接線がその点を\fitblankbf{\text{通る}}ことから $a$ を求める.
 
-\vspace{0.15em}
+\vspace{2em}
 \noindent{\bfseries 応用例題\,1}\quad
 関数 $y=x^{2}+3$ のグラフに点 $\mathrm{C}(1,\ 0)$ から引いた接線は $2$ 本ある.
 この $2$ 本の接線の方程式を求めよ.
@@ -182,18 +176,12 @@
 
 % ============ 4ページ目（裏・右） ============
 \vspace{-1.4zw}%
-\textbf{補足}\quad
-点 $\mathrm{C}(1,\ 0)$ を通る直線は, 傾きを $m$ とすると
-$y=m(x-1)$ と表される.
-応用例題1では $m=\fitblankbf{-2},\ \fitblankbf{6}$ である.
-
-\vspace{0.05em}
 \begin{practiceprob}{14}
   関数 $y=x^{2}-2x+4$ のグラフに原点 $\mathrm{O}$ から引いた接線は $2$ 本ある.
   この $2$ 本の接線の方程式を求めよ.
 \end{practiceprob}
-\vspace{-0.55em}
-\begin{answerbox}{}[22.5]
+\vspace{0.15em}
+\begin{answerbox}{}[25]
   $y'=2x-2$\\[0.15em]
   接点を $(a,\ a^{2}-2a+4)$ とすると, 傾きは $2a-2$ であるから\\[0.1em]
   $y=(2a-2)(x-a)+a^{2}-2a+4$\\[0.12em]
@@ -205,14 +193,14 @@ $y=m(x-1)$ と表される.
   \boxanswer{$y=2x,\quad y=-6x$}
 \end{answerbox}
 
-\vspace{0.15em}
-\textbf{Point}\quad
-接線が通る点が与えられたとき, その点が\fitblankbf{\text{接点}}かどうかで解法が異なる.
-\par\vspace{0.12em}
-\hspace*{2zw}例題3は, 与えられた点が接点である.\quad
-応用例題1は, 与えられた点が接点でない.
+\vspace{0.35em}
+\begin{techniquebox}{接点かどうか}
+  接線が通る点が与えられたとき, その点が\fitblankbf{\text{接点}}かどうかで解法が異なる.
 
-\vfill
+  例題3は, 与えられた点が接点である.\quad 応用例題1は, 与えられた点が接点でない.
+\end{techniquebox}
+
+\vspace{-0.9em}
 \begin{summarybox}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.28em, topsep=0.12em]
     \item 点 $(a,\ f(a))$ における接線の方程式は
