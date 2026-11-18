@@ -1,0 +1,341 @@
+\documentclass[14pt,dvipdfmx]{jsarticle}
+\input{lecture-preamble.tex}
+
+% 例8の曲線 y=x^3-3x を, 極大・極小の模式図にする. 山が x=a, 谷が x=b
+\newcommand{\extremaschema}{%
+  \begin{tikzpicture}[x=0.60cm, y=0.40cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-2.55,0) -- (2.55,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-3.65) -- (0,2.85) node[above] {$y$};
+    \node[inner sep=1pt] at (-0.42,-0.45) {O};
+    \draw[thick, domain=-1.95:1.95, samples=80] plot (\x, {\x*\x*\x-3*\x});
+    \draw[dashed, gray] (-1,2) -- (-1,0);
+    \draw[dashed, gray] (1,-2) -- (1,0);
+    \fill (-1,2) circle (1.5pt);
+    \fill (1,-2) circle (1.5pt);
+    \node[below=1pt, inner sep=1pt] at (-1,0) {$a$};
+    \node[below=1pt, inner sep=1pt] at (1,0) {$b$};
+    \node[anchor=south, inner sep=1pt] at (-1,2.18) {極大};
+    \node[anchor=north, inner sep=1pt] at (1,-2.18) {極小};
+    % 曲線の通らない側に置く. 左の増加は x<-√3 の上, 減少は第1象限, 右の増加は軸の下
+    \node[red!75!black, anchor=east, inner sep=1pt] at (-1.82,0.72) {増加};
+    \node[blue!75!black, anchor=west, inner sep=1pt] at (0.32,1.25) {減少};
+    \node[red!75!black, anchor=north west, inner sep=1pt] at (1.92,-2.55) {増加};
+  \end{tikzpicture}%
+}
+
+% 例題4: y=x^3-3x^2+3. 極大 (0,3), 極小 (2,-1)
+\newcommand{\reidafourfig}{%
+  \begin{tikzpicture}[x=0.78cm, y=0.46cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-1.35,0) -- (3.45,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-2.05) -- (0,4.35) node[above] {$y$};
+    \node[inner sep=1pt] at (0.30,-0.40) {O};
+    \draw[thick, domain=-1.05:3.12, samples=80] plot (\x, {\x*\x*\x-3*\x*\x+3});
+    \draw[dashed, gray] (2,-1) -- (2,0);
+    \draw[dashed, gray] (2,-1) -- (0,-1);
+    \fill (0,3) circle (1.5pt);
+    \fill (2,-1) circle (1.5pt);
+    \node[below=1pt, inner sep=1pt] at (2,0) {$2$};
+    % 山は y 軸上なので, 3 は曲線の上側に置く. -1 は破線の下
+    \node[anchor=south east, inner sep=1pt] at (-0.12,3.12) {$3$};
+    \node[anchor=north west, inner sep=1pt] at (0.16,-1.12) {$-1$};
+  \end{tikzpicture}%
+}
+
+% 例9: y=x^3. 原点で接線は水平だが, 増減は変わらない
+\newcommand{\purecubicfig}{%
+  \begin{tikzpicture}[x=0.78cm, y=0.52cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-1.65,0) -- (1.85,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-1.75) -- (0,2.05) node[above] {$y$};
+    \node[inner sep=1pt] at (0.48,0.58) {O};
+    \draw[thick, domain=-1.22:1.22, samples=60] plot (\x, {\x*\x*\x});
+    \draw[dashed, gray] (1,1) -- (1,0);
+    \draw[dashed, gray] (1,1) -- (0,1);
+    \fill (0,0) circle (1.4pt);
+    \fill (1,1) circle (1.4pt);
+    \node[below, inner sep=1pt] at (1,0) {$1$};
+    \node[anchor=east, inner sep=1pt] at (-0.08,1) {$1$};
+  \end{tikzpicture}%
+}
+
+% 例10: y=-x^3-x. 常に減少
+\newcommand{\deccubicfig}{%
+  \begin{tikzpicture}[x=0.82cm, y=0.42cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-1.55,0) -- (1.7,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-2.85) -- (0,2.85) node[above] {$y$};
+    \node[inner sep=1pt] at (0.50,0.58) {O};
+    \draw[thick, domain=-1.15:1.15, samples=60] plot (\x, {-\x*\x*\x-\x});
+    \draw[dashed, gray] (1,-2) -- (1,0);
+    \draw[dashed, gray] (1,-2) -- (0,-2);
+    \fill (1,-2) circle (1.4pt);
+    \node[anchor=north west, inner sep=1pt] at (1.08,-0.12) {$1$};
+    \node[anchor=east, inner sep=1pt] at (-0.08,-2) {$-2$};
+  \end{tikzpicture}%
+}
+
+% 増減表. 極値のマスは「極大 / 値」のように2段にする
+% 2-4-A と同じく, 列幅は数字の桁によらず一定
+\newif\ifzgblank
+\newcommand{\zgcolwidth}{3.4zw}
+\newcommand{\zgbox}[1]{\makebox[\zgcolwidth][c]{#1}}
+\newcommand{\zgval}[1]{\ifzgblank\fitblankbox{#1}\else $#1$\fi}
+\newcommand{\zg}[1]{\zgbox{\zgval{#1}}}
+\newcommand{\zgext}[2]{%
+  \zgbox{\shortstack{%
+    \ifzgblank\fitblankbox{\text{\footnotesize #1}}\else{\footnotesize #1}\fi\\[-0.15em]
+    \zgval{#2}}}%
+}
+\newcommand{\extprimehead}{$f'(x)$}
+\newcommand{\extfunchead}{$f(x)$}
+\newcommand{\zgsetup}{%
+  \renewcommand{\arraystretch}{1.18}%
+  \renewcommand{\fitblankpad}{0.15zw}%
+  \setlength{\tabcolsep}{0.28zw}%
+  \newcommand{\zgdots}{\zgbox{$\cdots$}}%
+}
+% 3次で先頭の係数が正: 増加 → 極大 → 減少 → 極小 → 増加
+% 引数: x1, x2, 極大値, 極小値
+\newcommand{\maxminchartbody}[4]{%
+  \zgsetup
+  \begin{tabular}{|c||c|c|c|c|c|}
+    \hline
+    $x$ & \zgdots & \zg{#1} & \zgdots & \zg{#2} & \zgdots \\
+    \hline
+    \extprimehead & \zg{+} & \zg{0} & \zg{-} & \zg{0} & \zg{+} \\
+    \hline
+    \extfunchead & \zg{\nearrow} & \zgext{極大}{#3} & \zg{\searrow} & \zgext{極小}{#4} & \zg{\nearrow} \\
+    \hline
+  \end{tabular}%
+}
+\newcommand{\maxminchart}[4]{%
+  \begingroup\zgblanktrue\maxminchartbody{#1}{#2}{#3}{#4}\endgroup
+}
+% 臨界点が1つで, 前後の符号が同じ（極値なし）
+% 引数: x0, 左符号, 右符号, 左矢印, 値, 右矢印
+\newcommand{\flatincdecbody}[6]{%
+  \zgsetup
+  \begin{tabular}{|c||c|c|c|}
+    \hline
+    $x$ & \zgdots & \zg{#1} & \zgdots \\
+    \hline
+    \extprimehead & \zg{#2} & \zg{0} & \zg{#3} \\
+    \hline
+    \extfunchead & \zg{#4} & \zg{#5} & \zg{#6} \\
+    \hline
+  \end{tabular}%
+}
+\newcommand{\flatincdec}[6]{%
+  \begingroup\zgblanktrue\flatincdecbody{#1}{#2}{#3}{#4}{#5}{#6}\endgroup
+}
+
+\begin{document}
+
+% 2-4-A の定義・定理・Technique 6.2.1 の続き
+\lectureheader[8]{数学Ⅱ}{6}{微分法と積分法}{2}{関数の値の変化}{4-B}%
+  {関数の極大・極小}
+  {193--195}{増減の変わり目から極値を読み取り, グラフの概形をつかもう}
+\setcounter{definition}{1}
+\setcounter{theorem}{1}
+\setcounter{technique}{1}
+
+% ============ 1ページ目（表・左） ============
+\vspace{-2.0zw}%
+\heading{〜前時の復習〜}
+\vspace{-0.7em}
+\begin{reviewbox}{関数の増減}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em, topsep=0.1em]
+    \item $f'(x)>\fitblankbf{0}$ となる範囲では増加し,
+          $f'(x)<\fitblankbf{0}$ となる範囲では減少する.
+    \item 増減は\fitblankbf{\text{増減表}}にまとめる.\\
+          $f'(x)=0$ となる $x$ も, その範囲に含まれる.
+  \end{enumerate}
+\end{reviewbox}
+
+\vspace{0.05em}
+\topic{B}{関数の極大・極小}
+
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+  例8の $f(x)=x^{3}-3x$ では,\\
+  $x=-1$ で増加から減少へ,\\
+  $x=1$ で減少から増加へ移る.\\[0.45em]
+  一般に, 次のようにいう.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+  \centering\extremaschema
+\end{minipage}
+
+\vspace{0.15em}
+\begin{definitionbox}{極大・極小}
+  {\renewcommand{\fitblankpad}{0.8zw}%
+  $x=a$ を境目として増加から減少に移るとき,\\
+  $f(x)$ は $x=a$ で\fitblankbf{\text{極大}}であるといい,
+  $f(a)$ を\fitblankbf{\text{極大値}}という.\\[0.45em]
+  $x=b$ を境目として減少から増加に移るとき,\\
+  $f(x)$ は $x=b$ で\fitblankbf{\text{極小}}であるといい,
+  $f(b)$ を\fitblankbf{\text{極小値}}という.\\[0.45em]
+  極大値と極小値をまとめて\fitblankbf{\text{極値}}という.}
+\end{definitionbox}
+
+\vspace{0.2em}
+極値を求めたりグラフをかいたりするときは, まず\fitblankbf{\text{増減表}}を作る.\\
+増加から減少, 減少から増加への変わり目を読む.
+
+\vfill
+\nextpage
+
+% ============ 2ページ目（表・右） ============
+\vspace{-1.4zw}%
+\begin{exampleprob}{4}
+  関数 $y=x^{3}-3x^{2}+3$ の増減を調べ, 極値を求めよ.
+  また, そのグラフをかけ.
+\end{exampleprob}
+
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+  \begin{answerbox}{}[16.5]
+    $y'=3x^{2}-6x=3x(x-2)$\\[0.12em]
+    $y'=0$ とすると \quad $x=0,\ 2$\\[0.1em]
+    $y'>0$ は $x<0,\ 2<x$\\[0.06em]
+    $y'<0$ は $0<x<2$\\[0.12em]
+    $y(0)=3$,\quad $y(2)=8-12+3=-1$
+  \end{answerbox}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+  \centering\reidafourfig
+\end{minipage}
+
+\vspace{0.7em}
+よって, $y$ の増減表は次のようになる.
+\par\vspace{0.4em}
+{\centering
+  \renewcommand{\extprimehead}{$y'$}%
+  \renewcommand{\extfunchead}{$y$}%
+  \maxminchart{0}{2}{3}{-1}\par}
+
+\vspace{0.7em}
+{\renewcommand{\fitblankpad}{0.7zw}%
+したがって, $x=\fitblankbf{0}$ で極大値 $\fitblankbf{3}$ をとり,\\
+$x=\fitblankbf{2}$ で極小値 $\fitblankbf{-1}$ をとる.}
+
+\vfill
+\begin{techniquebox}{極値の求め方}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.22em, topsep=0.12em]
+    \item 導関数 $\fitblankbf{f'(x)}$ を求める.
+    \item $\fitblankbf{f'(x)=0}$ となる $x$ で範囲を分け, 各範囲の符号を調べる.
+    \item 増減表で, 増加から減少に変わる $x$ が\fitblankbf{\text{極大}},
+          減少から増加に変わる $x$ が\fitblankbf{\text{極小}}である.
+  \end{enumerate}
+\end{techniquebox}
+
+\nextpage
+
+% ============ 3ページ目（裏・左） ============
+\vspace{-1.4zw}%
+関数が常に増加, または常に減少する範囲では, 増減が入れかわることはない.
+したがって, 関数は\fitblankbf{\text{極値をもたない}}.
+
+\vspace{0.45em}
+\noindent{\bfseries 例\,9}\quad
+関数 $f(x)=x^{3}$ の増減と極値を調べる.
+\par\vspace{0.3em}
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+  $f'(x)=\fitblankbf{3x^{2}}$\\[0.35em]
+  $f'(x)=0$ とすると \quad $x=\fitblankbf{0}$\\[0.45em]
+  増減表は次のようになる.
+  \par\vspace{0.35em}
+  {\centering\flatincdec{0}{+}{+}{\nearrow}{0}{\nearrow}\par}
+  \vspace{0.45em}
+  $x=0$ の前後で符号は変わらない.
+  \par\vspace{0.2em}
+  よって, $f(x)$ は常に\fitblankbf{\text{増加}}し,
+  極値を\fitblankbf{\text{もたない}}.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}
+  \centering\purecubicfig
+\end{minipage}
+
+\vspace{0.85em}
+\noindent{\bfseries 例\,10}\quad
+関数 $f(x)=-x^{3}-x$ の増減と極値を調べる.
+\par\vspace{0.25em}
+\noindent
+\begin{minipage}[c]{0.58\linewidth}
+  $f'(x)=\fitblankbf{-3x^{2}-1}$\\[0.4em]
+  $-3x^{2}\leqq 0$ であるから, 常に $f'(x)\fitblankbf{<0}$.
+  \par\vspace{0.35em}
+  よって, $f(x)$ は常に\fitblankbf{\text{減少}}し,
+  極値を\fitblankbf{\text{もたない}}.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}
+  \centering\deccubicfig
+\end{minipage}
+
+\vspace{0.7em}
+\begin{theorembox}{極値と $f'(a)$}
+  $x$ の多項式で表される関数 $f(x)$ について,
+  \par\vspace{0.2em}
+  \hspace*{1zw}$f(x)$ が $x=a$ で極値をとるならば,
+  $f'(a)=\fitblankbf{0}$ である.
+\end{theorembox}
+
+\vspace{0.15em}
+\noindent
+\setbox0=\hbox{\textbf{注意}\quad}%
+\dimen0=\wd0
+\box0\begin{minipage}[t]{\dimexpr\linewidth-\dimen0\relax}
+逆は成り立たない. $f'(a)=0$ であっても, $x=a$ で極値をとるとは限らない.\\[0.25em]
+例9では $f'(0)=0$ であるが, $f(x)=x^{3}$ は $x=0$ で極値をとらない.
+\end{minipage}
+
+\vfill
+\nextpage
+
+% ============ 4ページ目（裏・右） ============
+\vspace{-1.4zw}%
+\noindent{\bfseries 応用例題\,2}\quad
+関数 $f(x)=x^{3}+ax+b$ が $x=2$ で極小値 $-6$ をとるように,
+定数 $a$, $b$ の値を定めよ. また, 極大値を求めよ.
+\par\vspace{0.4em}
+\textbf{考え方}\quad
+定理 6.2.2 より $f'(2)=\fitblankbf{0}$ であり, さらに $f(2)=-6$ である.
+\par\vspace{0.15em}
+\hspace*{4.5zw}$f'(2)=0$ だけでは極値をとるとは限らないので, 増減表で確認する.
+
+\vspace{0.15em}
+\begin{answerbox}{}[13]
+  $f'(x)=3x^{2}+a$\\[0.15em]
+  $f'(2)=0$,\ $f(2)=-6$ より \quad $12+a=0$,\ $8+2a+b=-6$\\[0.15em]
+  よって \quad $a=-12$,\quad $b=10$\\[0.2em]
+  このとき \quad $f(x)=x^{3}-12x+10$\\[0.08em]
+  $f'(x)=3x^{2}-12=3(x+2)(x-2)$
+  \boxanswer{$a=-12$,\ $b=10$}
+\end{answerbox}
+
+\vspace{0.35em}
+増減表は次のようになる.
+\par\vspace{0.35em}
+{\centering
+  \maxminchart{-2}{2}{26}{-6}\par}
+
+\vspace{0.45em}
+{\renewcommand{\fitblankpad}{0.7zw}%
+したがって, $x=\fitblankbf{-2}$ で極大値 $\fitblankbf{26}$ をとり,\\
+$x=\fitblankbf{2}$ で極小値 $\fitblankbf{-6}$ をとる.}
+
+\vfill
+\begin{summarybox}
+  \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.16em, topsep=0.08em]
+    \item 増加から減少に変わるところで\fitblankbf{\text{極大}},
+          減少から増加に変わるところで\fitblankbf{\text{極小}}となる.
+    \item 極値は\fitblankbf{\text{増減表}}から読み取る.\\
+          増減が変わらなければ\fitblankbf{\text{極値はない}}.
+    \item 極値をとるならば $f'(a)=\fitblankbf{0}$ である.
+          逆は成り立たないので, 増減表で確認する.
+  \end{enumerate}
+\end{summarybox}
+
+\vspace{0.02em}
+\nexttime{極値と定義域の端に注目して, 関数の最大・最小を考えてみよう!}
+
+\end{document}
