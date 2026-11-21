@@ -3,29 +3,23 @@
 
 % 例8の曲線 y=x^3-3x を, 極大・極小の模式図にする. 山が x=a, 谷が x=b
 \newcommand{\extremaschema}{%
-  \begin{tikzpicture}[x=0.60cm, y=0.40cm, line cap=round, line join=round]
-    \draw[-{Stealth}] (-2.55,0) -- (2.55,0) node[right] {$x$};
-    \draw[-{Stealth}] (0,-3.65) -- (0,2.85) node[above] {$y$};
-    \node[inner sep=1pt] at (-0.42,-0.45) {O};
-    \draw[thick, domain=-1.95:1.95, samples=80] plot (\x, {\x*\x*\x-3*\x});
+  \begin{tikzpicture}[x=1.22cm, y=0.83cm, line cap=round, line join=round]
+    \draw[-{Stealth}] (-2.30,0) -- (2.30,0) node[right] {$x$};
+    \draw[-{Stealth}] (0,-2.45) -- (0,2.50) node[above] {$y$};
+    \node[inner sep=1pt] at (0.28,0.32) {O};
+    \draw[thick, domain=-2:2, samples=80] plot (\x, {\x*\x*\x-3*\x});
     \draw[dashed, gray] (-1,2) -- (-1,0);
     \draw[dashed, gray] (1,-2) -- (1,0);
-    \fill (-1,2) circle (1.5pt);
-    \fill (1,-2) circle (1.5pt);
-    \node[below=1pt, inner sep=1pt] at (-1,0) {$a$};
-    \node[below=1pt, inner sep=1pt] at (1,0) {$b$};
-    \node[anchor=south, inner sep=1pt] at (-1,2.18) {極大};
-    \node[anchor=north, inner sep=1pt] at (1,-2.18) {極小};
-    % 曲線の通らない側に置く. 左の増加は x<-√3 の上, 減少は第1象限, 右の増加は軸の下
-    \node[red!75!black, anchor=east, inner sep=1pt] at (-1.82,0.72) {増加};
-    \node[blue!75!black, anchor=west, inner sep=1pt] at (0.32,1.25) {減少};
-    \node[red!75!black, anchor=north west, inner sep=1pt] at (1.92,-2.55) {増加};
+    \fill (-1,2) circle (1.6pt);
+    \fill (1,-2) circle (1.6pt);
+    \node[below=1pt, inner sep=1pt] at (-1,0) {$-1$};
+    \node[below=1pt, inner sep=1pt] at (1,0) {$1$};
   \end{tikzpicture}%
 }
 
 % 例題4: y=x^3-3x^2+3. 極大 (0,3), 極小 (2,-1)
 \newcommand{\reidafourfig}{%
-  \begin{tikzpicture}[x=0.78cm, y=0.46cm, line cap=round, line join=round]
+  \begin{tikzpicture}[x=0.96cm, y=0.60cm, line cap=round, line join=round]
     \draw[-{Stealth}] (-1.35,0) -- (3.45,0) node[right] {$x$};
     \draw[-{Stealth}] (0,-2.05) -- (0,4.35) node[above] {$y$};
     \node[inner sep=1pt] at (0.30,-0.40) {O};
@@ -34,16 +28,16 @@
     \draw[dashed, gray] (2,-1) -- (0,-1);
     \fill (0,3) circle (1.5pt);
     \fill (2,-1) circle (1.5pt);
-    \node[below=1pt, inner sep=1pt] at (2,0) {$2$};
+    \node[below=1pt, inner sep=1pt] at (2,1) {$2$};
     % 山は y 軸上なので, 3 は曲線の上側に置く. -1 は破線の下
     \node[anchor=south east, inner sep=1pt] at (-0.12,3.12) {$3$};
-    \node[anchor=north west, inner sep=1pt] at (0.16,-1.12) {$-1$};
+    \node[anchor=north west, inner sep=1pt] at (-0.8,-1.12) {$-1$};
   \end{tikzpicture}%
 }
 
 % 例9: y=x^3. 原点で接線は水平だが, 増減は変わらない
 \newcommand{\purecubicfig}{%
-  \begin{tikzpicture}[x=0.78cm, y=0.52cm, line cap=round, line join=round]
+  \begin{tikzpicture}[x=1.08cm, y=0.74cm, line cap=round, line join=round]
     \draw[-{Stealth}] (-1.65,0) -- (1.85,0) node[right] {$x$};
     \draw[-{Stealth}] (0,-1.75) -- (0,2.05) node[above] {$y$};
     \node[inner sep=1pt] at (0.48,0.58) {O};
@@ -59,7 +53,7 @@
 
 % 例10: y=-x^3-x. 常に減少
 \newcommand{\deccubicfig}{%
-  \begin{tikzpicture}[x=0.82cm, y=0.42cm, line cap=round, line join=round]
+  \begin{tikzpicture}[x=1.08cm, y=0.56cm, line cap=round, line join=round]
     \draw[-{Stealth}] (-1.55,0) -- (1.7,0) node[right] {$x$};
     \draw[-{Stealth}] (0,-2.85) -- (0,2.85) node[above] {$y$};
     \node[inner sep=1pt] at (0.50,0.58) {O};
@@ -72,18 +66,13 @@
   \end{tikzpicture}%
 }
 
-% 増減表. 極値のマスは「極大 / 値」のように2段にする
+% 増減表. 極値のマスには値だけを入れる
 % 2-4-A と同じく, 列幅は数字の桁によらず一定
 \newif\ifzgblank
 \newcommand{\zgcolwidth}{3.4zw}
 \newcommand{\zgbox}[1]{\makebox[\zgcolwidth][c]{#1}}
 \newcommand{\zgval}[1]{\ifzgblank\fitblankbox{#1}\else $#1$\fi}
 \newcommand{\zg}[1]{\zgbox{\zgval{#1}}}
-\newcommand{\zgext}[2]{%
-  \zgbox{\shortstack{%
-    \ifzgblank\fitblankbox{\text{\footnotesize #1}}\else{\footnotesize #1}\fi\\[-0.15em]
-    \zgval{#2}}}%
-}
 \newcommand{\extprimehead}{$f'(x)$}
 \newcommand{\extfunchead}{$f(x)$}
 \newcommand{\zgsetup}{%
@@ -92,7 +81,7 @@
   \setlength{\tabcolsep}{0.28zw}%
   \newcommand{\zgdots}{\zgbox{$\cdots$}}%
 }
-% 3次で先頭の係数が正: 増加 → 極大 → 減少 → 極小 → 増加
+% 3次で先頭の係数が正: 増加 → 極大値 → 減少 → 極小値 → 増加
 % 引数: x1, x2, 極大値, 極小値
 \newcommand{\maxminchartbody}[4]{%
   \zgsetup
@@ -102,7 +91,7 @@
     \hline
     \extprimehead & \zg{+} & \zg{0} & \zg{-} & \zg{0} & \zg{+} \\
     \hline
-    \extfunchead & \zg{\nearrow} & \zgext{極大}{#3} & \zg{\searrow} & \zgext{極小}{#4} & \zg{\nearrow} \\
+    \extfunchead & \zg{\nearrow} & \zg{#3} & \zg{\searrow} & \zg{#4} & \zg{\nearrow} \\
     \hline
   \end{tabular}%
 }
@@ -139,8 +128,6 @@
 
 % ============ 1ページ目（表・左） ============
 \vspace{-2.0zw}%
-\heading{〜前時の復習〜}
-\vspace{-0.7em}
 \begin{reviewbox}{関数の増減}
   \begin{enumerate}[label=\textbf{\arabic*}, leftmargin=1.5zw, itemsep=0.2em, topsep=0.1em]
     \item $f'(x)>\fitblankbf{0}$ となる範囲では増加し,
@@ -154,17 +141,17 @@
 \topic{B}{関数の極大・極小}
 
 \noindent
-\begin{minipage}[c]{0.56\linewidth}
+\begin{minipage}[c]{0.44\linewidth}
   例8の $f(x)=x^{3}-3x$ では,\\
   $x=-1$ で増加から減少へ,\\
   $x=1$ で減少から増加へ移る.\\[0.45em]
   一般に, 次のようにいう.
 \end{minipage}\hfill
-\begin{minipage}[c]{0.42\linewidth}
+\begin{minipage}[c]{0.54\linewidth}
   \centering\extremaschema
 \end{minipage}
 
-\vspace{0.15em}
+\vspace{0.05em}
 \begin{definitionbox}{極大・極小}
   {\renewcommand{\fitblankpad}{0.8zw}%
   $x=a$ を境目として増加から減少に移るとき,\\
@@ -176,10 +163,6 @@
   極大値と極小値をまとめて\fitblankbf{\text{極値}}という.}
 \end{definitionbox}
 
-\vspace{0.2em}
-極値を求めたりグラフをかいたりするときは, まず\fitblankbf{\text{増減表}}を作る.\\
-増加から減少, 減少から増加への変わり目を読む.
-
 \vfill
 \nextpage
 
@@ -189,33 +172,33 @@
   関数 $y=x^{3}-3x^{2}+3$ の増減を調べ, 極値を求めよ.
   また, そのグラフをかけ.
 \end{exampleprob}
+\vspace{0.5em}
 
 \noindent
 \begin{minipage}[c]{0.56\linewidth}
   \begin{answerbox}{}[16.5]
     $y'=3x^{2}-6x=3x(x-2)$\\[0.12em]
     $y'=0$ とすると \quad $x=0,\ 2$\\[0.1em]
-    $y'>0$ は $x<0,\ 2<x$\\[0.06em]
-    $y'<0$ は $0<x<2$\\[0.12em]
-    $y(0)=3$,\quad $y(2)=8-12+3=-1$
+    $x = 0$ のとき $y = 3$,\quad $x = 2$ のとき $y = -1$
   \end{answerbox}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.42\linewidth}
   \centering\reidafourfig
 \end{minipage}
 
-\vspace{0.7em}
+\vspace{1.5em}
 よって, $y$ の増減表は次のようになる.
-\par\vspace{0.4em}
+\par\vspace{1em}
 {\centering
   \renewcommand{\extprimehead}{$y'$}%
   \renewcommand{\extfunchead}{$y$}%
   \maxminchart{0}{2}{3}{-1}\par}
 
-\vspace{0.7em}
+\vspace{1.5em}
 {\renewcommand{\fitblankpad}{0.7zw}%
-したがって, $x=\fitblankbf{0}$ で極大値 $\fitblankbf{3}$ をとり,\\
-$x=\fitblankbf{2}$ で極小値 $\fitblankbf{-1}$ をとる.}
+したがって,
+
+\qquad \qquad $x=\fitblankbf{0}$ で極大値 $\fitblankbf{3}$ をとり,\quad $x=\fitblankbf{2}$ で極小値 $\fitblankbf{-1}$ をとる.}
 
 \vfill
 \begin{techniquebox}{極値の求め方}
